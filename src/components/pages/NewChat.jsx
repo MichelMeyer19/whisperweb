@@ -9,11 +9,6 @@ export const NewChat = () => {
       <h1>New Chat</h1>
       <main>
         <TopicList/>
-        <div>
-          {/* for some reasons those buttons are not rendered....*/}
-          <newChatButton text="Request Themed Chat"/>
-          <newChatButton text="Request General Chat"/>
-        </div>
       </main>
     </>
   );
