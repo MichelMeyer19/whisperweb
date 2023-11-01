@@ -22,7 +22,7 @@ export const ChatsView = () => {
       <ChatMessage
         topic="General "
         userName="Anonymous Grasshopper"
-        message="Templatet text Templatet text Templatet text"
+        message="Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text"
       />
     </Temp>
   );
