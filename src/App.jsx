@@ -15,14 +15,11 @@ function App() {
         <Navbar /> {/* Rendering the Navbar component */}
         <Routes>
           {/* React Router's Routes component for handling page routing */}
-          {/* Route for the default path ("/") with ChatsView component as the element */}
           <Route path="/" element={<ChatsView />} />
-          {/* Route for the "/chatsview" path with ChatsView component as the element */}
           <Route path="/chatsview" element={<ChatsView />} />
-          {/* Route for the "/newchat" path with NewChat component as the element */}
           <Route path="/newchat" element={<NewChat />} />
-          {/* Route for the "/information" path with Information component as the element */}
           <Route path="/information" element={<Information />} />
+          <Route path="/chat/:chatId" component={<Chat />} />
         </Routes>
       </div>
     </Router>
