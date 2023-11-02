@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
-import { Information, ChatsView, NewChat } from "./components/pages"; // Importing page components
+import { Information, ChatsView, NewChat, Chat } from "./components/pages"; // Importing page components
 
 // Main functional component for the App
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Route path="/chatsview" element={<ChatsView />} />
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/information" element={<Information />} />
-          {/* <Route path="/chat/:chatId" component={<Chat />} /> */}
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </div>
     </Router>
