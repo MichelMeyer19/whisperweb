@@ -1,11 +1,12 @@
 // components/pages/Chat.jsx
 
 import React from "react";
-import ChatBox from "./molecules/ChatBox";
+import ChatBox from "../organisms/ChatBox";
+import Temp from "../template/Temp";
 
 export const Chat = () => {
   return (
-    <div>
+    <Temp>
       {/* Example usage of ChatMessage component */}
       <ChatBox
         isStart={true}
@@ -23,6 +24,6 @@ export const Chat = () => {
         isDelivered={false}
         isSeen={true}
       />
-    </div>
+    </Temp>
   );
 };
