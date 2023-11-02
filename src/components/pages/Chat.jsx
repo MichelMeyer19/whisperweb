@@ -54,7 +54,7 @@ export const Chat = () => {
         <ChatBox
           isStart={true}
           userName="Obi-Wan Kenobi"
-          time="12:45"
+          time="12:47"
           message="..."
           isDelivered={true}
           isSeen={false}
