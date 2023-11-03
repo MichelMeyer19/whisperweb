@@ -5,7 +5,7 @@ import Avatar from "../atoms/Avatar";
 
 const ChatMessageDetail = ({ isStart, userName, time, message, avatarSrc }) => {
   const chatClass = isStart ? "chat-start" : "chat-end";
-  const bubbleClass = isStart ? "bg-white text-black" : "bg-blue text-black";
+  const bubbleClass = isStart ? "bg-white text-black" : "bg-green text-black";
 
   return (
     <div className={`chat ${chatClass}`}>
