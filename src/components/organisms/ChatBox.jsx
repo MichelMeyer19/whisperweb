@@ -1,37 +1,55 @@
 // components/organisms/ChatBox.jsx
-
 import React from "react";
-import Avatar from "../atoms/Avatar";
+import ChatMessageDetail from "../molecules/ChatMessageDetail";
 
-const ChatBox = ({
-  isStart,
-  userName,
-  time,
-  message,
-  isDelivered,
-  isSeen,
-  avatarSrc,
-}) => {
-  const chatClass = isStart ? "chat-start" : "chat-end";
+const ChatBox = ({ chatMessages }) => {
+  const containerStyles = "w-4/5 bg-white rounded-lg p-4 overflow-y-auto h-4/5";
 
   return (
-    <div className={`chat ${chatClass}`}>
-      {/* Use the Avatar component with the provided src */}
-      <Avatar src={avatarSrc} />
-      <div className="chat-header">
-        {userName}
-        <time className="text-xs opacity-50">{time}</time>
-      </div>
-      <div className="chat-bubble">{message}</div>
-      <div className="chat-footer opacity-50">
-        {isDelivered && "Delivered"}
-        {isSeen && `Seen at ${time}`}
-      </div>
+    <div className={containerStyles}>
+      {chatMessages.map((message, index) => (
+        <ChatMessageDetail key={index} {...message} />
+      ))}
     </div>
   );
 };
 
 export default ChatBox;
+
+// // components/organisms/ChatBox.jsx
+
+// import React from "react";
+// import Avatar from "../atoms/Avatar";
+
+// const ChatBox = ({
+//   isStart,
+//   userName,
+//   time,
+//   message,
+//   isDelivered,
+//   isSeen,
+//   avatarSrc,
+// }) => {
+//   const chatClass = isStart ? "chat-start" : "chat-end";
+
+//   return (
+//     <div className={`chat ${chatClass}`}>
+//       {/* Use the Avatar component with the provided src */}
+//       <Avatar src={avatarSrc} />
+//       <div className="chat-header">
+//         {userName}
+//         <time className="text-xs opacity-50">{time}</time>
+//       </div>
+//       <div className="chat-bubble">{message}</div>
+//       <div className="chat-footer opacity-50">
+//         {isDelivered && "Delivered"}
+//         {isSeen && `Seen at ${time}`}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ChatBox;
 
 // // components/organisms/ChatBox.jsx
 
