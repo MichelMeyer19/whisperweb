@@ -17,6 +17,7 @@ module.exports = {
         lightSlate: 'rgb(140, 140, 161)',
         dorian: 'rgb(236, 241, 244)',
         cloud:'rgb(250, 252, 254)',
+        gradient: 'var(--Gradient---Green-Blue, linear-gradient(180deg, #55E1A0 0%, #52B6F8 100%))',
       },
     },
   },
