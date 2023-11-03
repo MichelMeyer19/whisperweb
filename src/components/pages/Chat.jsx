@@ -1,9 +1,9 @@
 // components/pages/Chat.jsx
-
 import React from "react";
 import ChatBox from "../organisms/ChatBox";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
+import TopicText from "../atoms/TopicText";
 
 export const Chat = () => {
   const chatMessages = [
@@ -30,7 +30,8 @@ export const Chat = () => {
 
   return (
     <Temp>
-      <PageHeadline text="Chat with" />
+      {/* Wrap TopicText inside PageHeadline */}
+      <PageHeadline text={<TopicText text="#ChosenOne" />} />
 
       {/* Render ChatBox and pass the chat messages */}
       <ChatBox chatMessages={chatMessages} />
