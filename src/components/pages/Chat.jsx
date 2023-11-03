@@ -1,12 +1,14 @@
 // components/pages/Chat.jsx
 
 import React from "react";
-import ChatBox from "../organisms/ChatBox";
-import Temp from "../template/Temp";
+import ChatBox from "./molecules/ChatBox";
 
 export const Chat = () => {
+  const containerStyles =
+    "w-11/12 bg-white rounded-lg p-4 overflow-y-auto h-full"; // Adjust as needed
+
   return (
-    <Temp>
+    <div>
       {/* Example usage of ChatMessage component */}
       <ChatBox
         isStart={true}
@@ -24,6 +26,6 @@ export const Chat = () => {
         isDelivered={false}
         isSeen={true}
       />
-    </Temp>
+    </div>
   );
 };
