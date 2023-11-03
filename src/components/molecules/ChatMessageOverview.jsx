@@ -1,6 +1,5 @@
 // components/molecules/ChatMessageOverview.jsx
 
-// components/molecules/ChatMessageOverview.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import TopicText from "../atoms/TopicText";

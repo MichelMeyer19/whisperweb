@@ -25,7 +25,7 @@ export const Chat = () => {
       isSeen: true,
       avatarSrc: "/icons/anakin.webp",
     },
-    // Add more chat messages as needed
+    // Add more chat messages as needed -> perhaps an array of chats with unique id's?
   ];
 
   return (
