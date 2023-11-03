@@ -3,7 +3,8 @@ import React from "react";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 
 const ChatBox = ({ chatMessages }) => {
-  const containerStyles = "w-4/5 bg-white rounded-lg p-4 overflow-y-auto h-4/5";
+  const containerStyles =
+    "w-4/5 bg-white rounded-lg p-4 overflow-y-auto h-4/5 shadow-lg";
 
   return (
     <div className={containerStyles}>
