@@ -1,9 +1,11 @@
+// components/molecules/ChatMessageOverview.jsx
+
 import React from "react";
 import TopicText from "../atoms/TopicText";
 import UsrName from "../atoms/UsrName";
 import MsgText from "../atoms/MsgText";
 
-const ChatMessage = ({ topic, userName, message }) => {
+const ChatMessageOverview = ({ topic, userName, message }) => {
   return (
     <div className="flex flex-col items-start justify-center bg-white m-5 p-5 rounded w-11/12 max-w-4xl h-32 max-h-32 shadow-lg">
       <TopicText text={topic} />
@@ -15,9 +17,9 @@ const ChatMessage = ({ topic, userName, message }) => {
   );
 };
 
-export default ChatMessage;
+export default ChatMessageOverview;
 
-ChatMessage.jsx;
+//ChatMessageOverview.jsx;
 
 // import React from "react";
 // import { Link } from "react-router-dom";
@@ -25,7 +27,7 @@ ChatMessage.jsx;
 // import UsrName from "../atoms/UsrName";
 // import MsgText from "../atoms/MsgText";
 
-// const ChatMessage = ({ chatId, topic, userName, message }) => {
+// const ChatMessageOverview = ({ chatId, topic, userName, message }) => {
 //   return (
 //     <Link to={`/chat/${chatId}`}>
 //       <div className="flex flex-col items-start justify-center bg-white m-5 p-5 rounded w-11/12 max-w-4xl h-32 max-h-32 shadow-lg">
@@ -39,4 +41,4 @@ ChatMessage.jsx;
 //   );
 // };
 
-// export default ChatMessage;
+// export default ChatMessageOverview;
