@@ -1,3 +1,4 @@
-export * from "./Chats";
+export * from "./ChatsView";
 export * from "./Information";
 export * from "./NewChat";
+export * from "./Chat";
