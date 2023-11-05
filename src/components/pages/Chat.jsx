@@ -3,7 +3,7 @@ import React from "react";
 import ChatBox from "../organisms/ChatBox";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
-import Back from "../atoms/Back"; // Import the Back component
+import Back from "../atoms/Back";
 
 export const Chat = () => {
   const chatMessages = [
@@ -25,14 +25,31 @@ export const Chat = () => {
       isSeen: true,
       avatarSrc: "/icons/anakin.webp",
     },
+    {
+      isStart: true,
+      userName: "Obi-Wan Kenobi",
+      time: "12:47",
+      message: "...",
+      isDelivered: true,
+      isSeen: false,
+      avatarSrc: "/icons/obi.webp",
+    },
+    {
+      isStart: false,
+      userName: "Anakin",
+      time: "12:48",
+      message: "!",
+      isDelivered: false,
+      isSeen: true,
+      avatarSrc: "/icons/anakin.webp",
+    },
     // Add more chat messages as needed -> perhaps an array of chats with unique id's?
   ];
 
   return (
     <Temp>
-      <div className="flex items-start">
-        <Back />
-      </div>
+      <Back />
+
       <PageHeadline text="#ChosenOne" />
       <ChatBox chatMessages={chatMessages} />
     </Temp>

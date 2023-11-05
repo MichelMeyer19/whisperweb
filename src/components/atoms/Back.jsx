@@ -1,4 +1,3 @@
-// components/atoms/Back.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,8 +9,10 @@ const Back = () => {
   };
 
   return (
-    <div className="p-3 cursor-pointer" onClick={goBack}>
-      <img src="/icons/goBack.svg" alt="Go Back" />
+    <div className="w-11/12 mt-4">
+      <div className="w-fit cursor-pointer" onClick={goBack}>
+        <img src="/icons/goBack.svg" alt="Go Back" className="w-4 h-auto" />
+      </div>
     </div>
   );
 };
