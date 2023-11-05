@@ -6,19 +6,35 @@ import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
 
 export const ChatsView = () => {
+  const chatMessages = [
+    {
+      id: 1,
+      topic: "#Family",
+      userName: "Anonymous Cat",
+      message: "Template text Template text",
+    },
+    {
+      id: 2,
+      topic: "General",
+      userName: "Anonymous Grasshopper",
+      message:
+        "Template text Template text Template text Template text Template text Template text Template text Template text Template text",
+    },
+    // Add more chat messages as needed
+  ];
+
   return (
     <Temp>
       <PageHeadline text="Chats" />
-      <ChatMessageOverview
-        topic="#Family"
-        userName="Anonymous Cat"
-        message="Templatet text Templatet text "
-      />
-      <ChatMessageOverview
-        topic="General"
-        userName="Anonymous Grasshopper"
-        message="Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text"
-      />
+      {/* Map through the array of chat messages and render ChatMessageOverview components */}
+      {chatMessages.map((chat) => (
+        <ChatMessageOverview
+          key={chat.id}
+          topic={chat.topic}
+          userName={chat.userName}
+          message={chat.message}
+        />
+      ))}
     </Temp>
   );
 };

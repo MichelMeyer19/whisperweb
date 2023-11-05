@@ -3,7 +3,7 @@ import React from "react";
 import ChatBox from "../organisms/ChatBox";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
-import TopicText from "../atoms/TopicText";
+import Back from "../atoms/Back"; // Import the Back component
 
 export const Chat = () => {
   const chatMessages = [
@@ -30,10 +30,10 @@ export const Chat = () => {
 
   return (
     <Temp>
-      {/* Wrap TopicText inside PageHeadline */}
-      <PageHeadline text={<TopicText text="#ChosenOne" />} />
-
-      {/* Render ChatBox and pass the chat messages */}
+      <div className="flex items-start">
+        <Back />
+      </div>
+      <PageHeadline text="#ChosenOne" />
       <ChatBox chatMessages={chatMessages} />
     </Temp>
   );
