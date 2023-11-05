@@ -49,7 +49,6 @@ export const Chat = () => {
   return (
     <Temp>
       <Back />
-
       <PageHeadline text="#ChosenOne" />
       <ChatBox chatMessages={chatMessages} />
     </Temp>
