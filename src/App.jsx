@@ -1,33 +1,43 @@
 // Import necessary components and modules from React and React Router
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useState } from 'react'; // Import useEffect and useState hooks from React
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
-import { Information, ChatsView, NewChat, Chat } from "./components/pages"; // Importing page components
+import { Information, ChatsView, NewChat, Chat, Welcome } from "./components/pages"; // Importing page components
 
 // Main functional component for the App
 function App() {
+  const location = useLocation(); // Get the current location
+  const [showNavbar, setShowNavbar] = useState(true);
+
+  // Use useEffect to update the showNavbar state based on the route
+  useEffect(() => {
+    // Set showNavbar to false if the current path is '/welcome'
+    setShowNavbar(location.pathname !== '/welcome');
+  }, [location]); // Dependency array with location to re-run effect when location changes
+
   // JSX structure for the App component
   return (
-    <Router>
-      {/* Ensure that your routes are wrapped in a Router component */}
-      <div className="App">
-        {/* Main container with class name "App" */}
-        <Navbar /> {/* Rendering the Navbar component */}
-        <Routes>
-          {/* React Router's Routes component for handling page routing */}
-          {/* Route for the default path ("/") with ChatsView component as the element */}
-          <Route path="/" element={<ChatsView />} />
-          {/* Route for the "/chatsview" path with ChatsView component as the element */}
-          <Route path="/chatsview" element={<ChatsView />} />
-          {/* Route for the "/newchat" path with NewChat component as the element */}
-          <Route path="/newchat" element={<NewChat />} />
-          {/* Route for the "/information" path with Information component as the element */}
-          <Route path="/information" element={<Information />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      {/* Conditional rendering of Navbar based on showNavbar state */}
+      {showNavbar && <Navbar />} {/* Rendering the Navbar component */}
+      <Routes>
+        {/* React Router's Routes component for handling page routing */}
+        <Route path="/" element={<ChatsView />} />
+        <Route path="/chatsview" element={<ChatsView />} />
+        <Route path="/newchat" element={<NewChat />} />
+        <Route path="/information" element={<Information />} />
+        <Route path="/welcome" element={<Welcome />} />
+      </Routes>
+    </div>
   );
 }
 
-// Exporting the App component as the default export
-export default App;
+// Exporting the App component as the default export wrapped in Router to provide location context
+export default function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
