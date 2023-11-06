@@ -1,3 +1,5 @@
+// Generic button component 
+
 const GenericButton = ({ text, additionalStyles, onClick, type = 'button' }) => {
   // Define a base style for the button including text styling
   const baseStyle = `

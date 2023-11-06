@@ -1,9 +1,9 @@
-  // Import necessary components and modules from React and React Router
-  import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-  import { useEffect, useState } from 'react'; // Import useEffect and useState hooks from React
-  import "./App.css"; // Importing styles for the App component
-  import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
-  import { Information, ChatsView, NewChat, Chat, Welcome, OurValues, SignIn, SignUp } from "./components/pages"; // Importing page components
+// Import necessary components and modules from React and React Router
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useState } from 'react'; // Import useEffect and useState hooks from React
+import "./App.css"; // Importing styles for the App component
+import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
+import { Information, ChatsView, NewChat, Chat, Welcome, OurValues, SignIn, SignUp } from "./components/pages"; // Importing page components
 
   // Main functional component for the App
   function App() {
@@ -29,6 +29,7 @@
           <Route path="/chatsview" element={<ChatsView />} />
           <Route path="/newchat" element={<NewChat />} />
           <Route path="/information" element={<Information />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/welcome/ourvalues" element={<OurValues />} />
           <Route path="/signin" element={<SignIn />} />

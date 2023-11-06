@@ -1,8 +1,9 @@
+// Manifesto component that updates the text on the page based on the state
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GenericButton from '../atoms/GenericButton';
 
-// Manifesto component that updates the text on the page based on the state
 
 // This data could technically be in a separate file or folder called data or constants in the src folder
 const contentPages = [
