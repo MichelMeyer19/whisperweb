@@ -16,21 +16,33 @@ const Navbar = () => {
     <nav className="flex justify-around items-center bg-white text-black fixed bottom-0 w-full p-5">
       <NavLink to="/newchat" end className="no-underline">
         <Icon
-          src={isActive("/newchat") ? "/icons/new-chat-chosen.png" : "/icons/new-chat.png"}
+          src={
+            isActive("/newchat")
+              ? "/icons/new-chat-chosen.png"
+              : "/icons/new-chat.png"
+          }
           alt="NewChat"
         />
       </NavLink>
 
-      <NavLink to="/chats" end className="no-underline">
+      <NavLink to="/chatsview" end className="no-underline">
         <Icon
-          src={isActive("/chats") ? "/icons/chats-chosen.png" : "/icons/chats.png"}
-          alt="Chats"
+          src={
+            isActive("/chatsview")
+              ? "/icons/chats-chosen.png"
+              : "/icons/chats.png"
+          }
+          alt="ChatsView"
         />
       </NavLink>
 
       <NavLink to="/information" end className="no-underline">
         <Icon
-          src={isActive("/information") ? "/icons/information-chosen.png" : "/icons/information.png"}
+          src={
+            isActive("/information")
+              ? "/icons/information-chosen.png"
+              : "/icons/information.png"
+          }
           alt="Information"
         />
       </NavLink>
@@ -39,4 +51,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
