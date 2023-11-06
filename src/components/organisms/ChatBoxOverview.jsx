@@ -1,11 +1,11 @@
 import React from "react";
-import ChatMessageDetail from "../molecules/ChatMessageDetail";
+import ChatMessageOverview from "../molecules/ChatMessageOverview";
 
 const ChatBoxOverview = ({ chatMessages }) => {
   return (
-    <div className="flex flex-col w-11/12 bg-transparent rounded-lg m-2 p-4 overflow-y-auto shadow-lg">
+    <div className="flex flex-col items-center w-11/12 bg-transparent m-2 p-4 overflow-y-auto">
       {chatMessages.map((message, index) => (
-        <ChatMessageDetail key={index} {...message} />
+        <ChatMessageOverview key={index} {...message} />
       ))}
     </div>
   );

@@ -26,14 +26,7 @@ export const ChatsView = () => {
   return (
     <Temp>
       <PageHeadline text="Chats" />
-      {chatMessages.map((chat) => (
-        <ChatMessageOverview
-          key={chat.id}
-          topic={chat.topic}
-          userName={chat.userName}
-          message={chat.message}
-        />
-      ))}
+      <ChatBoxOverview chatMessages={chatMessages} />
     </Temp>
   );
 };
