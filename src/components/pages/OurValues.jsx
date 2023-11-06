@@ -53,7 +53,7 @@ export const OurValues = () => {
   ));
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white">
+    <div className="flex flex-col items-center justify-center h-screen bg-dorian">
       <h1 className="text-title">{contentPages[currentPage].title}</h1>
       <div className="text-center">
         {pageContent}

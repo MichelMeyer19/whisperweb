@@ -19,7 +19,7 @@ export const Welcome = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-black">
+    <div className="flex flex-col items-center justify-center h-screen bg-dorian">
       <GenericButton 
         text="Our Values"
         additionalStyles="mb-4 text-black bg-white hover:bg-gray-200"

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GenericButton from '../atoms/GenericButton'; // Adjust the import path as necessary
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-white">
+    <div className="flex flex-col items-center justify-center h-screen bg-dorian">
       <h1 className="text-3xl font-bold mb-10">Sign In</h1>
       <form onSubmit={handleSignIn} className="w-full max-w-xs">
         <label htmlFor="email" className="text-gray-700">
@@ -44,21 +45,25 @@ export const SignIn = () => {
             required
           />
         </label>
-        <button
-          type="submit"
-          className="w-full bg-teal-500 text-white px-3 py-2 rounded-md mb-4 hover:bg-teal-600"
-        >
-          LOG IN
-        </button>
-        <button
-          type="button"
-          onClick={navigateToSignUp}
-          className="w-full text-teal-500 px-3 py-2 text-center"
-        >
-          DON'T HAVE AN ACCOUNT?
-        </button>
+        <div className="flex justify-center"> {/* Wrapper to center the button */}
+          <GenericButton
+            text="Log In"
+            additionalStyles="bg-teal-500 text-white hover:bg-teal-600"
+            onClick={() => {}} // Since it's a submit button, onClick isn't needed here
+            type="submit"
+          />
+        </div>
+        <div className="flex justify-center mt-4"> {/* Another wrapper for the sign-up navigation */}
+          <GenericButton
+            text="Don't have an account?"
+            additionalStyles="text-teal-500 hover:bg-gray-100"
+            onClick={navigateToSignUp}
+            type="button"
+          />
+        </div>
       </form>
     </div>
   );
 };
 
+export default SignIn;
