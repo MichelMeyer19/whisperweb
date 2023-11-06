@@ -13,7 +13,7 @@ export const SignIn = () => {
   };
 
   const navigateToSignUp = () => {
-    navigate('/signup'); // replace with your sign-up route
+    navigate('./signup'); // replace with your sign-up route
   };
 
   return (
