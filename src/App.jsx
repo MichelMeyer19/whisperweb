@@ -2,7 +2,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
-import { Information, ChatsView, NewChat, Chat } from "./components/pages"; // Importing page components
+
+import { Information, ChatsView, NewChat, Chat, NewChatRequested } from "./components/pages"; // Importing page components
 
 // Main functional component for the App
 function App() {
@@ -21,6 +22,8 @@ function App() {
           <Route path="/chatsview" element={<ChatsView />} />
           {/* Route for the "/newchat" path with NewChat component as the element */}
           <Route path="/newchat" element={<NewChat />} />
+          {/* Route for the "/newchatrequested" path with NewChatRequested component as the element */}
+          <Route path="/newchatrequested" element={<NewChatRequested />} />
           {/* Route for the "/information" path with Information component as the element */}
           <Route path="/information" element={<Information />} />
         </Routes>
