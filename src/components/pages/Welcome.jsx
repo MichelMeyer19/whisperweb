@@ -1,14 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import GenericButton from '../atoms/GenericButton';
 
 export const Welcome = () => {
+  // Hook for navigation
+  const navigate = useNavigate();
+
   // Function to handle "Our Values" button click
   const goToOurValues = () => {
-    window.location.href = 'https://example.com/our-values'; // replace with your actual URL
+      // For us to conside what our nesting structure should be?
+      // At the moment we are now being directed to a completely new page
+      // Question to consider: should this section be nested as welcome/ourvalues?
+      navigate("./ourvalues") 
   };
 
   // Function to handle "Continue" button click
   const continueWithProcess = () => {
-    // Logic to continue with the process
+    navigate("/signin")
   };
 
   return (
