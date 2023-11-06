@@ -8,7 +8,7 @@ import MsgText from "../atoms/MsgText";
 
 const ChatMessageOverview = ({ topic, userName, message }) => {
   return (
-    <div className="m-2 p4 min-w-min w-11/12 max-w-4xl">
+    <div className="m-2 min-w-min w-11/12 max-w-4xl">
       <Link to="/chat">
         <div className="flex flex-col items-start bg-dorian p-5 rounded shadow-lg">
           <TopicText text={topic} />

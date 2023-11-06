@@ -4,6 +4,7 @@ import React from "react";
 import ChatMessageOverview from "../molecules/ChatMessageOverview";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
+import ChatBoxOverview from "../organisms/ChatBoxOverview";
 
 export const ChatsView = () => {
   const chatMessages = [
@@ -20,13 +21,11 @@ export const ChatsView = () => {
       message:
         "Template text Template text Template text Template text Template text Template text Template text Template text Template text",
     },
-    // Add more chat messages as needed
   ];
 
   return (
     <Temp>
       <PageHeadline text="Chats" />
-      {/* Map through the array of chat messages and render ChatMessageOverview components */}
       {chatMessages.map((chat) => (
         <ChatMessageOverview
           key={chat.id}
