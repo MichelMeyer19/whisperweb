@@ -1,7 +1,6 @@
 // components/pages/ChatsView.jsx
 
 import React from "react";
-import ChatMessageOverview from "../molecules/ChatMessageOverview";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
 import ChatBoxOverview from "../organisms/ChatBoxOverview";
