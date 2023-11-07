@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import { useEffect, useState } from 'react'; // Import useEffect and useState hooks from React
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
-import { Information, ChatsView, NewChat, Chat, Welcome, OurValues, SignIn, SignUp } from "./components/pages"; // Importing page components
+
+import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurValues, SignIn, SignUp } from "./components/pages"; // Importing page components
 
   // Main functional component for the App
   function App() {
@@ -28,6 +29,9 @@ import { Information, ChatsView, NewChat, Chat, Welcome, OurValues, SignIn, Sign
           <Route path="/" element={<ChatsView />} />
           <Route path="/chatsview" element={<ChatsView />} />
           <Route path="/newchat" element={<NewChat />} />
+          {/* Route for the "/newchatrequested" path with NewChatRequested component as the element */}
+          <Route path="/newchatrequested" element={<NewChatRequested />} />
+          {/* Route for the "/information" path with Information component as the element */}
           <Route path="/information" element={<Information />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/welcome" element={<Welcome />} />
