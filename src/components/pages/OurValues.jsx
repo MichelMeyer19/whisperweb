@@ -54,15 +54,23 @@ export const OurValues = () => {
   ));
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-dorian">
-      <h1 className="text-title">{contentPages[currentPage].title}</h1>
-      <div className="text-center">
-        {pageContent}
+    <div className="flex flex-col h-screen bg-dorian">
+      <div className="flex-grow">
+        <div className="flex flex-col items-center justify-center h-full">
+          <h1 className="text-title">{contentPages[currentPage].title}</h1>
+          <div className="text-center">
+            {pageContent}
+          </div>
+        </div>
       </div>
-      <GenericButton
-        text={currentPage === contentPages.length - 1 ? "Finish" : "Next"}
-        onClick={nextPage}
-      />
+      <div className="pb-8 w-full flex justify-center">
+        <GenericButton
+          text={currentPage === contentPages.length - 1 ? "Finish" : "Next"}
+          onClick={nextPage}
+          additionalStyles="text-black bg-green hover:bg-green-dark"
+          // Add any additional styles you have for your button here
+        />
+      </div>
     </div>
   );
 };

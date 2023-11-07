@@ -20,6 +20,7 @@ export const SignUp = () => {
     navigate('/signin'); // Navigate to the sign-in page
   };
 
+  // The following input buttons needs to be converted into component and a molecule parent component 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-dorian">
       <h1 className="text-3xl font-bold mb-10">Create New Account</h1>
