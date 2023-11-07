@@ -17,7 +17,7 @@ const ChatIO = ({ onSendClick }) => {
         message: message,
         isDelivered: false,
         isSeen: false,
-        avatarSrc: "/icons/your-avatar.jpg",
+        avatarSrc: "/icons/anakin.webp",
       };
 
       onSendClick(newMessage);
