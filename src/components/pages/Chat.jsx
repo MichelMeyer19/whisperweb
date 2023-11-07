@@ -43,6 +43,24 @@ export const Chat = () => {
       isSeen: true,
       avatarSrc: "/icons/anakin.webp",
     },
+    {
+      isStart: false,
+      userName: "Anakin",
+      time: "12:48",
+      message: "!",
+      isDelivered: false,
+      isSeen: true,
+      avatarSrc: "/icons/anakin.webp",
+    },
+    {
+      isStart: false,
+      userName: "Anakin",
+      time: "12:48",
+      message: "!",
+      isDelivered: false,
+      isSeen: true,
+      avatarSrc: "/icons/anakin.webp",
+    },
     // Add more chat messages as needed -> perhaps an array of chats with unique id's?
   ];
 
