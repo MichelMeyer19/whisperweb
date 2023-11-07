@@ -23,6 +23,9 @@ let initialTopics = [
   {id: "14", topic_name: "Campus Life", isClicked: false}
 ];
 
+import {TopicList} from '../organisms/TopicList.jsx';
+import newChatButton from "../atoms/newChatButton.jsx";
+
 export const NewChat = () => {
 
   // define state that contains most relevant topics
