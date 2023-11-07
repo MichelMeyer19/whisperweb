@@ -1,4 +1,6 @@
 // ChatIO.jsx
+// Remember to make GPT provide comments for the following code
+
 import React, { useState } from "react";
 import InputText from "../atoms/InputText";
 
@@ -10,18 +12,20 @@ const ChatIO = ({ onSendClick }) => {
   };
 
   const handleSendClick = () => {
-    if (message.trim() !== "") {
-      const newMessage = {
-        isStart: false,
-        userName: "Anakin",
-        time: getCurrentTime(),
-        message: message,
-        avatarSrc: "/icons/anakin.webp",
-      };
-
-      onSendClick(newMessage);
-      setMessage("");
+    if (message.trim() === "") {
+      return;
     }
+
+    const newMessage = {
+      isStart: false,
+      userName: "Anakin",
+      time: getCurrentTime(),
+      message: message,
+      avatarSrc: "/icons/anakin.webp",
+    };
+
+    onSendClick(newMessage);
+    setMessage("");
   };
 
   const getCurrentTime = () => {
