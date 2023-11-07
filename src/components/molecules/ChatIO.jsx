@@ -1,3 +1,4 @@
+// ChatIO.jsx
 import React, { useState } from "react";
 import InputText from "../atoms/InputText";
 
@@ -12,11 +13,9 @@ const ChatIO = ({ onSendClick }) => {
     if (message.trim() !== "") {
       const newMessage = {
         isStart: false,
-        userName: "YourUserName",
+        userName: "Anakin",
         time: getCurrentTime(),
         message: message,
-        isDelivered: false,
-        isSeen: false,
         avatarSrc: "/icons/anakin.webp",
       };
 

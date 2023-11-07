@@ -1,3 +1,4 @@
+// ChatBox.jsx
 import React, { useState } from "react";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
@@ -9,8 +10,6 @@ const ChatBox = () => {
       userName: "Obi-Wan Kenobi",
       time: "12:45",
       message: "You were the Chosen One!",
-      isDelivered: true,
-      isSeen: false,
       avatarSrc: "/icons/obi.webp",
     },
     {
@@ -18,8 +17,6 @@ const ChatBox = () => {
       userName: "Anakin",
       time: "12:46",
       message: "I hate you!",
-      isDelivered: false,
-      isSeen: true,
       avatarSrc: "/icons/anakin.webp",
     },
     {
@@ -27,8 +24,6 @@ const ChatBox = () => {
       userName: "Obi-Wan Kenobi",
       time: "12:47",
       message: "...",
-      isDelivered: true,
-      isSeen: false,
       avatarSrc: "/icons/obi.webp",
     },
     {
@@ -36,14 +31,12 @@ const ChatBox = () => {
       userName: "Anakin",
       time: "12:48",
       message: "!",
-      isDelivered: false,
-      isSeen: true,
       avatarSrc: "/icons/anakin.webp",
     },
   ]);
 
   const handleSendClick = (newMessage) => {
-    setChatMessages([...chatMessages, newMessage]);
+    setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
   };
 
   console.log(chatMessages);
