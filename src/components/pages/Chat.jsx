@@ -1,95 +1,97 @@
-// components/pages/Chat.jsx
-
-// components/pages/Chat.jsx
-import React from "react";
-import ChatBox from "../organisms/ChatBox";
+import React, { useEffect } from "react";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
+import Back from "../atoms/Back";
+import ChatBox from "../organisms/ChatBox";
 
 export const Chat = () => {
-  const chatMessages = [
-    {
-      isStart: true,
-      userName: "Obi-Wan Kenobi",
-      time: "12:45",
-      message: "You were the Chosen One!",
-      isDelivered: true,
-      isSeen: false,
-      avatarSrc: "/icons/obi.webp",
-    },
-    {
-      isStart: false,
-      userName: "Anakin",
-      time: "12:46",
-      message: "I hate you!",
-      isDelivered: false,
-      isSeen: true,
-      avatarSrc: "/icons/anakin.webp",
-    },
-    // Add more chat messages as needed
-  ];
+  // const [messages, setMessages] = useState([]);
 
+  // useEffect(()=>{
+  //   fetch('endpoint/mesages').then((response) => setMessages(response))
+  // },[])
   return (
     <Temp>
-      <PageHeadline text="Chat with" />
-
-      {/* Render ChatBox and pass the chat messages */}
-      <ChatBox chatMessages={chatMessages} />
+      <Back />
+      <PageHeadline text="#ChosenOne" />
+      <ChatBox />
     </Temp>
   );
 };
 
+export default Chat;
+
+// // components/pages/Chat.jsx
 // import React from "react";
 // import ChatBox from "../organisms/ChatBox";
 // import Temp from "../template/Temp";
 // import PageHeadline from "../atoms/PageHeadline";
+// import Back from "../atoms/Back";
 
 // export const Chat = () => {
-//   const containerStyles = "w-4/5 bg-white rounded-lg p-4 overflow-y-auto h-4/5"; // Adjust as needed
+//   const chatMessages = [
+//     {
+//       isStart: true,
+//       userName: "Obi-Wan Kenobi",
+//       time: "12:45",
+//       message: "You were the Chosen One!",
+//       isDelivered: true,
+//       isSeen: false,
+//       avatarSrc: "/icons/obi.webp",
+//     },
+//     {
+//       isStart: false,
+//       userName: "Anakin",
+//       time: "12:46",
+//       message: "I hate you!",
+//       isDelivered: false,
+//       isSeen: true,
+//       avatarSrc: "/icons/anakin.webp",
+//     },
+//     {
+//       isStart: true,
+//       userName: "Obi-Wan Kenobi",
+//       time: "12:47",
+//       message: "...",
+//       isDelivered: true,
+//       isSeen: false,
+//       avatarSrc: "/icons/obi.webp",
+//     },
+//     {
+//       isStart: false,
+//       userName: "Anakin",
+//       time: "12:48",
+//       message: "!",
+//       isDelivered: false,
+//       isSeen: true,
+//       avatarSrc: "/icons/anakin.webp",
+//     },
+//     {
+//       isStart: false,
+//       userName: "Anakin",
+//       time: "12:48",
+//       message: "!",
+//       isDelivered: false,
+//       isSeen: true,
+//       avatarSrc: "/icons/anakin.webp",
+//     },
+//     {
+//       isStart: false,
+//       userName: "Anakin",
+//       time: "12:48",
+//       message: "!",
+//       isDelivered: false,
+//       isSeen: true,
+//       avatarSrc: "/icons/anakin.webp",
+//     },
+//     // Add more chat messages as needed -> perhaps an array of chats with unique id's?
+//   ];
 
 //   return (
 //     <Temp>
-//       <PageHeadline text="Chat with" />
-//       {/* Apply the scrollbar styles to the scrollable container */}
-//       <style>
-//         {`
-//           /* Hide the scrollbar for Webkit browsers (Chrome, Safari) */
-//           .${containerStyles}::-webkit-scrollbar {
-//             width: 0 !important;
-//           }
-
-//           /* Optional: If you want to hide the scrollbar in Firefox */
-//           .${containerStyles} {
-//             scrollbar-width: thin;
-//           }
-//         `}
-//       </style>
-
-//       {/* Scrollable container for chat messages */}
-//       <div className={containerStyles}>
-//         {/* Example usage of ChatMessage component for Obi-Wan */}
-//         <ChatBox
-//           isStart={true}
-//           userName="Obi-Wan Kenobi"
-//           time="12:45"
-//           message="You were the Chosen One!"
-//           isDelivered={true}
-//           isSeen={false}
-//           // Set the avatar source for Obi-Wan
-//           avatarSrc="/icons/obi.webp"
-//         />
-//         {/* Example usage of ChatMessage component for Anakin */}
-//         <ChatBox
-//           isStart={false}
-//           userName="Anakin"
-//           time="12:46"
-//           message="I hate you!"
-//           isDelivered={false}
-//           isSeen={true}
-//           // Set the avatar source for Anakin
-//           avatarSrc="/icons/anakin.webp"
-//         />
-//       </div>
+//       <Back />
+//       <PageHeadline text="#ChosenOne" />
+//       <ChatBox chatMessages={chatMessages} />
 //     </Temp>
 //   );
 // };

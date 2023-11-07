@@ -1,34 +1,36 @@
 // components/pages/ChatsView.jsx
 
-import { Link } from "react-router-dom";
-import ChatMessageOverview from "../molecules/ChatMessageOverview";
+import React from "react";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
+import ChatBoxOverview from "../organisms/ChatBoxOverview";
 
 export const ChatsView = () => {
+  const chatMessages = [
+    {
+      id: 1,
+      topic: "#Family",
+      userName: "Anonymous Cat",
+      message: "Template text Template text",
+    },
+    {
+      id: 2,
+      topic: "General",
+      userName: "Anonymous Grasshopper",
+      message:
+        "Template text Template text Template text Template text Template text Template text Template text Template text Template text",
+    },
+  ];
+
   return (
     <Temp>
       <PageHeadline text="Chats" />
-      {/* Wrap each ChatMessageOverview in a Link component */}
-      <Link to="/chat">
-        <ChatMessageOverview
-          topic="#Family"
-          userName="Anonymous Cat"
-          message="Templatet text Templatet text "
-        />
-      </Link>
-      <Link to="/chat">
-        <ChatMessageOverview
-          topic="General "
-          userName="Anonymous Grasshopper"
-          message="Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text"
-        />
-      </Link>
+      <ChatBoxOverview chatMessages={chatMessages} />
     </Temp>
   );
 };
 
-// // components/pages/ChatsView.jsx
+// the following code is for when we have a backend implemented
 
 // import React from "react";
 // import ChatMessageOverview from "../molecules/ChatMessageOverview";
@@ -39,23 +41,18 @@ export const ChatsView = () => {
 //   return (
 //     <Temp>
 //       <PageHeadline text="Chats" />
-//       {/*This is a simple way to demonstrate rendering the
-//         ChatMessageOverview component within the Chats page. In a
-//         real-world scenario, you would likely fetch data dynamically
-//         and map it to the ChatMessageOverview component based on the actual
-//         messages or conversations in your application.*/}
 //       <ChatMessageOverview
 //         topic="#Family"
 //         userName="Anonymous Cat"
 //         message="Templatet text Templatet text "
+//         chatId="1"  // Replace with the actual chat ID
 //       />
 //       <ChatMessageOverview
-//         topic="General "
+//         topic="General"
 //         userName="Anonymous Grasshopper"
 //         message="Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text Templatet text"
+//         chatId="2"  // Replace with the actual chat ID
 //       />
 //     </Temp>
 //   );
 // };
-
-// Import necessary components and modules from React and React Router
