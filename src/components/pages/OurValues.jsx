@@ -1,63 +1,32 @@
-// Manifesto component that updates the text on the page based on the state
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GenericButton from '../atoms/GenericButton';
-
-
-// This data could technically be in a separate file or folder called data or constants in the src folder
-const contentPages = [
-  {
-    title: "Why WhisperWeb Exists",
-    content: [
-      "Authenticity Over Appearance",
-      "Mental Well-being",
-      "Breaking Down Barriers"
-      // Add the rest of the content for the first page here
-    ],
-  },
-  {
-    title: "Our Hope for You",
-    content: [
-      "Discover & Grow",
-      "Build Genuine Connections",
-      "Empowerment"
-      // Add the rest of the content for the second page here
-    ],
-  },
-  {
-    title: "Our Belief In Anonymity",
-    content: [
-      "Anonymity is not about hiding; it's about revealing.",
-      // Add the rest of the content for the third page here
-    ],
-  },
-];
+import contentPages from "../utils/ourValuesText.js"
 
 export const OurValues = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const navigate = useNavigate(); // Use the useNavigate hook to get the navigate function
+  const navigate = useNavigate();
 
   const nextPage = () => {
     if (currentPage < contentPages.length - 1) {
       setCurrentPage(currentPage + 1);
     } else {
-      // Use navigate to redirect to the sign-in page
       navigate('/signin');
     }
   };
 
-  const pageContent = contentPages[currentPage].content.map((text, index) => (
-    <p key={index} className="text-content">
-      {text}
-    </p>
+  const pageContent = contentPages[currentPage].content.map((item, index) => (
+    <div key={index} className="content-section max-w-xs mx-auto my-4">
+      <h2 className="text-headline text-lg font-semibold">{item.headline}</h2>
+      <p className="text-content mt-2">{item.text}</p>
+    </div>
   ));
 
   return (
     <div className="flex flex-col h-screen bg-dorian">
       <div className="flex-grow">
         <div className="flex flex-col items-center justify-center h-full">
-          <h1 className="text-title">{contentPages[currentPage].title}</h1>
+          <h1 className="text-title text-2xl font-bold mb-4">{contentPages[currentPage].title}</h1>
           <div className="text-center">
             {pageContent}
           </div>
@@ -68,7 +37,6 @@ export const OurValues = () => {
           text={currentPage === contentPages.length - 1 ? "Finish" : "Next"}
           onClick={nextPage}
           additionalStyles="text-black bg-green hover:bg-green-dark"
-          // Add any additional styles you have for your button here
         />
       </div>
     </div>
