@@ -8,6 +8,7 @@ You can find them at different fidelity levels in [Figma](https://www.figma.com/
 
 # Tech stack
 
+
 ## React and Vite
 
 For accelerated loading times, we opted for working with React in Vite. The below template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
