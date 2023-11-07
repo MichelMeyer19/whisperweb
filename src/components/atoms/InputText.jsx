@@ -10,7 +10,7 @@ const InputText = ({ value, onChange }) => {
       value={value}
       onChange={onChange}
       placeholder="Type something..."
-      className={`w-4/5 bg-white rounded-full p-4 overflow-y-auto ${
+      className={`w-full bg-white rounded-full p-4 overflow-y-auto ${
         isFocused ? "placeholder-transparent" : "placeholder"
       } text-left`}
       onFocus={() => setIsFocused(true)}

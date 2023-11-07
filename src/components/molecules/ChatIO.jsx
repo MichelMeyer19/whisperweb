@@ -34,11 +34,13 @@ const ChatIO = ({ onSendClick }) => {
   };
 
   return (
-    <div className="flex items-end">
+    <div className="flex flex-row items-end">
       <InputText value={message} onChange={handleInputChange} />
-      <button onClick={handleSendClick}>
-        <img src={"/icons/send.svg"} alt="Send" />
-      </button>
+      <div className="flex m-2">
+        <button onClick={handleSendClick}>
+          <img src={"/icons/send.svg"} alt="Send" />
+        </button>
+      </div>
     </div>
   );
 };
