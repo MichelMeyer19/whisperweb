@@ -1,4 +1,4 @@
-// Generic button component 
+// Generic button component
 
 const GenericButton = ({ text, additionalStyles, onClick, type = 'button' }) => {
   // Define a base style for the button including text styling
@@ -9,7 +9,7 @@ const GenericButton = ({ text, additionalStyles, onClick, type = 'button' }) => 
     focus:outline-none focus:ring-2 focus:ring-opacity-75
     uppercase
     font-family: 'Littera Text', sans-serif; // Make sure this font is loaded in your project
-    font-size: 10px;
+    font-size: 12px; // Set the font size to 12px
     font-style: normal;
     font-weight: 300;
     line-height: normal;

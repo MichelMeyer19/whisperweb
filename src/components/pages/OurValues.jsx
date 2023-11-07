@@ -36,7 +36,7 @@ export const OurValues = () => {
         <GenericButton
           text={currentPage === contentPages.length - 1 ? "Finish" : "Next"}
           onClick={nextPage}
-          additionalStyles="text-black bg-green hover:bg-green-dark"
+          additionalStyles="text-black bg-green hover:bg-green-dark text-sm"
         />
       </div>
     </div>

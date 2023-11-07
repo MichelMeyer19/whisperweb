@@ -64,14 +64,14 @@ export const SignUp = () => {
         <div className="flex justify-center mb-4">
           <GenericButton
             text="Sign Up"
-            additionalStyles="text-black bg-green hover:bg-green-dark"
+            additionalStyles="text-black bg-green hover:bg-green-dark text-sm"
             type="submit"
           />
         </div>
         <div className="flex justify-center">
           <GenericButton
             text="Already have an account?"
-            additionalStyles="text-black hover:bg-gray-100"
+            additionalStyles="text-black hover:bg-gray-100 text-xs"
             onClick={navigateToSignIn}
             type="button"
           />

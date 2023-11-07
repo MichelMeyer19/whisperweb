@@ -34,12 +34,12 @@ export const Welcome = () => {
       <div className="flex flex-col items-center justify-end w-full pb-8">
         <GenericButton 
           text="Our Values"
-          additionalStyles="mb-4 text-black bg-white hover:bg-gray-200"
+          additionalStyles="mb-4 text-black bg-white hover:bg-gray-200 text-sm"
           onClick={goToOurValues}
         />
         <GenericButton 
           text="Continue"
-          additionalStyles="text-black bg-green hover:bg-green-dark"
+          additionalStyles="text-black bg-green hover:bg-green-dark text-sm"
           onClick={continueWithProcess}
         />
       </div>

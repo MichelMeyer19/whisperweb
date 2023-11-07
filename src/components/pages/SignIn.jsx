@@ -49,7 +49,7 @@ export const SignIn = () => {
         <div className="flex justify-center"> {/* Wrapper to center the button */}
           <GenericButton
             text="Log In"
-            additionalStyles="text-black bg-green hover:bg-green-dark"
+            additionalStyles="text-black bg-green hover:bg-green-dark text-sm"
             onClick={() => {}} // Since it's a submit button, onClick isn't needed here
             type="submit"
           />
@@ -57,7 +57,7 @@ export const SignIn = () => {
         <div className="flex justify-center mt-4"> {/* Another wrapper for the sign-up navigation */}
           <GenericButton
             text="Don't have an account?"
-            additionalStyles="text-black hover:bg-gray-100"
+            additionalStyles="text-black hover:bg-gray-100 text-xs"
             onClick={navigateToSignUp}
             type="button"
           />
