@@ -6,31 +6,24 @@ import ChatIO from "../molecules/ChatIO";
 const MESSAGES = [
   {
     isStart: true,
-    userName: "Obi-Wan Kenobi",
+    userName: "Anonymous Cat",
     time: "12:45",
-    message: "You were the Chosen One!",
+    message: "Lately, I've been feeling a bit overwhelmed with my family's expectations. Do you feel the same? ",
     avatarSrc: "/icons/obi.webp",
   },
   {
     isStart: false,
-    userName: "Anakin",
+    userName: "Anonymous Antilope",
     time: "12:46",
-    message: "I hate you!",
+    message: "Oh, I'm the youngest in my family. It's like I'm always in the shadow of my older siblings. They've set the bar so high, and everyone expects me to follow in their footsteps.",
     avatarSrc: "/icons/anakin.webp",
   },
   {
     isStart: true,
-    userName: "Obi-Wan Kenobi",
+    userName: "Anonymous Cat",
     time: "12:47",
-    message: "...",
+    message: "That sounds tough. Being the eldest, I feel the pressure to set an example. But I can imagine how being the youngest comes with its own set of challenges. Do you ever talk to your siblings about it?",
     avatarSrc: "/icons/obi.webp",
-  },
-  {
-    isStart: false,
-    userName: "Anakin",
-    time: "12:48",
-    message: "!",
-    avatarSrc: "/icons/anakin.webp",
   },
 ];
 

@@ -23,7 +23,6 @@ let initialTopics = [
   {id: "14", topic_name: "Campus Life", isClicked: false}
 ];
 
-
 export const NewChat = () => {
 
   // define state that contains most relevant topics

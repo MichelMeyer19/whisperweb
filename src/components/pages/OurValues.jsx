@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GenericButton from '../atoms/GenericButton';
 import contentPages from "../utils/ourValuesText.js"
+import BackArrow from "../atoms/BackArrow";
 
 export const OurValues = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -24,6 +25,7 @@ export const OurValues = () => {
 
   return (
     <div className="flex flex-col h-screen bg-dorian">
+      <BackArrow />
       <div className="flex-grow">
         <div className="flex flex-col items-center justify-center h-full">
           <h1 className="text-title text-2xl font-bold mb-4">{contentPages[currentPage].title}</h1>
