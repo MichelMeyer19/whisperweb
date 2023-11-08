@@ -5,7 +5,7 @@ const BackArrow = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate("/chatsview");
+    navigate(-1); // This will take the user back to the previous page
   };
 
   return (
