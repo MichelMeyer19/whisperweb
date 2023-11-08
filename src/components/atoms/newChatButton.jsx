@@ -41,3 +41,4 @@ export const NewChatButton = ({text,topics}) => {
     </div>
   );
 };
+

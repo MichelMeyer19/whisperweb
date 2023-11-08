@@ -1,8 +1,8 @@
 import React from "react";
 import {useState} from 'react';
 
-import {TopicList} from '../molecules/TopicList.jsx';
-import {NewChatButton} from "../atoms/newChatButton";
+import {TopicSelection} from '../molecules/TopicSelection.jsx';
+import {NewChatButton} from "../atoms/NewChatButton.jsx";
 
 // define array that contains most relevant topics
 let initialTopics = [
@@ -23,8 +23,6 @@ let initialTopics = [
   {id: "14", topic_name: "Campus Life", isClicked: false}
 ];
 
-import {TopicList} from '../organisms/TopicList.jsx';
-import newChatButton from "../atoms/newChatButton.jsx";
 
 export const NewChat = () => {
 
@@ -36,7 +34,7 @@ export const NewChat = () => {
       <h1>New Chat</h1>
       <main>
         <div className="space-y-4">
-          <TopicList 
+          <TopicSelection 
           topics={topics} 
           setTopics={setTopics}/>
 

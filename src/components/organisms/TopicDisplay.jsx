@@ -1,6 +1,6 @@
 import TopicSelector from '../atoms/TopicSelector.jsx'
 
-function TopicList() {
+function TopicDisplay() {
 
     let topics = [
         {topic: "Family Relationships", isClicked: false},
@@ -22,7 +22,7 @@ function TopicList() {
 
     return (
         <>
-            <div class="topics">
+            <div className="topics">
                 {topics.map(each => 
                         <TopicSelector topic={each.topic} isClicked={each.isClicked}/>
                     )}
@@ -32,4 +32,4 @@ function TopicList() {
 }
 
 
-export {TopicList}
+export {TopicDisplay}
