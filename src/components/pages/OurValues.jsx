@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import GenericButton from '../atoms/GenericButton';
 import contentPages from "../utils/ourValuesText.js"
 import BackArrow from "../atoms/BackArrow";
+import ProgressBar from "../atoms/ProgressBar";
 
 export const OurValues = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -26,6 +27,7 @@ export const OurValues = () => {
   return (
     <div className="flex flex-col h-screen bg-dorian">
       <BackArrow />
+      {/* Text content that is being updated. Not sure if this should be a component */}
       <div className="flex-grow">
         <div className="flex flex-col items-center justify-center h-full">
           <h1 className="text-title text-2xl font-bold mb-4">{contentPages[currentPage].title}</h1>
@@ -34,6 +36,7 @@ export const OurValues = () => {
           </div>
         </div>
       </div>
+      <ProgressBar steps={contentPages.length} currentStep={currentPage} />
       <div className="pb-8 w-full flex justify-center">
         <GenericButton
           text={currentPage === contentPages.length - 1 ? "Finish" : "Next"}
