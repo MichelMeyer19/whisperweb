@@ -1,5 +1,6 @@
 import React from "react";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import Parse from 'parse/dist/parse.min.js';
 
 import {TopicSelection} from '../molecules/TopicSelection.jsx';
 import {NewChatButton} from "../atoms/NewChatButton.jsx";
@@ -27,6 +28,17 @@ export const NewChat = () => {
 
   // define state that contains most relevant topics
   const [topics, setTopics] = useState(initialTopics);
+
+  async function fetchTopics() {
+    let parseQuery = new Parse.Query("Topics");
+    let queryResult = await parseQuery.find();
+    console.log('query output: ', queryResult);
+  }
+  
+  useEffect(() => {
+    console.log('rendered page')
+    fetchTopics();
+  }, []);
 
   return (
     <>
