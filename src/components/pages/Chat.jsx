@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
-import Back from "../atoms/Back";
+import BackArrow from "../atoms/BackArrow";
 import ChatBox from "../organisms/ChatBox";
 
 export const Chat = () => {
@@ -12,8 +12,8 @@ export const Chat = () => {
   // },[])
   return (
     <Temp>
-      <Back />
-      <PageHeadline text="#ChosenOne" />
+      <BackArrow />
+      <PageHeadline text="#Family Relationships" />
       <ChatBox />
     </Temp>
   );

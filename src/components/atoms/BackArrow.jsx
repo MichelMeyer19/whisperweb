@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Back = () => {
+const BackArrow = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate("/chatsview");
+    navigate(-1); // This will take the user back to the previous page
   };
 
   return (
@@ -17,4 +17,4 @@ const Back = () => {
   );
 };
 
-export default Back;
+export default BackArrow;

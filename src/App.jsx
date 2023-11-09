@@ -29,9 +29,7 @@ import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurVa
           <Route path="/" element={<ChatsView />} />
           <Route path="/chatsview" element={<ChatsView />} />
           <Route path="/newchat" element={<NewChat />} />
-          {/* Route for the "/newchatrequested" path with NewChatRequested component as the element */}
           <Route path="/newchatrequested" element={<NewChatRequested />} />
-          {/* Route for the "/information" path with Information component as the element */}
           <Route path="/information" element={<Information />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/welcome" element={<Welcome />} />

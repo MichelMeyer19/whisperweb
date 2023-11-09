@@ -6,7 +6,7 @@ import { ManualTopicInput } from "./ManualTopicInput.jsx";
 // organism that populates a list of toics to be selected
 // additionally allows user to manually input a topic
 
-export const TopicList = ({topics,setTopics}) => {
+export const TopicSelection = ({topics,setTopics}) => {
     
     return (
         <div className="space-y-4">
@@ -23,4 +23,3 @@ export const TopicList = ({topics,setTopics}) => {
 };
 
 
-//export {TopicList}

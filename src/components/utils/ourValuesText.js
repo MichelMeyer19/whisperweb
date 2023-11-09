@@ -38,11 +38,11 @@ const contentPages = [
       content: [
         {
           headline: "Anonymity is not about hiding; it's about revealing.",
-          text: "It's about revealing our true thoughts without the fear of backlash, revealing our uncertainties without the worry of appearing weak, and revealing our dreams without the anxiety of skepticism. We champion anonymity because we believe in the power of raw, unfiltered human connection.",
+          text: "It's about revealing our true thoughts without the fear of backlash, revealing our uncertainties without the worry of appearing weak, and revealing our dreams without the anxiety of skepticism",
         },
       ],
     },
   ];
   
 
-  export default contentPages;
+export default contentPages;
