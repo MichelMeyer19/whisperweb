@@ -1,3 +1,5 @@
+// this component combines the list of topics-buttons and the manual input field for new topic creation
+
 import React from "react";
 
 import {TopicButton} from "../atoms/TopicButton.jsx";

@@ -33,7 +33,7 @@ export const ManualTopicInput = ({topics,setTopics}) => {
     return (
         <div className="flex flex-col items-left">
             <div className="mx-2 flex">
-                <input className="p-2 pl-1 text-sm text-gray-900 border border-gray-300 rounded-lg w-60" onChange={handleTopicInput}/>
+                <input name="manualTopicInput" className="p-2 pl-1 text-sm text-gray-900 border border-gray-300 rounded-lg w-60" onChange={handleTopicInput}/>
                 <button className="bg-black text-white p-2 pl-1 rounded-lg w-20" onClick={handleNewTopicLog}>Enter</button>
             </div>
         </div>
