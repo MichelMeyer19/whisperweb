@@ -1,20 +1,60 @@
+// SignIn.jsx
+// allows users to log in to the app
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import GenericButton from '../atoms/GenericButton'; // Adjust the import path as necessary
+import Parse from 'parse/dist/parse.min.js';
+
+import GenericButton from '../atoms/GenericButton';
 
 export const SignIn = () => {
+
+  // setup navigation function
   const navigate = useNavigate();
+  // set states user inputs
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // function that handles the signin button
+  // 1. try to sign in the user in the DB
+  // >> if successfull: create session and navigate user to main-chat-page
+  // >> if not successfull: throw an alert that explains the user what the error is
   const handleSignIn = (e) => {
     e.preventDefault();
-    // Insert authentication logic here
-    console.log('Sign in with', email, password);
+
+    console.log('Trying to sign in with', email, password);
+
+    doUserLogIn(email,password)
   };
 
+  const doUserLogIn = async function (email,password) {
+    try {
+      // do the log-in in the DB
+      const loggedInUser = await Parse.User.logIn(email, password);
+      
+      console.log(`Success! User ${loggedInUser.get('username')} has successfully signed in!`);
+
+      // To verify that this is in fact the current user, `current` can be used
+      const currentUser = await Parse.User.current();
+      console.log(loggedInUser === currentUser);
+
+      // Clear input fields
+      setEmail('');
+      setPassword('');
+
+      // navigate user to main-chat-page
+      navigate('/chatsview')
+    } catch (error) {
+      // Error can be caused by wrong parameters or lack of Internet connection
+      alert(`Error! ${error.message}`);
+      return false;
+    }
+  };
+
+  // function that handles the button to advance to the sign up process
   const navigateToSignUp = () => {
-    navigate('./signup'); // replace with your sign-up route
+    // navigate to sign-up page
+    navigate('./signup');
   };
 
   // Probably needs to be changed to components 
