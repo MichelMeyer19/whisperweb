@@ -14,7 +14,7 @@ import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurVa
     // Use useEffect to update the showNavbar state based on the route
     useEffect(() => {
       // Define an array of paths where the Navbar should not be shown
-      const noNavbarPaths = ['/welcome', '/welcome/ourvalues', '/signin', '/signin/signup'];
+      const noNavbarPaths = ['/welcome', '/welcome/our-values', '/sign-in', '/sign-in/sign-up'];
       // Set showNavbar to false if the current path is in the noNavbarPaths array
       setShowNavbar(!noNavbarPaths.includes(location.pathname));
     }, [location]); // Dependency array with location to re-run effect when location changes
@@ -33,9 +33,9 @@ import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurVa
           <Route path="/information" element={<Information />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/welcome" element={<Welcome />} />
-          <Route path="/welcome/ourvalues" element={<OurValues />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signin/signUp" element={<SignUp />} />
+          <Route path="/welcome/our-values" element={<OurValues />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-in/sign-up" element={<SignUp />} />
         </Routes>
       </div>
     );
