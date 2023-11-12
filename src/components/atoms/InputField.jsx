@@ -1,5 +1,4 @@
-// InputField.js atom
-import React from "react";
+// InputField.jsx atom component
 
 const InputField = ({ type, id, value, onChange, placeholder, label }) => {
   // Determine the correct autocomplete attribute based on input type
@@ -10,6 +9,7 @@ const InputField = ({ type, id, value, onChange, placeholder, label }) => {
     autoCompleteValue = 'current-password';
   }
 
+  // Render the input field wrapped in a label element
   return (
     <label htmlFor={id}>
       {label}
@@ -21,7 +21,6 @@ const InputField = ({ type, id, value, onChange, placeholder, label }) => {
         placeholder={placeholder}
         className="w-full p-2 border rounded-md mb-4"
         required
-        // Apply the autocomplete attribute dynamically
         autoComplete={autoCompleteValue}
       />
     </label>

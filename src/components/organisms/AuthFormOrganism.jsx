@@ -1,22 +1,24 @@
-import React from "react";
+// AuthFormOrganism.jsx organism component  
+
 import FieldMolecule from "../molecules/FieldMolecule";
 import GenericButton from "../atoms/GenericButton";
 
 const AuthFormOrganism = ({
-  onSubmit,
+  onSubmit, // Function to execute on form submission
   email,
   setEmail,
   password,
   setPassword,
   repeatPassword,
   setRepeatPassword,
-  buttonText,
-  navigateToOtherForm,
-  navigateToOtherFormAction,
-  isSignUpPage, // New prop to indicate whether it's the sign-up page
+  buttonText, // Text to display on the main button
+  navigateToOtherForm, // Text for the navigation button
+  navigateToOtherFormAction, // Function to execute on navigation button click
+  isSignUpPage, // Boolean to determine if it's the sign-up page
 }) => (
   <div>
     <form onSubmit={onSubmit}>
+      {/* Email Field */}
       <FieldMolecule
         id="email"
         type="email"
@@ -25,6 +27,7 @@ const AuthFormOrganism = ({
         placeholder="someone@example.com"
         label="Email"
       />
+      {/* Password Field */}
       <FieldMolecule
         id="password"
         type="password"
@@ -33,7 +36,8 @@ const AuthFormOrganism = ({
         placeholder="Password"
         label="Password"
       />
-      {isSignUpPage && ( // Conditionally render Repeat Password field for sign-up page
+      {/* Conditionally rendered Repeat Password Field for sign-up page */}
+      {isSignUpPage && (
         <FieldMolecule
           id="repeatPassword"
           type="password"
@@ -43,6 +47,7 @@ const AuthFormOrganism = ({
           label="Repeat Password"
         />
       )}
+      {/* Submit Button */}
       <div className="mt-4 flex justify-center">
         <GenericButton
           text={buttonText}
@@ -51,6 +56,7 @@ const AuthFormOrganism = ({
         />
       </div>
     </form>
+    {/* Navigation Button */}
     <div className="mt-4 flex justify-center">
       <GenericButton
         text={navigateToOtherForm}
