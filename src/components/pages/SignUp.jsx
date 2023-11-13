@@ -58,7 +58,7 @@ export const SignUp = () => {
   // function that handles the button to return to the log in process
   const navigateToSignIn = () => {
     // Navigate to the sign-in page
-    navigate('/signin');
+    navigate('/sign-in');
   };
 
   return (
