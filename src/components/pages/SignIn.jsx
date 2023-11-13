@@ -2,19 +2,49 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Parse from 'parse/dist/parse.min.js';
 import AuthFormOrganism from "../organisms/AuthFormOrganism";
 
 export const SignIn = () => {
   // useNavigate hook from React Router for navigation
   const navigate = useNavigate();
+  // set states user inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // function that handles the signin button
+  // 1. try to sign in the user in the DB
+  // >> if successfull: create session and navigate user to main-chat-page
+  // >> if not successfull: throw an alert that explains the user what the error is
   // Handler for sign-in form submission
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log("Sign in with", email, password);
-    // Insert authentication logic here from backend or authentication service
+    console.log('Trying to sign in with', email, password);
+    doUserLogIn(email,password)
+  };
+
+  const doUserLogIn = async function (email,password) {
+    try {
+      // do the log-in in the DB
+      const loggedInUser = await Parse.User.logIn(email, password);
+      
+      console.log(`Success! User ${loggedInUser.get('username')} has successfully signed in!`);
+
+      // To verify that this is in fact the current user, `current` can be used
+      const currentUser = await Parse.User.current();
+      console.log(loggedInUser === currentUser);
+
+      // Clear input fields
+      setEmail('');
+      setPassword('');
+
+      // navigate user to main-chat-page
+      navigate('/chatsview')
+    } catch (error) {
+      // Error can be caused by wrong parameters or lack of Internet connection
+      alert(`Error! ${error.message}`);
+      return false;
+    }
   };
 
   // Handler for navigating to the sign-up page
