@@ -13,7 +13,7 @@ export const OurValues = () => {
     if (currentPage < contentPages.length - 1) {
       setCurrentPage(currentPage + 1);
     } else {
-      navigate('/signin');
+      navigate('/sign-in');
     }
   };
 

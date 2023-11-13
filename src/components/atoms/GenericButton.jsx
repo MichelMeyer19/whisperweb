@@ -1,6 +1,11 @@
-// Generic button component
+// Generic button component atom
 
-const GenericButton = ({ text, additionalStyles, onClick, type = 'button' }) => {
+const GenericButton = ({
+  text,
+  additionalStyles,
+  onClick,
+  type = "button",
+}) => {
   // Define a base style for the button including text styling
   const baseStyle = `
     w-[200px] h-[49px] flex-shrink-0
