@@ -1,29 +1,25 @@
-// SignIn.jsx
-// allows users to log in to the app
+// SignIn.jsx page component
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Parse from 'parse/dist/parse.min.js';
-
-import GenericButton from '../atoms/GenericButton';
+import AuthFormOrganism from "../organisms/AuthFormOrganism";
 
 export const SignIn = () => {
-
-  // setup navigation function
+  // useNavigate hook from React Router for navigation
   const navigate = useNavigate();
   // set states user inputs
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // function that handles the signin button
   // 1. try to sign in the user in the DB
   // >> if successfull: create session and navigate user to main-chat-page
   // >> if not successfull: throw an alert that explains the user what the error is
+  // Handler for sign-in form submission
   const handleSignIn = (e) => {
     e.preventDefault();
-
     console.log('Trying to sign in with', email, password);
-
     doUserLogIn(email,password)
   };
 
@@ -51,58 +47,24 @@ export const SignIn = () => {
     }
   };
 
-  // function that handles the button to advance to the sign up process
+  // Handler for navigating to the sign-up page
   const navigateToSignUp = () => {
-    // navigate to sign-up page
-    navigate('./signup');
+    navigate("./sign-up");
   };
 
-  // Probably needs to be changed to components 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-dorian">
       <h1 className="text-3xl font-bold mb-10">Sign In</h1>
-      <form onSubmit={handleSignIn} className="w-full max-w-xs">
-        <label htmlFor="email" className="text-gray-700">
-          Email
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="someone@example.com"
-            className="w-full px-3 py-2 border rounded-md mb-4"
-            required
-          />
-        </label>
-        <label htmlFor="password" className="text-gray-700">
-          Password
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password..."
-            className="w-full px-3 py-2 border rounded-md mb-6"
-            required
-          />
-        </label>
-        <div className="flex justify-center"> {/* Wrapper to center the button */}
-          <GenericButton
-            text="Log In"
-            additionalStyles="text-black bg-green hover:bg-green-dark text-sm"
-            onClick={() => {}} // Since it's a submit button, onClick isn't needed here
-            type="submit"
-          />
-        </div>
-        <div className="flex justify-center mt-4"> {/* Another wrapper for the sign-up navigation */}
-          <GenericButton
-            text="Don't have an account?"
-            additionalStyles="text-black hover:bg-gray-100 text-xs"
-            onClick={navigateToSignUp}
-            type="button"
-          />
-        </div>
-      </form>
+      <AuthFormOrganism
+        onSubmit={handleSignIn}
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        buttonText="Log In"
+        navigateToOtherForm="Don't have an account?"
+        navigateToOtherFormAction={navigateToSignUp}
+      />
     </div>
   );
 };
