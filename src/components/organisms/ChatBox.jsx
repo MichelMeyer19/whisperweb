@@ -68,21 +68,54 @@
 import React, { useState, useRef, useEffect } from "react";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
-
-const MESSAGES = [];
+import Parse from "parse/dist/parse.min.js";
 
 const ChatBox = () => {
-  const [chatMessages, setChatMessages] = useState(MESSAGES);
+  const [chatMessages, setChatMessages] = useState([]);
   const chatBoxRef = useRef(null);
 
-  const handleSendClick = (newMessage) => {
-    setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
+  const handleSendClick = async (newMessageData, updatedMessage) => {
+    // Update state with the new message data
+    setChatMessages((prevChatMessages) => [
+      ...prevChatMessages,
+      newMessageData,
+    ]);
+
+    // You can perform additional logic here with the updatedMessage if needed
+
+    // Scroll to the bottom when new messages are added
+    chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
   };
 
   useEffect(() => {
-    // Scroll to the bottom when new messages are added
-    chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-  }, [chatMessages]);
+    // Fetch initial chat messages when the component mounts
+    const fetchMessages = async () => {
+      const Message = Parse.Object.extend("Message");
+      const messageQuery = new Parse.Query(Message);
+
+      try {
+        const messages = await messageQuery.find();
+        const messageData = messages.map((message) => ({
+          isStart: false, // determine if the message is from the current user or not,
+          userName: message.get("sent_by_id").get("username"),
+          time: getCurrentTime(message.createdAt),
+          message: message.get("text"),
+          avatarSrc: "/icons/anakin.webp",
+        }));
+
+        setChatMessages(messageData);
+      } catch (error) {
+        console.error("Error fetching messages: ", error);
+      }
+    };
+
+    fetchMessages();
+  }, []);
+
+  const getCurrentTime = (date) => {
+    const currentTime = date || new Date();
+    return `${currentTime.getHours()}:${currentTime.getMinutes()}`;
+  };
 
   return (
     <div
