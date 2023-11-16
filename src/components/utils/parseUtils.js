@@ -7,9 +7,9 @@ export const fetchChatsForUser = async (userId) => {
     user.id = userId;
 
     const userChatsQuery = new Parse.Query('Chats');
-    userChatsQuery.equalTo('user1', user);
-    userChatsQuery.include('user1');
-    userChatsQuery.include('user2');
+    userChatsQuery.equalTo('user_1', user);
+    userChatsQuery.include('user_1');
+    userChatsQuery.include('user_2');
     
     const userChats = await userChatsQuery.find();
     return userChats;
