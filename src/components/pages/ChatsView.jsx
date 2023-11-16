@@ -5,8 +5,11 @@ import ChatBoxOverview from "../organisms/ChatBoxOverview";
 import Parse from "parse/dist/parse.min.js";
 
 export const ChatsView = () => {
+  // remember useEffect/async await function for monitoring serverside updates
+
   // Get the current user
   const currentUser = Parse.User.current();
+  console.log(currentUser);
 
   // Create two queries to match either user_1 or user_2
   const queryUser1 = new Parse.Query("Chats").equalTo("user_1", currentUser.id);
