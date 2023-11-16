@@ -87,7 +87,7 @@ export const NewChatButton = ({text,topics,currentUser}) => {
 
     // create new object in table 'ChatRequest'
     let chatrequest = new Parse.Object('ChatRequest');
-    chatrequest.set('user', user.id);
+    chatrequest.set('user', user);
     chatrequest.set('topic_chat', topic_chat);
     chatrequest.set('topic_name', topic);
     chatrequest.set('matched_request', false);
@@ -110,7 +110,7 @@ export const NewChatButton = ({text,topics,currentUser}) => {
     newchat.set('user_1', user_2);
     newchat.set('topic_chat', topic_chat);
     newchat.set('topic_name', topic);
-    newchat.set('user_2', user_current.id);
+    newchat.set('user_2', user_current);
     
     try {
       // store information to DB
