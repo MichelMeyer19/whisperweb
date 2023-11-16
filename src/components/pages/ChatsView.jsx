@@ -7,7 +7,6 @@ import Parse from "parse/dist/parse.min.js";
 export const ChatsView = () => {
   // Get the current user
   const currentUser = Parse.User.current();
-  console.log(currentUser);
 
   // Create two queries to match either user_1 or user_2
   const queryUser1 = new Parse.Query("Chats").equalTo("user_1", currentUser.id);
@@ -16,14 +15,29 @@ export const ChatsView = () => {
   // Use Parse.Query.or to combine the two queries with an OR condition
   const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
 
-  // Execute the query
+  // Execute the query to get the current user's chats
   chatsQuery
     .find()
     .then((chats) => {
       // Iterate through the array of chat objects
       chats.forEach((chat) => {
-        // Access and log the topic_name property
-        console.log("Topic Name:", chat.get("topic_name"));
+        const chatId = chat.id;
+
+        // Query messages for the current chat
+        const Messages = Parse.Object.extend("Messages");
+        const messagesQuery = new Parse.Query(Messages);
+        messagesQuery.equalTo("chat_id", chatId);
+
+        // Execute the query to get messages for the current chat
+        messagesQuery
+          .find()
+          .then((messages) => {
+            // Log or process the messages for the current chat
+            console.log("Messages for Chat:", chatId, messages);
+          })
+          .catch((error) => {
+            console.error("Error fetching messages for chat:", chatId, error);
+          });
       });
     })
     .catch((error) => {
@@ -45,6 +59,7 @@ export const ChatsView = () => {
         "Template text Template text Template text Template text Template text Template text Template text Template text Template text",
     },
   ];
+
   return (
     <Temp>
       <PageHeadline text="Chats" />
