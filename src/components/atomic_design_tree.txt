@@ -1,0 +1,48 @@
+.
+├── 01_atoms
+│   ├── Avatar.jsx
+│   ├── BackArrow.jsx
+│   ├── GenericButton.jsx
+│   ├── Icon.jsx
+│   ├── InputField.jsx
+│   ├── InputText.jsx
+│   ├── MsgText.jsx
+│   ├── PageHeadline.jsx
+│   ├── ProgressBar.jsx
+│   ├── TopicButton.jsx
+│   ├── TopicSelector.jsx
+│   ├── TopicText.jsx
+│   ├── UsrName.jsx
+│   └── newChatButton.jsx
+├── 02_molecules
+│   ├── ChatIO.jsx
+│   ├── ChatMessageDetail.jsx
+│   ├── ChatMessageOverview.jsx
+│   ├── FieldMolecule.jsx
+│   ├── ManualTopicInput.jsx
+│   ├── Navbar.jsx
+│   └── TopicSelection.jsx
+├── 03_organisms
+│   ├── AuthFormOrganism.jsx
+│   ├── ChatBox.jsx
+│   ├── ChatBoxOverview.jsx
+│   └── TopicDisplay.jsx
+├── 04_template
+│   └── Temp.jsx
+├── 05_pages
+│   ├── Chat.jsx
+│   ├── ChatsView.jsx
+│   ├── Information.jsx
+│   ├── NewChat.jsx
+│   ├── NewChatRequested.jsx
+│   ├── OurValues.jsx
+│   ├── SignIn.jsx
+│   ├── SignUp.jsx
+│   ├── Welcome.jsx
+│   └── index.jsx
+├── atomic_design_tree.txt
+└── utils
+    ├── ourValuesText.js
+    └── truncateText.js
+
+7 directories, 39 files
