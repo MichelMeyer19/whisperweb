@@ -20,3 +20,11 @@ Currently, two official plugins are available:
 ## Tailwind CSS
 
 "Tailwind CSS is best used to _speed up the development process_ by writing less code. It comes with a design system that helps maintain _consistency across various design requirements_ like padding, spacing, and so forth; with this, you do not have to worry about creating your design systems." (Kinsta.com)
+
+# Codebase structure following Atomic Design principles
+
+Below is a visualisation of the directory of the “src” directory within out GitHub repository. It illustrates the structure of our core codebase following atomic design principles. 
+
+The visualisation was created using the tool “tree”. Navigating to the respective src folder and entering “tree > atomic_design_structure.txt” in terminal yielded a txt file including the structure below.
+
+![Atomic Structure](src/atomic_structure.png)
