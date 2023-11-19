@@ -14,8 +14,8 @@ export const SignIn = () => {
 
   // function that handles the signin button
   // 1. try to sign in the user in the DB
-  // >> if successfull: create session and navigate user to main-chat-page
-  // >> if not successfull: throw an alert that explains the user what the error is
+  // >> if successful: create session and navigate user to main-chat-page
+  // >> if not successful: throw an alert that explains the user what the error is
   // Handler for sign-in form submission
   const handleSignIn = (e) => {
     e.preventDefault();

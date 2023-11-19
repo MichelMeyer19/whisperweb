@@ -23,3 +23,10 @@
     margin: 4px 4px;
     cursor: pointer;
 }
+
+main {
+   /* This specification helps position information buttons */
+  padding-bottom: 185px;
+  /* Enable vertical scrolling if content overflows, to ensure Log Out is always accessible */
+  overflow-y: auto;
+}
