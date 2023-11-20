@@ -67,17 +67,32 @@ export const Chat = () => {
       .find()
       .then((messages) => {
         // Process the messages and set them in the state
-        const processedMessages = messages.map((message) => ({
-          isStart: message.get("sent_by_id") !== currentUser.id,
-          userName: message.get("sent_by_id"), // Assuming sent_by_id represents the user
-          time: message.createdAt.toLocaleTimeString(), // Adjust as needed
-          message: message.get("text"),
-          avatarSrc:
-            message.get("sent_by_id") !== currentUser.id
+        const messagePromises = messages.map((message) => {
+          const sentById = message.get("sent_by_id");
+          const avatarSrc =
+            sentById !== currentUser.id
               ? "/icons/obi.webp"
-              : "/icons/anakin.webp", // Set different avatarSrc based on isStart
-        }));
+              : "/icons/anakin.webp";
 
+          // Fetch user details for the corresponding sent_by_id
+          const User = Parse.Object.extend("_User");
+          const userQuery = new Parse.Query(User);
+          return userQuery.get(sentById).then((user) => {
+            const processedMessage = {
+              isStart: sentById !== currentUser.id,
+              userName: user.get("username"),
+              time: message.createdAt.toLocaleTimeString(), // Adjust as needed
+              message: message.get("text"),
+              avatarSrc: avatarSrc,
+            };
+            return processedMessage;
+          });
+        });
+
+        // Wait for all user details to be fetched before updating state
+        return Promise.all(messagePromises);
+      })
+      .then((processedMessages) => {
         setChatMessages(processedMessages);
       })
       .catch((error) => {

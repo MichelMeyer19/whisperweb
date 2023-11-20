@@ -13,7 +13,7 @@ import {
   Information,
   ChatsView,
   NewChat,
-  Chat,
+  Chat, // Include the Chat component
   NewChatRequested,
   Welcome,
   OurValues,
@@ -52,7 +52,8 @@ function App() {
         <Route path="/newchat" element={<NewChat />} />
         <Route path="/newchatrequested" element={<NewChatRequested />} />
         <Route path="/information" element={<Information />} />
-        <Route path="/chat" element={<Chat />} />
+        <Route path="/chat/:chatId" element={<Chat />} />{" "}
+        {/* Updated route for chat with chatId parameter */}
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/welcome/ourvalues" element={<OurValues />} />
         <Route path="/signin" element={<SignIn />} />
