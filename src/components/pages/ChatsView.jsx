@@ -1,94 +1,100 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
 import ChatBoxOverview from "../organisms/ChatBoxOverview";
 import Parse from "parse/dist/parse.min.js";
 
 export const ChatsView = () => {
-  // Remember useEffect/async await function for monitoring serverside updates
+  const [chatsData, setChatsData] = useState([]);
 
-  // Get the current user
-  const currentUser = Parse.User.current();
+  useEffect(() => {
+    // Get the current user
+    const currentUser = Parse.User.current();
 
-  // Create two queries to match either user_1 or user_2
-  const queryUser1 = new Parse.Query("Chats").equalTo("user_1", currentUser.id);
-  const queryUser2 = new Parse.Query("Chats").equalTo("user_2", currentUser.id);
+    // Create a query to find chats where the current user is either user_1 or user_2
+    const queryUser1 = new Parse.Query("Chats").equalTo(
+      "user_1",
+      currentUser.id
+    );
+    const queryUser2 = new Parse.Query("Chats").equalTo(
+      "user_2",
+      currentUser.id
+    );
+    const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
 
-  // Use Parse.Query.or to combine the two queries with an OR condition
-  const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
+    // Execute the query to get the current user's chats
+    chatsQuery
+      .find()
+      .then((chats) => {
+        // Fetch details for each chat
+        const chatDetailsPromises = chats.map((chat) => {
+          // Create a query for messages based on the chat ID
+          const Messages = Parse.Object.extend("Messages");
+          const messagesQuery = new Parse.Query(Messages);
+          messagesQuery.equalTo("chat_id", chat.id);
+          messagesQuery.ascending("createdAt"); // Fetch messages in ascending order
+          // Fetch all messages for the current chat
+          return messagesQuery.find().then((messages) => {
+            // Get the most recent message
+            const latestMessage = messages[messages.length - 1];
 
-  // // Execute the query to get the current user's chats
-  // chatsQuery
-  //   .find()
-  //   .then((chats) => {
-  //     // Iterate through the array of chat objects
-  //     chats.forEach((chat) => {
-  //       const chatId = chat.id;
+            // Access the other user's ID in the chat
+            const otherUserId =
+              chat.get("user_1") === currentUser.id
+                ? chat.get("user_2")
+                : chat.get("user_1");
 
-  //       // Query messages for the current chat
-  //       const Messages = Parse.Object.extend("Messages"); // Check if the class name is 'Messages' or 'Message'
-  //       const messagesQuery = new Parse.Query(Messages);
-  //       messagesQuery.equalTo("chat_id", chatId);
+            // Fetch the other user's details
+            const User = Parse.Object.extend("_User");
+            const otherUserQuery = new Parse.Query(User);
+            return otherUserQuery.get(otherUserId).then((otherUser) => {
+              // Access the other username
+              const otherUsername = otherUser.get("username");
 
-  //       // Execute the query to get messages for the current chat
-  //       messagesQuery
-  //         .find()
-  //         .then((messages) => {
-  //           // Iterate through the array of message objects
-  //           messages.forEach((message) => {
-  //             // Access and log the text property for each message
-  //             console.log("Text for Chat:", chatId, message.get("text"));
-  //           });
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error fetching messages for chat:", chatId, error);
-  //         });
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error fetching chats:", error);
-  //   });
+              // Return the chat details with the other user's username and the latest message
+              return {
+                id: chat.id,
+                topic: chat.get("topic_name"),
+                userName:
+                  currentUser.id === latestMessage.get("sent_by_id")
+                    ? currentUser.get("username")
+                    : otherUsername,
+                message: latestMessage ? latestMessage.get("text") : "",
+              };
+            });
+          });
+        });
 
-  const chatIdToQuery = "GZ5ktynaEz"; // Replace with the actual chat ID you want to query
-
-  // Create a query for messages based on the chat ID
-  const Messages = Parse.Object.extend("Messages");
-  const messagesQuery = new Parse.Query(Messages);
-  messagesQuery.equalTo("chat_id", chatIdToQuery);
-
-  // Execute the query to get messages for the specified chat ID
-  messagesQuery
-    .find()
-    .then((messages) => {
-      // Log or process the messages for the specified chat ID
-      messages.forEach((message, index) => {
-        console.log(`Message ${index + 1}: ${message.get("text")}`);
+        // Execute all chat details queries concurrently
+        return Promise.all(chatDetailsPromises);
+      })
+      .then((chatsDetails) => {
+        // Reverse the order of the chat details
+        const reversedChatsDetails = chatsDetails.reverse();
+        // Set the chat data in the state
+        setChatsData(reversedChatsDetails);
+      })
+      .catch((error) => {
+        console.error("Error fetching chats:", error);
       });
-    })
-    .catch((error) => {
-      console.error("Error fetching messages for chat:", chatIdToQuery, error);
-    });
-
-  const chatMessages = [
-    {
-      id: 1,
-      topic: "#Family",
-      userName: "Anonymous Cat",
-      message: "Template text Template text",
-    },
-    {
-      id: 2,
-      topic: "General",
-      userName: "Anonymous Grasshopper",
-      message:
-        "Template text Template text Template text Template text Template text Template text Template text Template text Template text",
-    },
-  ];
+  }, []); // Empty dependency array ensures that this effect runs once on mount
 
   return (
     <Temp>
       <PageHeadline text="Chats" />
-      <ChatBoxOverview chatMessages={chatMessages} />
+      {chatsData.map((chat) => (
+        <ChatBoxOverview
+          key={chat.id}
+          chatMessages={[
+            {
+              id: chat.id,
+              topic: chat.topic,
+              userName: chat.userName,
+              message: chat.message,
+            },
+          ]}
+        />
+      ))}
     </Temp>
   );
 };
