@@ -4,6 +4,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Parse from 'parse/dist/parse.min.js';
+import GenericButton from "./GenericButton";
 
 export const NewChatButton = ({text,topics,currentUser}) => {
 
@@ -140,12 +141,13 @@ export const NewChatButton = ({text,topics,currentUser}) => {
 
   return (
     <div className="container py-2 px-4 flex flex-col items-center">
-    
-      <button className="bg-black text-white p-2 rounded" onClick={handleTopicChatRequestButton}>
-        {/*<Link to="/newchatrequested">{text}</Link>*/}
-        {text}
-      </button>
+      <GenericButton
+        text={text}
+        additionalStyles="bg-black text-white"
+        onClick={handleTopicChatRequestButton}
+      />
     </div>
   );
 };
+
 

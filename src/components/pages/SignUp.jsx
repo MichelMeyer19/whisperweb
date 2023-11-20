@@ -1,13 +1,10 @@
 // SignUp.js 
 // allows users to sign up (if successfull they will be redirected to main-chat-page)
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Parse from 'parse/dist/parse.min.js';
 import AuthFormOrganism from "../organisms/AuthFormOrganism";
-
-// import generic button
-import GenericButton from '../atoms/GenericButton';
 
 export const SignUp = () => {
 
