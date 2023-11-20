@@ -23,4 +23,5 @@ Currently, two official plugins are available:
 # Codebase structure
 
 Below is a visualisation of the “src” directory within out GitHub repository. It illustrates the structure of our core codebase which follows atomic design principles, suggested by Frost (2016). The visualisation was created by applying the tool “tree” in Terminal. Below is an excerpt of the resulting .txt file.
+
 ![Atomic Design Image](src/atomic_design.png)
