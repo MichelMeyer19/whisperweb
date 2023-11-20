@@ -10,7 +10,6 @@ export const ChatsView = () => {
   useEffect(() => {
     // Get the current user
     const currentUser = Parse.User.current();
-    console.log(currentUser);
 
     // Create a query to find chats where the current user is either user_1 or user_2
     const queryUser1 = new Parse.Query("Chats").equalTo(
@@ -57,7 +56,7 @@ export const ChatsView = () => {
                 id: chat.id,
                 topic: chat.get("topic_name"),
                 userName:
-                  currentUser.id === latestMessage.get("sent_by_id")
+                  latestMessage.get("sent_by_id") === currentUser.id
                     ? currentUser.get("username")
                     : otherUsername,
                 message: latestMessage ? latestMessage.get("text") : "",
