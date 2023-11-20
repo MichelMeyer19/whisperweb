@@ -40,7 +40,7 @@ export const ChatsView = () => {
 
             // Access the other user's ID in the chat
             const otherUserId =
-              chat.get("user_1") === currentUser.id
+              chat.get("user_1") != currentUser.id
                 ? chat.get("user_2")
                 : chat.get("user_1");
 
