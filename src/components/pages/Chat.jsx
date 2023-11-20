@@ -1,90 +1,36 @@
-import React, { useEffect } from "react";
-import Temp from "../template/Temp";
-import PageHeadline from "../atoms/PageHeadline";
-import BackArrow from "../atoms/BackArrow";
-import ChatBox from "../organisms/ChatBox";
-
-export const Chat = () => {
-  // const [messages, setMessages] = useState([]);
-
-  // useEffect(()=>{
-  //   fetch('endpoint/mesages').then((response) => setMessages(response))
-  // },[])
-  return (
-    <Temp>
-      <BackArrow />
-      <PageHeadline text="#Family Relationships" />
-      <ChatBox />
-    </Temp>
-  );
-};
-
-export default Chat;
-
 // // components/pages/Chat.jsx
 // import React from "react";
 // import ChatBox from "../organisms/ChatBox";
 // import Temp from "../template/Temp";
 // import PageHeadline from "../atoms/PageHeadline";
-// import Back from "../atoms/Back";
+// import Back from "../atoms/BackArrow";
 
 // export const Chat = () => {
 //   const chatMessages = [
 //     {
 //       isStart: true,
-//       userName: "Obi-Wan Kenobi",
+//       userName: "Anonymous Cat",
 //       time: "12:45",
-//       message: "You were the Chosen One!",
-//       isDelivered: true,
-//       isSeen: false,
+//       message:
+//         "Lately, I've been feeling a bit overwhelmed with my family's expectations. Do you feel the same? ",
 //       avatarSrc: "/icons/obi.webp",
 //     },
 //     {
 //       isStart: false,
-//       userName: "Anakin",
+//       userName: "Anonymous Antilope",
 //       time: "12:46",
-//       message: "I hate you!",
-//       isDelivered: false,
-//       isSeen: true,
+//       message:
+//         "Oh, I'm the youngest in my family. It's like I'm always in the shadow of my older siblings. They've set the bar so high, and everyone expects me to follow in their footsteps.",
 //       avatarSrc: "/icons/anakin.webp",
 //     },
 //     {
 //       isStart: true,
-//       userName: "Obi-Wan Kenobi",
+//       userName: "Anonymous Cat",
 //       time: "12:47",
-//       message: "...",
-//       isDelivered: true,
-//       isSeen: false,
+//       message:
+//         "That sounds tough. Being the eldest, I feel the pressure to set an example. But I can imagine how being the youngest comes with its own set of challenges. Do you ever talk to your siblings about it?",
 //       avatarSrc: "/icons/obi.webp",
 //     },
-//     {
-//       isStart: false,
-//       userName: "Anakin",
-//       time: "12:48",
-//       message: "!",
-//       isDelivered: false,
-//       isSeen: true,
-//       avatarSrc: "/icons/anakin.webp",
-//     },
-//     {
-//       isStart: false,
-//       userName: "Anakin",
-//       time: "12:48",
-//       message: "!",
-//       isDelivered: false,
-//       isSeen: true,
-//       avatarSrc: "/icons/anakin.webp",
-//     },
-//     {
-//       isStart: false,
-//       userName: "Anakin",
-//       time: "12:48",
-//       message: "!",
-//       isDelivered: false,
-//       isSeen: true,
-//       avatarSrc: "/icons/anakin.webp",
-//     },
-//     // Add more chat messages as needed -> perhaps an array of chats with unique id's?
 //   ];
 
 //   return (
@@ -95,3 +41,57 @@ export default Chat;
 //     </Temp>
 //   );
 // };
+
+// components/pages/Chat.jsx
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ChatBox from "../organisms/ChatBox";
+import Temp from "../template/Temp";
+import PageHeadline from "../atoms/PageHeadline";
+import Back from "../atoms/BackArrow";
+import Parse from "parse/dist/parse.min.js";
+
+export const Chat = () => {
+  const { chatId } = useParams();
+  const [chatMessages, setChatMessages] = useState([]);
+  const currentUser = Parse.User.current();
+
+  useEffect(() => {
+    // Fetch chat messages based on the selected chat ID
+    const Messages = Parse.Object.extend("Messages");
+    const messagesQuery = new Parse.Query(Messages);
+    messagesQuery.equalTo("chat_id", chatId);
+    messagesQuery.ascending("createdAt"); // Fetch messages in ascending order
+
+    messagesQuery
+      .find()
+      .then((messages) => {
+        // Process the messages and set them in the state
+        const processedMessages = messages.map((message) => ({
+          isStart: message.get("sent_by_id") !== currentUser.id,
+          userName: message.get("sent_by_id"), // Assuming sent_by_id represents the user
+          time: message.createdAt.toLocaleTimeString(), // Adjust as needed
+          message: message.get("text"),
+          avatarSrc:
+            message.get("sent_by_id") !== currentUser.id
+              ? "/icons/obi.webp"
+              : "/icons/anakin.webp", // Set different avatarSrc based on isStart
+        }));
+
+        setChatMessages(processedMessages);
+      })
+      .catch((error) => {
+        console.error("Error fetching chat messages:", error);
+      });
+  }, [chatId, currentUser]);
+
+  return (
+    <Temp>
+      <Back />
+      <PageHeadline text={`#${chatId}`} />
+      <ChatBox chatMessages={chatMessages} />
+    </Temp>
+  );
+};
+
+export default Chat;
