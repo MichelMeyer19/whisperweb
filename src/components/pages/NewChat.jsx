@@ -5,7 +5,7 @@ import {useState, useEffect} from 'react';
 import Parse from 'parse/dist/parse.min.js';
 
 import {TopicSelection} from '../molecules/TopicSelection.jsx';
-import {NewChatButton} from "../atoms/NewChatButton.jsx";
+import {NewChatButton} from "../atoms/NewChatFunction.jsx";
 
 
 export const NewChat = () => {

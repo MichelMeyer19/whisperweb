@@ -39,7 +39,7 @@ export const SignIn = () => {
       setPassword('');
 
       // navigate user to main-chat-page
-      navigate('/chatsview')
+      navigate('/chats-overview')
     } catch (error) {
       // Error can be caused by wrong parameters or lack of Internet connection
       alert(`Error! ${error.message}`);

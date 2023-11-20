@@ -45,7 +45,7 @@ export const SignUp = () => {
       await user.signUp();
       console.log(`Success! User ${user.getUsername()} was successfully created!`);
       // navigate user to main-chat-page after successfull signup!
-      navigate('/chatsview')
+      navigate('/new-chat')
     } catch (error) {
       // signUp can fail if any parameter is blank or failed an uniqueness check on the server
       alert(`Error! ${error} ${error.code}`);
