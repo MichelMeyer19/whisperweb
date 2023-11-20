@@ -51,7 +51,7 @@ const AuthFormOrganism = ({
       <div className="mt-4 flex justify-center">
         <GenericButton
           text={buttonText}
-          additionalStyles="text-black bg-green hover:bg-green-dark text-sm"
+          additionalStyles="text-black bg-green hover:bg-green-dark"
           type="submit"
         />
       </div>
@@ -60,7 +60,7 @@ const AuthFormOrganism = ({
     <div className="mt-4 flex justify-center">
       <GenericButton
         text={navigateToOtherForm}
-        additionalStyles="text-black hover:bg-gray-100 text-xs"
+        additionalStyles="text-black hover:bg-gray-100"
         onClick={navigateToOtherFormAction}
         type="button"
       />

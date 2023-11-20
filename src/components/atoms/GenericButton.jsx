@@ -1,24 +1,19 @@
-// Generic button component atom
-
 const GenericButton = ({
   text,
   additionalStyles,
   onClick,
   type = "button",
 }) => {
+  // Determine if the text length is over 13 characters
+  const isLongText = text.length > 13;
+
   // Define a base style for the button including text styling
   const baseStyle = `
     w-[200px] h-[49px] flex-shrink-0
     border border-solid border-black rounded-[5px]
-    py-2 px-4 font-semibold shadow-md
-    focus:outline-none focus:ring-2 focus:ring-opacity-75
+    py-2 px-4 font-semibold
     uppercase
-    font-family: 'Littera Text', sans-serif; // Make sure this font is loaded in your project
-    font-size: 12px; // Set the font size to 12px
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    letter-spacing: 0.36px;
+    ${isLongText ? "text-xs" : "font-size: 12px;"} 
   `;
 
   // Combine base style with any additional styles passed in

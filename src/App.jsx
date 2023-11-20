@@ -27,8 +27,8 @@ import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurVa
         <Routes>
           {/* React Router's Routes component for handling page routing */}
           <Route path="/" element={<ChatsView />} />
-          <Route path="/chatsview" element={<ChatsView />} />
-          <Route path="/newchat" element={<NewChat />} />
+          <Route path="/chats-overview" element={<ChatsView />} />
+          <Route path="/new-chat" element={<NewChat />} />
           <Route path="/newchatrequested" element={<NewChatRequested />} />
           <Route path="/information" element={<Information />} />
           <Route path="/chat" element={<Chat />} />

@@ -1,13 +1,10 @@
 // SignUp.js 
 // allows users to sign up (if successfull they will be redirected to main-chat-page)
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Parse from 'parse/dist/parse.min.js';
 import AuthFormOrganism from "../organisms/AuthFormOrganism";
-
-// import generic button
-import GenericButton from '../atoms/GenericButton';
 
 export const SignUp = () => {
 
@@ -48,7 +45,7 @@ export const SignUp = () => {
       await user.signUp();
       console.log(`Success! User ${user.getUsername()} was successfully created!`);
       // navigate user to main-chat-page after successfull signup!
-      navigate('/chatsview')
+      navigate('/new-chat')
     } catch (error) {
       // signUp can fail if any parameter is blank or failed an uniqueness check on the server
       alert(`Error! ${error} ${error.code}`);

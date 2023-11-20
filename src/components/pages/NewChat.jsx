@@ -5,7 +5,7 @@ import {useState, useEffect} from 'react';
 import Parse from 'parse/dist/parse.min.js';
 
 import {TopicSelection} from '../molecules/TopicSelection.jsx';
-import {NewChatButton} from "../atoms/NewChatButton.jsx";
+import {NewChatButton} from "../atoms/NewChatFunction.jsx";
 
 
 export const NewChat = () => {
@@ -44,7 +44,7 @@ export const NewChat = () => {
       // Store results as list of dictionaries
       for (let result of queryResults) {      
         fetchedTopicList.push({'id':result.id, 'topic_name':result.get(['topic_name']), 'isClicked':false})
-      };
+      }
       // set topics to fetched list
       setTopics(fetchedTopicList)      
     } catch (error) {

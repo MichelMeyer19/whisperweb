@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GenericButton from '../atoms/GenericButton';
-import contentPages from "../utils/ourValuesText.js"
+import contentPages from "../utils/our_values_text.json"
 import BackArrow from "../atoms/BackArrow";
 import ProgressBar from "../atoms/ProgressBar";
 
