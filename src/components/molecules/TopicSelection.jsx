@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import PageSubHeadline from "../atoms/PageSubHeadline";
+
 import {TopicButton} from "../atoms/TopicButton.jsx";
 import { ManualTopicInput } from "./ManualTopicInput.jsx";
 
@@ -12,10 +14,15 @@ export const TopicSelection = ({topics,setTopics}) => {
     
     return (
         <div className="space-y-4">
+            <PageSubHeadline text="Choose common Topic" />
+
             <TopicButton
                 topics={topics}
                 setTopics={setTopics}
             />
+
+            <PageSubHeadline text="Or Choose Your Own" />
+            
             <ManualTopicInput
                 topics={topics}
                 setTopics={setTopics}

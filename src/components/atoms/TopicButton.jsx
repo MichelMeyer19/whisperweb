@@ -26,7 +26,7 @@ export const TopicButton = ({topics,setTopics}) => {
 
     // the function returns a list of topic-buttons and checks each of them for the isClicked boolean, in order to check if the button is selected or not
     return (
-        <div>
+        <div className="ml-7">
             {topics.map(each => 
                 <button key={each.id} id={each.id} onClick={handleTopicButtonClick} className={each.isClicked?"bg-black text-white m-2 p-2 rounded-full":"bg-white m-2 p-2 rounded-full"}>
                     {each.topic_name}
