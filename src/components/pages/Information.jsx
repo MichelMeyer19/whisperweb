@@ -34,11 +34,10 @@ export const Information = () => {
   }
 
   return (
-    <Temp>
-      
+    <div className=''>
       {/* Same formatting like other headers */} 
       <PageHeadline text="Information" />
-      <main className="w-full flex flex-col items-center">
+      <main className="flex flex-col items-center">
         {infos.map((each) => (
           <div key={each.id} className="w-full flex justify-center">
             {/* Leverage InformationButton.jsx by forwarding the variables defined in the function expression above*/} 
@@ -56,6 +55,6 @@ export const Information = () => {
           <LogoutButton />
         </div>
       </main>
-    </Temp>
+    </div>
   );
 };
