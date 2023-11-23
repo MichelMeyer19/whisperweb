@@ -13,15 +13,15 @@ import { ManualTopicInput } from "./ManualTopicInput.jsx";
 export const TopicSelection = ({topics,setTopics}) => {
     
     return (
-        <div className="space-y-4">
-            <PageSubHeadline text="Choose common Topic" />
+        <div className="space-y-2">
+            <PageSubHeadline text="Choose Common Topic" />
 
             <TopicButton
                 topics={topics}
                 setTopics={setTopics}
             />
 
-            <PageSubHeadline text="Or Choose Your Own" />
+            <PageSubHeadline text="Or Create Your Own" />
             
             <ManualTopicInput
                 topics={topics}
