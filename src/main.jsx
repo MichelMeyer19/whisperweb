@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import AppWrapper from './App.jsx'
 import './index.css'
+import './assets/fonts.css';
 import Parse from 'parse/dist/parse.min.js';
 
 // Store Parse Initialization Keys

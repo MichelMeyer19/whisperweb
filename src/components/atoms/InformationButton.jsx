@@ -1,27 +1,49 @@
-import React from 'react';
+import React from "react";
 
-// Function expression that takes variables specified in InformationView.jsx
-const InformationButton = ({ id, info_header, isClicked, onClick, content }) => {
-  
-  // Handles click events
+const InformationButton = ({
+  id,
+  info_header,
+  isClicked,
+  onClick,
+  content,
+}) => {
+  // Base style
+  const baseStyle = `
+    bg-white
+    text-left
+    text-black
+    py-4 px-4 w-80 text-sm font-bold
+    rounded-[5px]
+    border border-solid border-black rounded-[5px]
+  `;
+
+  // Sub-header style
+  const subHeaderStyle = `
+    block
+    text-xs
+    font-light
+    mt-1
+  `;
+
+  // Handle click events
   const handleClick = (e) => {
     onClick(e);
   };
 
-  // Renders the styled button (using CSS Tailwind) and conditional (depending on click status) content below it
+  // Render the styled button (using CSS Tailwind) and conditional (depending on click status) content below it
   return (
-    // Area for title of info button
-    <div className="info-button-container flex flex-col items-center mb-2">
+    <div className="info-button-container mb-4">
       <button
-        className="info-button bg-white text-left text-black font-bold py-8 px-4 w-96 text-xl rounded-lg shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+        className={baseStyle}
         onClick={handleClick}
         id={id}
-      > 
+      >
         {info_header}
-      {/* Area for content, which will be shown only under the condition that the user selected the specific info button */}
+        {/* Sub-header text */}
+        <span className={subHeaderStyle}>Written by WhisperWeb</span>
       </button>
       {isClicked && (
-        <div className="info-content bg-white py-2 px-4 w-96 mt-1 rounded-lg shadow-md text-black">
+        <div className="info-content bg-white py-2 px-4 w-80 mt-1 rounded-lg shadow-md text-black text-sm">
           {content}
         </div>
       )}
@@ -29,5 +51,4 @@ const InformationButton = ({ id, info_header, isClicked, onClick, content }) => 
   );
 };
 
-// Export and make available in InformationView.jsx
 export default InformationButton;
