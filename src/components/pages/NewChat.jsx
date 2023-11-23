@@ -4,6 +4,9 @@ import React from "react";
 import {useState, useEffect} from 'react';
 import Parse from 'parse/dist/parse.min.js';
 
+import PageHeadline from "../atoms/PageHeadline";
+import Temp from "../template/Temp";
+
 import {TopicSelection} from '../molecules/TopicSelection.jsx';
 import {NewChatButton} from "../atoms/NewChatFunction.jsx";
 
@@ -54,27 +57,27 @@ export const NewChat = () => {
 
   return (
     <>
-      <h1>New Chat</h1>
-      <main>
-        <div className="space-y-4">
-          <TopicSelection 
-          topics={topics} 
-          setTopics={setTopics}/>
+      <PageHeadline text="New Chat" />
 
-          <div>
-            <NewChatButton
-              text = "Request Themed Chat"
-              topics = {topics}
-              currentUser = {currentUser}
-            />
-            <NewChatButton
-              text = "Request General Chat"
-              topics = {''}
-              currentUser = {currentUser}
-            />
-          </div>
-        </div>
-      </main>
+      <div className="mt-10">
+        <TopicSelection 
+          topics={topics} 
+          setTopics={setTopics}
+        />
+      </div>
+
+      <div className="mt-10">
+        <NewChatButton
+          text = "Request Themed Chat"
+          topics = {topics}
+          currentUser = {currentUser}
+        />
+        <NewChatButton
+          text = "Request General Chat"
+          topics = {''}
+          currentUser = {currentUser}
+        />
+      </div>
     </>
   );
 };
