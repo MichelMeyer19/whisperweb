@@ -7,7 +7,7 @@ export const Welcome = () => {
 
   // Function to handle "Our Values" button click
   const goToOurValues = () => {
-    navigate("./our-values"); 
+    navigate("/welcome/our-values"); 
   };
 
   // Function to handle "Continue" button click
