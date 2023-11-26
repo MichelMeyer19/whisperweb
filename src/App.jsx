@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import { useEffect, useState } from 'react'; // Import useEffect and useState hooks from React
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
+import BackgroundMesh from "./components/atoms/BackgroundMesh";
 
 import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurValues, SignIn, SignUp } from "./components/pages"; // Importing page components
 
@@ -22,6 +23,7 @@ import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurVa
     // JSX structure for the App component
     return (
       <div className="App">
+        <BackgroundMesh />
         {/* Conditional rendering of Navbar based on showNavbar state */}
         {showNavbar && <Navbar />}
         <Routes>
