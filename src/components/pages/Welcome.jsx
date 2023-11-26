@@ -14,7 +14,7 @@ export const Welcome = () => {
   const continueWithProcess = () => {
     navigate("/sign-in");
   };
-
+    
   return (
     <div className="flex flex-col h-screen bg-dorian">
       {/* Top header container */}
