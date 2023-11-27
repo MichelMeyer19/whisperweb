@@ -45,7 +45,7 @@ export const ManualTopicInput = ({ topics, setTopics }) => {
           className="bg-black text-xs uppercase text-white flex justify-center items-center p-2 rounded-lg w-20"
           onClick={handleNewTopicLog}
         >
-          Enter
+          Create
         </button>
       </div>
     </div>
