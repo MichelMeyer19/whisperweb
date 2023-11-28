@@ -13,26 +13,22 @@ export const Chat = () => {
   const currentUser = Parse.User.current();
 
   useEffect(() => {
-    // Fetch chat messages and chat details based on the selected chat ID
-    const Messages = Parse.Object.extend("Messages");
-    const messagesQuery = new Parse.Query(Messages);
-    messagesQuery.equalTo("chat_id", chatId);
-    messagesQuery.ascending("createdAt");
+    const fetchChatData = async () => {
+      try {
+        const Chats = Parse.Object.extend("Chats");
+        const chat = await new Parse.Query(Chats).get(chatId);
 
-    const Chats = Parse.Object.extend("Chats");
-    const chatsQuery = new Parse.Query(Chats);
-    chatsQuery
-      .get(chatId) // Fetch the chat details
-      .then((chat) => {
         setChatData({
           topic: chat.get("topic_name"),
           messages: [],
         });
 
-        // Fetch messages for the current chat
-        return messagesQuery.find();
-      })
-      .then((messages) => {
+        const Messages = Parse.Object.extend("Messages");
+        const messagesQuery = new Parse.Query(Messages);
+        messagesQuery.equalTo("chat_id", chatId);
+        messagesQuery.ascending("createdAt");
+        const messages = await messagesQuery.find();
+
         const processedMessages = messages.map((message) => ({
           isStart: message.get("sent_by_id") !== currentUser.id,
           userName: message.get("sent_by_id"),
@@ -48,17 +44,21 @@ export const Chat = () => {
           ...prevChatData,
           messages: processedMessages,
         }));
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching chat messages:", error);
-      });
+      }
+    };
+
+    fetchChatData();
   }, [chatId, currentUser]);
+
+  console.log(chatData);
 
   return (
     <Temp>
       <Back />
       <PageHeadline text={`#${chatData.topic}`} />
-      <ChatBox chatMessages={chatData.messages} />
+      <ChatBox initialMessages={chatData.messages} />
     </Temp>
   );
 };
