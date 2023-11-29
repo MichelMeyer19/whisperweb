@@ -3,8 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
 
-const ChatBox = () => {
-  const [chatMessages, setChatMessages] = useState(MESSAGES);
+const ChatBox = ({ initialMessages }) => {
+  const [chatMessages, setChatMessages] = useState(initialMessages || []);
   const chatBoxRef = useRef(null);
 
   const handleSendClick = (newMessage) => {
