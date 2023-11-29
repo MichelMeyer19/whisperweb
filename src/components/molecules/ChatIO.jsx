@@ -64,7 +64,7 @@ const ChatIO = ({ chat_id, currentUser, setMessages, messages }) => {
   return (
     <div className="flex flex-row items-end">
       <InputText value={new_message} onChange={handleInputChange} />
-      <div className="flex m-2">
+      <div className="flex m-1 pb-2">
         <button onClick={handleSendClick}>
           <img src={"/icons/send.svg"} alt="Send" />
         </button>

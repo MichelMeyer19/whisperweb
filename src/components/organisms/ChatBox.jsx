@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Parse from "parse/dist/parse.min.js";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
 
 const ChatBox = ({ chat_id, currentUser }) => {
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null);
 
   const fetchMessages = async function () {
     try {
@@ -34,16 +35,33 @@ const ChatBox = ({ chat_id, currentUser }) => {
   };
 
   useEffect(() => {
+    const scrollToBottom = () => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
     const interval = setInterval(() => {
       fetchMessages();
-    }, 2000); // Fetch messages every 2 seconds
+      scrollToBottom(); // Scroll to bottom after each fetch
+    }, 2000);
 
     // Cleanup on component unmount
     return () => clearInterval(interval);
   }, []); // Empty dependency array to run only on mount and unmount
 
+  useEffect(() => {
+    const scrollToBottom = () => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+
+    scrollToBottom(); // Scroll to bottom when messages change
+  }, [messages]);
+
   return (
-    <div className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col">
+    <div className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col relative">
       <div className="flex-grow">
         {messages.map((message, index) => (
           <ChatMessageDetail
@@ -55,16 +73,15 @@ const ChatBox = ({ chat_id, currentUser }) => {
             avatarSrc={message.avatarSrc}
           />
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
-      <div className="mt-auto">
-        <ChatIO
-          chat_id={chat_id}
-          currentUser={currentUser}
-          setMessages={setMessages}
-          messages={messages}
-        />
-      </div>
+      <ChatIO
+        chat_id={chat_id}
+        currentUser={currentUser}
+        setMessages={setMessages}
+        messages={messages}
+      />
     </div>
   );
 };
