@@ -36,6 +36,12 @@ function App() {
       "/signin",
       "/signin/signup",
     ];
+
+    // Check if the current path is "/chat" or starts with "/chat/"
+    if (location.pathname.startsWith("/chat/")) {
+      noNavbarPaths.push(location.pathname);
+    }
+
     // Set showNavbar to false if the current path is in the noNavbarPaths array
     setShowNavbar(!noNavbarPaths.includes(location.pathname));
   }, [location]); // Dependency array with location to re-run effect when location changes
@@ -53,7 +59,6 @@ function App() {
         <Route path="/newchatrequested" element={<NewChatRequested />} />
         <Route path="/information" element={<Information />} />
         <Route path="/chat/:chatId" element={<Chat />} />{" "}
-        {/* Updated route for chat with chatId parameter */}
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/welcome/ourvalues" element={<OurValues />} />
         <Route path="/signin" element={<SignIn />} />
