@@ -5,7 +5,9 @@ import ChatIO from "../molecules/ChatIO";
 
 const ChatBox = ({ chat_id, currentUser }) => {
   const [messages, setMessages] = useState([]);
+  const [hasNewMessage, setHasNewMessage] = useState(false);
   const messagesEndRef = useRef(null);
+  const prevMessagesLength = useRef(0);
 
   const fetchMessages = async function () {
     try {
@@ -29,36 +31,39 @@ const ChatBox = ({ chat_id, currentUser }) => {
       console.log(processedMessages);
 
       setMessages(processedMessages);
+
+      const hasNewMessages =
+        processedMessages.length > prevMessagesLength.current;
+      if (hasNewMessages) {
+        setHasNewMessage(true);
+      }
+
+      prevMessagesLength.current = processedMessages.length;
     } catch (error) {
       console.error("Error fetching chat messages:", error);
     }
   };
 
-  useEffect(() => {
-    const scrollToBottom = () => {
-      if (messagesEndRef.current) {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    };
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
+  useEffect(() => {
     const interval = setInterval(() => {
       fetchMessages();
-      scrollToBottom(); // Scroll to bottom after each fetch
     }, 2000);
 
-    // Cleanup on component unmount
     return () => clearInterval(interval);
-  }, []); // Empty dependency array to run only on mount and unmount
+  }, []);
 
   useEffect(() => {
-    const scrollToBottom = () => {
-      if (messagesEndRef.current) {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    };
-
-    scrollToBottom(); // Scroll to bottom when messages change
-  }, [messages]);
+    if (hasNewMessage) {
+      scrollToBottom();
+      setHasNewMessage(false); // Reset the flag after scrolling
+    }
+  }, [hasNewMessage]);
 
   return (
     <div className="w-11/12 bg-dorian rounded-lg  overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center realtive">
