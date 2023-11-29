@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import InputText from "../atoms/InputText";
 import Parse from "parse/dist/parse.min.js";
 
-const ChatIO = ({ chat_id, currentUser, setMessages, messages }) => {
+const ChatIO = ({ chat_id, currentUser, setMessages }) => {
   const [new_message, setNewMessage] = useState("");
   const [current_chat, setCurrentChat] = useState("");
 
@@ -62,9 +62,11 @@ const ChatIO = ({ chat_id, currentUser, setMessages, messages }) => {
   };
 
   return (
-    <div className="flex flex-row items-end">
-      <InputText value={new_message} onChange={handleInputChange} />
-      <div className="flex m-1 pb-2">
+    <div className="flex flex-row align-middle justify-between">
+      <div className="w-full">
+        <InputText value={new_message} onChange={handleInputChange} />
+      </div>
+      <div className="flex m-2">
         <button onClick={handleSendClick}>
           <img src={"/icons/send.svg"} alt="Send" />
         </button>

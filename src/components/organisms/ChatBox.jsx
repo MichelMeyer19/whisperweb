@@ -61,27 +61,33 @@ const ChatBox = ({ chat_id, currentUser }) => {
   }, [messages]);
 
   return (
-    <div className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col relative">
-      <div className="flex-grow">
-        {messages.map((message, index) => (
-          <ChatMessageDetail
-            key={index}
-            isStart={message.isStart}
-            userName={message.userName}
-            time={message.time}
-            message={message.message}
-            avatarSrc={message.avatarSrc}
-          />
-        ))}
-        <div ref={messagesEndRef} />
+    <div className="w-11/12 bg-dorian rounded-lg  overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center realtive">
+      <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col realtive">
+        <div className="grow">
+          {messages.map((message, index) => (
+            <ChatMessageDetail
+              key={index}
+              isStart={message.isStart}
+              userName={message.userName}
+              time={message.time}
+              message={message.message}
+              avatarSrc={message.avatarSrc}
+            />
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
       </div>
 
-      <ChatIO
-        chat_id={chat_id}
-        currentUser={currentUser}
-        setMessages={setMessages}
-        messages={messages}
-      />
+      <div className="w-full bg-slate flex flex-col items-center justify-between">
+        <div className="w-11/12 m-2 pl-3">
+          <ChatIO
+            chat_id={chat_id}
+            currentUser={currentUser}
+            setMessages={setMessages}
+            messages={messages}
+          />
+        </div>
+      </div>
     </div>
   );
 };
