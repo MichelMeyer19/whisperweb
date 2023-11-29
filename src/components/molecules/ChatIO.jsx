@@ -1,42 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputText from "../atoms/InputText";
 import Parse from "parse/dist/parse.min.js";
 
-const ChatIO = ({ onSendClick }) => {
-  const [message, setMessage] = useState("");
+const ChatIO = ({ chat_id, currentUser, setMessages, messages }) => {
+  const [new_message, setNewMessage] = useState("");
+  const [current_chat, setCurrentChat] = useState("");
+
+  useEffect(() => {
+    fetchChat();
+  }, []);
+
+  const fetchChat = async function () {
+    const chat_pointer_query = new Parse.Query("Chats").equalTo(
+      "objectId",
+      chat_id
+    );
+    const result = await chat_pointer_query.first();
+
+    console.log(result);
+    setCurrentChat(result);
+  };
 
   const handleInputChange = (event) => {
-    setMessage(event.target.value);
+    setNewMessage(event.target.value);
   };
 
   const handleSendClick = async () => {
-    if (message.trim() === "") {
+    if (new_message.trim() === "") {
       return;
     }
 
-    // Assuming currentUser is the logged-in user object from Parse
-    const currentUser = Parse.User.current();
-    const currentChatObject = Parse.Messages.current();
-
     // Create a new Message object and save it to Parse
-    const Message = Parse.Object.extend("Messages");
-    const newMessage = new Message();
-    newMessage.set("text", message);
-    newMessage.set("chat_id", currentUser);
-    newMessage.set("GZ5ktynaEz", currentChatObject); // Provide the current chat object
-    console.log(currentUser);
+    let upload_message = new Parse.Object("Messages");
+    upload_message.set("text", new_message);
+    upload_message.set("chat_id", current_chat);
+    upload_message.set("sent_by_id", currentUser);
+
     try {
-      await newMessage.save();
+      await upload_message.save();
+
       const messageData = {
         isStart: false,
-        userName: currentUser.get("username"),
+        userName: currentUser.id,
         time: getCurrentTime(),
-        message: message,
+        message: new_message,
         avatarSrc: "/icons/anakin.webp",
       };
 
-      onSendClick(messageData);
-      setMessage("");
+      setMessages((prevState) => [...prevState, messageData]);
+      setNewMessage("");
     } catch (error) {
       console.error(error);
     }
@@ -44,12 +56,14 @@ const ChatIO = ({ onSendClick }) => {
 
   const getCurrentTime = () => {
     const currentTime = new Date();
-    return `${currentTime.getHours()}:${currentTime.getMinutes()}`;
+    return `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()} ${
+      currentTime.getHours() >= 12 ? "PM" : "AM"
+    }`;
   };
 
   return (
     <div className="flex flex-row items-end">
-      <InputText value={message} onChange={handleInputChange} />
+      <InputText value={new_message} onChange={handleInputChange} />
       <div className="flex m-2">
         <button onClick={handleSendClick}>
           <img src={"/icons/send.svg"} alt="Send" />
@@ -60,73 +74,3 @@ const ChatIO = ({ onSendClick }) => {
 };
 
 export default ChatIO;
-
-// ChatIO.jsx
-// Remember to make GPT provide comments for the following code
-
-// import React, { useState } from "react";
-// import InputText from "../atoms/InputText";
-// import Parse from "parse";
-
-// const ChatIO = ({ onSendClick }) => {
-//   const [message, setMessage] = useState("");
-
-//   const handleInputChange = (event) => {
-//     setMessage(event.target.value);
-//   };
-
-//   const handleSendClick = async () => {
-//     if (message.trim() === "") {
-//       return;
-//     }
-
-//     // Assuming currentUser is the logged-in user object from Parse
-//     const currentUser = Parse.User.current();
-
-//     // Create a new Message object and save it to Parse
-//     const Message = Parse.Object.extend("Message");
-//     const newMessage = new Message();
-//     newMessage.set("text", message);
-//     newMessage.set("sent_by_id", currentUser);
-
-//     try {
-//       await newMessage.save();
-
-//       // Optionally, you can fetch the updated message from Parse and use it to update the UI
-//       const updatedMessage = await newMessage.fetch();
-
-//       const messageData = {
-//         isStart: false,
-//         userName: currentUser.get("username"),
-//         time: getCurrentTime(),
-//         message: message,
-//         avatarSrc: "/icons/anakin.webp",
-//       };
-
-//       // Pass the updatedMessage object to your parent component
-//       onSendClick(messageData, updatedMessage);
-
-//       setMessage("");
-//     } catch (error) {
-//       console.error("Error sending message: ", error);
-//     }
-//   };
-
-//   const getCurrentTime = () => {
-//     const currentTime = new Date();
-//     return `${currentTime.getHours()}:${currentTime.getMinutes()}`;
-//   };
-
-//   return (
-//     <div className="flex flex-row items-end">
-//       <InputText value={message} onChange={handleInputChange} />
-//       <div className="flex m-2">
-//         <button onClick={handleSendClick}>
-//           <img src={"/icons/send.svg"} alt="Send" />
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ChatIO;
