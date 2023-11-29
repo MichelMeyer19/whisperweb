@@ -1,52 +1,10 @@
-// // ChatBox.jsx
-// import React, { useState, useRef, useEffect } from "react";
-// import ChatMessageDetail from "../molecules/ChatMessageDetail";
-// import ChatIO from "../molecules/ChatIO";
-
-// const ChatBox = ({ initialMessages }) => {
-//   const [chatMessages, setChatMessages] = useState(initialMessages || []);
-//   const chatBoxRef = useRef(null);
-
-//   const handleSendClick = (newMessage) => {
-//     setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
-//   };
-
-//   useEffect(() => {
-//     // Scroll to the bottom when new messages are added
-//     chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-//   }, [chatMessages]);
-
-//   return (
-//     <div
-//       className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col"
-//       ref={chatBoxRef}
-//     >
-//       <div className="flex-grow">
-//         {chatMessages.map((message, index) => (
-//           <ChatMessageDetail key={index} {...message} />
-//         ))}
-//       </div>
-//       <div className="mt-auto">
-//         <ChatIO onSendClick={handleSendClick} />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ChatBox;
-
-// ChatBox.jsx
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Parse from "parse/dist/parse.min.js";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
 
 const ChatBox = ({ chat_id, currentUser }) => {
   const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    fetchMessages();
-  }, []);
 
   const fetchMessages = async function () {
     try {
@@ -57,7 +15,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
       const result_messages = await query_messages.find();
 
       const processedMessages = result_messages.map((message) => ({
-        isStart: message.get("sent_by_id").id != currentUser.id,
+        isStart: message.get("sent_by_id").id !== currentUser.id,
         userName: message.get("sent_by_id").id,
         time: message.createdAt.toLocaleTimeString(),
         message: message.get("text"),
@@ -75,16 +33,17 @@ const ChatBox = ({ chat_id, currentUser }) => {
     }
   };
 
-  //useEffect(() => {
-  //  // Scroll to the bottom when new messages are added
-  //  chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-  //}, [chatMessages]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMessages();
+    }, 2000); // Fetch messages every 2 seconds
+
+    // Cleanup on component unmount
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array to run only on mount and unmount
 
   return (
-    <div
-      className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col"
-      //ref={chatBoxRef}
-    >
+    <div className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col">
       <div className="flex-grow">
         {messages.map((message, index) => (
           <ChatMessageDetail
@@ -111,40 +70,3 @@ const ChatBox = ({ chat_id, currentUser }) => {
 };
 
 export default ChatBox;
-
-// // ChatBox.jsx
-// import React, { useState, useRef, useEffect } from "react";
-// import ChatMessageDetail from "../molecules/ChatMessageDetail";
-// import ChatIO from "../molecules/ChatIO";
-
-// const ChatBox = ({ initialMessages }) => {
-//   const [chatMessages, setChatMessages] = useState(initialMessages || []);
-//   const chatBoxRef = useRef(null);
-
-//   const handleSendClick = (newMessage) => {
-//     setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
-//   };
-
-//   useEffect(() => {
-//     // Scroll to the bottom when new messages are added
-//     chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-//   }, [chatMessages]);
-
-//   return (
-//     <div
-//       className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col"
-//       ref={chatBoxRef}
-//     >
-//       <div className="flex-grow">
-//         {chatMessages.map((message, index) => (
-//           <ChatMessageDetail key={index} {...message} />
-//         ))}
-//       </div>
-//       <div className="mt-auto">
-//         <ChatIO onSendClick={handleSendClick} />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ChatBox;

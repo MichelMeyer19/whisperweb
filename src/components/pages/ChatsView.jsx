@@ -8,20 +8,23 @@ export const ChatsView = () => {
   const [chatsData, setChatsData] = useState([]);
   const [allData, setAllData] = useState([]);
 
-  // query chats, whenerver the page reloads
+  // query chats whenever the page reloads and at an interval of 30 seconds
   useEffect(() => {
-    // query existing chats for user and update state
-    fetch_chats();
+    fetchChats(); // Initial fetch
+    const chatsInterval = setInterval(fetchChats, 30000); // Poll every 30 seconds
+
+    // Cleanup on component unmount
+    return () => clearInterval(chatsInterval);
   }, []);
 
   // whenever the chats are updated, also query for the first message per chat
   useEffect(() => {
     // query for first message per chat and update state
-    GetFirstMessagePerChat();
+    getFirstMessagePerChat();
   }, [chatsData]);
 
   // define function to query all chats for current user
-  const fetch_chats = async function () {
+  const fetchChats = async function () {
     // Get the current user
     const currentUser = Parse.User.current();
     console.log(currentUser.id);
@@ -37,21 +40,21 @@ export const ChatsView = () => {
     );
     const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
 
-    const found_chats = await chatsQuery.find();
+    const foundChats = await chatsQuery.find();
 
     // loop through query results and extract relevant data
     let fetchedChats = [];
-    for (let result of found_chats) {
-      let other_user = null;
+    for (let result of foundChats) {
+      let otherUser = null;
       let topic = false;
-      // check if current user as user_1 or user_2 in DB
-      if (result.get("user_1").id == currentUser.id) {
-        other_user = result.get("user_2").id;
+      // check if the current user is user_1 or user_2 in DB
+      if (result.get("user_1").id === currentUser.id) {
+        otherUser = result.get("user_2").id;
       } else {
-        other_user = result.get("user_1").id;
+        otherUser = result.get("user_1").id;
       }
       // check if chat is topic-specific or off-topic
-      if (result.get("topic_chat") == true) {
+      if (result.get("topic_chat") === true) {
         topic = result.get("topic_name");
       } else {
         topic = "Off-Topic";
@@ -59,7 +62,7 @@ export const ChatsView = () => {
       fetchedChats.push({
         chat_id: result.id,
         current_user: currentUser.id,
-        other_user: other_user,
+        other_user: otherUser,
         topic: topic,
       });
     }
@@ -69,27 +72,27 @@ export const ChatsView = () => {
   };
 
   // define function to query for the first message of each chat
-  const GetFirstMessagePerChat = async function () {
+  const getFirstMessagePerChat = async function () {
     // loop through chats
-    let all_data = [];
+    let allDataArr = [];
     for (let chat of chatsData) {
-      // set up query to find last message
-      const query_message = new Parse.Query("Messages").equalTo(
+      // set up query to find the last message
+      const queryMessage = new Parse.Query("Messages").equalTo(
         "chat_id",
         chat.chat_id
       );
-      query_message.descending("createdAt"); // Sort by createdAt in descending order
-      query_message.limit(1); // Limit to 1 result (the latest entry)
+      queryMessage.descending("createdAt"); // Sort by createdAt in descending order
+      queryMessage.limit(1); // Limit to 1 result (the latest entry)
 
-      const result = await query_message.first();
+      const result = await queryMessage.first();
 
       // check if a message exists, otherwise show an empty string
       let message = "";
-      if (result != undefined) {
+      if (result !== undefined) {
         message = result.get("text");
       }
-      // extract data from query output
-      all_data.push({
+      // extract data from the query output
+      allDataArr.push({
         chat_id: chat.chat_id,
         current_user: chat.current_user,
         other_user: chat.other_user,
@@ -99,7 +102,7 @@ export const ChatsView = () => {
     }
 
     // update state with queried information
-    setAllData(all_data);
+    setAllData(allDataArr);
   };
 
   return (
