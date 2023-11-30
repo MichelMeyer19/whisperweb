@@ -1,15 +1,30 @@
 // Import necessary components and modules from React and React Router
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from 'react'; // Import useEffect and useState hooks from React
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import { useEffect, useState } from "react"; // Import useEffect and useState hooks from React
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
 
-import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurValues, SignIn, SignUp } from "./components/pages"; // Importing page components
+import {
+  Information,
+  ChatsView,
+  NewChat,
+  Chat, // Include the Chat component
+  NewChatRequested,
+  Welcome,
+  OurValues,
+  SignIn,
+  SignUp,
+} from "./components/pages"; // Importing page components
 
-  // Main functional component for the App
-  function App() {
-    const location = useLocation(); // Get the current location
-    const [showNavbar, setShowNavbar] = useState(true);
+// Main functional component for the App
+function App() {
+  const location = useLocation(); // Get the current location
+  const [showNavbar, setShowNavbar] = useState(true);
 
     // Use useEffect to update the showNavbar state based on the route
     useEffect(() => {
@@ -17,6 +32,10 @@ import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurVa
       const noNavbarPaths = ['/','/welcome', '/welcome/our-values', '/sign-in', '/sign-in/sign-up'];
       // Set showNavbar to false if the current path is in the noNavbarPaths array
       setShowNavbar(!noNavbarPaths.includes(location.pathname));
+    
+      if (location.pathname.startsWith("/chat/")) {
+        noNavbarPaths.push(location.pathname);
+      }
     }, [location]); // Dependency array with location to re-run effect when location changes
 
     // JSX structure for the App component
@@ -41,11 +60,11 @@ import { Information, ChatsView, NewChat, Chat, NewChatRequested, Welcome, OurVa
     );
   }
 
-  // Exporting the App component as the default export wrapped in Router to provide location context
-  export default function AppWrapper() {
-    return (
-      <Router>
-        <App />
-      </Router>
-    );
-  }
+// Exporting the App component as the default export wrapped in Router to provide location context
+export default function AppWrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}

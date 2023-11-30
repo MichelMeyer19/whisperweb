@@ -1,79 +1,100 @@
-// ChatBox.jsx
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Parse from "parse/dist/parse.min.js";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
 
-const MESSAGES = [
-  {
-    isStart: true,
-    userName: "Anonymous Cat",
-    time: "12:45",
-    message: "Lately, I've been feeling a bit overwhelmed with my family's expectations. Do you feel the same? ",
-    avatarSrc: "/icons/obi.webp",
-  },
-  {
-    isStart: false,
-    userName: "Anonymous Antilope",
-    time: "12:46",
-    message: "Oh, I'm the youngest in my family. It's like I'm always in the shadow of my older siblings. They've set the bar so high, and everyone expects me to follow in their footsteps.",
-    avatarSrc: "/icons/anakin.webp",
-  },
-  {
-    isStart: true,
-    userName: "Anonymous Cat",
-    time: "12:47",
-    message: "That sounds tough. Being the eldest, I feel the pressure to set an example. But I can imagine how being the youngest comes with its own set of challenges. Do you ever talk to your siblings about it?",
-    avatarSrc: "/icons/obi.webp",
-  },
-];
+const ChatBox = ({ chat_id, currentUser }) => {
+  const [messages, setMessages] = useState([]);
+  const [hasNewMessage, setHasNewMessage] = useState(false);
+  const messagesEndRef = useRef(null);
+  const prevMessagesLength = useRef(0);
 
-const ChatBox = () => {
-  const [chatMessages, setChatMessages] = useState(MESSAGES);
-  const chatBoxRef = useRef(null);
+  const fetchMessages = async function () {
+    try {
+      const query_messages = new Parse.Query("Messages")
+        .equalTo("chat_id", chat_id)
+        .ascending("createdAt");
 
-  const handleSendClick = (newMessage) => {
-    setChatMessages((prevChatMessages) => [...prevChatMessages, newMessage]);
+      const result_messages = await query_messages.find();
+
+      const processedMessages = result_messages.map((message) => ({
+        isStart: message.get("sent_by_id").id !== currentUser.id,
+        userName: message.get("sent_by_id").id,
+        time: message.createdAt.toLocaleTimeString(),
+        message: message.get("text"),
+        avatarSrc:
+          message.get("sent_by_id").id !== currentUser.id
+            ? "/icons/obi.webp"
+            : "/icons/anakin.webp",
+      }));
+
+      console.log(processedMessages);
+
+      setMessages(processedMessages);
+
+      const hasNewMessages =
+        processedMessages.length > prevMessagesLength.current;
+      if (hasNewMessages) {
+        setHasNewMessage(true);
+      }
+
+      prevMessagesLength.current = processedMessages.length;
+    } catch (error) {
+      console.error("Error fetching chat messages:", error);
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
-    // Scroll to the bottom when new messages are added
-    chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-  }, [chatMessages]);
+    const interval = setInterval(() => {
+      fetchMessages();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (hasNewMessage) {
+      scrollToBottom();
+      setHasNewMessage(false); // Reset the flag after scrolling
+    }
+  }, [hasNewMessage]);
 
   return (
-    <div
-      className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col"
-      ref={chatBoxRef}
-    >
-      <div className="flex-grow">
-        {chatMessages.map((message, index) => (
-          <ChatMessageDetail key={index} {...message} />
-        ))}
+    <div className="w-11/12 bg-dorian rounded-lg  overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center realtive">
+      <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col realtive">
+        <div className="grow">
+          {messages.map((message, index) => (
+            <ChatMessageDetail
+              key={index}
+              isStart={message.isStart}
+              userName={message.userName}
+              time={message.time}
+              message={message.message}
+              avatarSrc={message.avatarSrc}
+            />
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
       </div>
-      <div className="mt-auto">
-        <ChatIO onSendClick={handleSendClick} />
+
+      <div className="w-full bg-slate flex flex-col items-center justify-between">
+        <div className="w-11/12 m-2 pl-3">
+          <ChatIO
+            chat_id={chat_id}
+            currentUser={currentUser}
+            setMessages={setMessages}
+            messages={messages}
+          />
+        </div>
       </div>
     </div>
   );
 };
 
 export default ChatBox;
-
-// import React from "react";
-// import ChatMessageDetail from "../molecules/ChatMessageDetail";
-// import ChatIO from "../molecules/ChatIO";
-
-// const ChatBox = ({ chatMessages }) => {
-//   return (
-//     <div className="w-11/12 bg-dorian rounded-lg m-2 p-4 overflow-y-auto shadow-lg mb-16 h-full flex flex-col">
-//       <div className="flex-grow">
-//         {chatMessages.map((message, index) => (
-//           <ChatMessageDetail key={index} {...message} />
-//         ))}
-//       </div>
-//       <ChatIO />
-//     </div>
-//   );
-// };
-
-// export default ChatBox;

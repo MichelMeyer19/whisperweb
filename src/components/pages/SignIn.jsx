@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Parse from 'parse/dist/parse.min.js';
+
+import Parse from "parse/dist/parse.min.js";
+import GenericButton from "../atoms/GenericButton";
+
 import AuthFormOrganism from "../organisms/AuthFormOrganism";
 
 export const SignIn = () => {
-  // useNavigate hook from React Router for navigation
   const navigate = useNavigate();
   // set states user inputs
   const [email, setEmail] = useState("");
@@ -23,20 +25,24 @@ export const SignIn = () => {
     doUserLogIn(email,password)
   };
 
-  const doUserLogIn = async function (email,password) {
+  const doUserLogIn = async function (email, password) {
     try {
       // do the log-in in the DB
       const loggedInUser = await Parse.User.logIn(email, password);
-      
-      console.log(`Success! User ${loggedInUser.get('username')} has successfully signed in!`);
+
+      console.log(
+        `Success! User ${loggedInUser.get(
+          "username"
+        )} has successfully signed in!`
+      );
 
       // To verify that this is in fact the current user, `current` can be used
       const currentUser = await Parse.User.current();
       console.log(loggedInUser === currentUser);
 
       // Clear input fields
-      setEmail('');
-      setPassword('');
+      setEmail("");
+      setPassword("");
 
       // navigate user to main-chat-page
       navigate('/chats-overview')
@@ -54,6 +60,7 @@ export const SignIn = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-dorian">
+      {" "}
       <h1 className="text-3xl font-bold mb-10">Sign In</h1>
       <AuthFormOrganism
         onSubmit={handleSignIn}
