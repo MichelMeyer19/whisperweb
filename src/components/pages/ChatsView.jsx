@@ -11,6 +11,7 @@ export const ChatsView = () => {
   // query chats whenever the page reloads and at an interval of 30 seconds
   useEffect(() => {
     fetchChats(); // Initial fetch
+    
     const chatsInterval = setInterval(fetchChats, 30000); // Poll every 30 seconds
 
     // Cleanup on component unmount
@@ -39,19 +40,27 @@ export const ChatsView = () => {
       currentUser.id
     );
     const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
+    chatsQuery.include("user_1","user_2");
 
     const foundChats = await chatsQuery.find();
 
     // loop through query results and extract relevant data
     let fetchedChats = [];
     for (let result of foundChats) {
-      let otherUser = null;
+      let otherUser_id = null;
+      let otherUser_info = null;
+      let otherUser_name = null;
       let topic = false;
       // check if the current user is user_1 or user_2 in DB
       if (result.get("user_1").id === currentUser.id) {
-        otherUser = result.get("user_2").id;
+        otherUser_id = result.get("user_2").id;
+        otherUser_info = result.get("user_2");
+        otherUser_name = otherUser_info.get("anonymous_username");
+        console.log(otherUser_info)
+        console.log(otherUser_name)
       } else {
-        otherUser = result.get("user_1").id;
+        otherUser_id = result.get("user_1").id;
+        otherUser_name = result.get("user_1").get("anonymous_username");
       }
       // check if chat is topic-specific or off-topic
       if (result.get("topic_chat") === true) {
@@ -62,7 +71,8 @@ export const ChatsView = () => {
       fetchedChats.push({
         chat_id: result.id,
         current_user: currentUser.id,
-        other_user: otherUser,
+        other_user_id: otherUser_id,
+        other_user_name: otherUser_name,
         topic: topic,
       });
     }
@@ -95,11 +105,13 @@ export const ChatsView = () => {
       allDataArr.push({
         chat_id: chat.chat_id,
         current_user: chat.current_user,
-        other_user: chat.other_user,
+        other_user_id: chat.other_user_id,
+        other_user_name: chat.other_user_name,
         topic: chat.topic,
         first_message: message,
       });
     }
+    console.log(allDataArr)
 
     // update state with queried information
     setAllData(allDataArr);
@@ -117,7 +129,7 @@ export const ChatsView = () => {
             {
               id: chat.chat_id,
               topic: chat.topic,
-              userName: chat.other_user,
+              userName: chat.other_user_name,
               message: chat.first_message,
             },
           ]}
