@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['LitteraText', 'sans-serif'], // This sets LitteraText as the default sans-serif font
+      },
       colors: {
         green: 'rgb(66, 222, 149)',
         blue: 'rgb(62, 174, 247)',

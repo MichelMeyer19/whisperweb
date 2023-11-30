@@ -1,0 +1,21 @@
+/* src/assets/css/fonts.css */
+@font-face {
+    font-family: 'LitteraText';
+    src: url('/fonts/LitteraTextRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'LitteraText';
+    src: url('/fonts/LitteraTextMedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'LitteraText';
+    src: url('/fonts/LitteraTextBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  /* Add other font weights and styles as needed */
+  

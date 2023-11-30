@@ -7,12 +7,12 @@ export const Welcome = () => {
 
   // Function to handle "Our Values" button click
   const goToOurValues = () => {
-    navigate("./ourvalues"); 
+    navigate("/welcome/our-values"); 
   };
 
   // Function to handle "Continue" button click
   const continueWithProcess = () => {
-    navigate("/signin");
+    navigate("/sign-in");
   };
 
   return (

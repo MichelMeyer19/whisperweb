@@ -1,8 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import AppWrapper from "./App.jsx";
-import "./index.css";
-import Parse from "parse/dist/parse.min.js";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import AppWrapper from './App.jsx'
+import './index.css'
+import './assets/fonts.css';
+import Parse from 'parse/dist/parse.min.js';
 
 // Store Parse Initialization Keys
 const PARSE_APPLICATION_ID = "I4ZAiP31nKwNRdrFJtAs766FVZUPtLXWZvTstqI9";
