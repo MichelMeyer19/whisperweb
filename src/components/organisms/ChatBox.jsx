@@ -13,13 +13,14 @@ const ChatBox = ({ chat_id, currentUser }) => {
     try {
       const query_messages = new Parse.Query("Messages")
         .equalTo("chat_id", chat_id)
-        .ascending("createdAt");
+        .ascending("createdAt");  
+      query_messages.include("sent_by_id");
 
       const result_messages = await query_messages.find();
 
       const processedMessages = result_messages.map((message) => ({
         isStart: message.get("sent_by_id").id !== currentUser.id,
-        userName: message.get("sent_by_id").id,
+        userName: message.get("sent_by_id").get("anonymous_username"),
         time: message.createdAt.toLocaleTimeString(),
         message: message.get("text"),
         avatarSrc:

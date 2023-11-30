@@ -10,7 +10,7 @@ const ChatMessageDetail = ({ isStart, userName, time, message, avatarSrc }) => {
   return (
     <div className={`chat ${chatClass}`}>
       <div className="chat-header">
-        {userName}
+        {userName+" "}
         <time className="text-xs opacity-50">{time}</time>
       </div>
       <div className={`chat-bubble ${bubbleClass}`}>{message}</div>
