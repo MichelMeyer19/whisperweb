@@ -11,7 +11,7 @@ export const ChatsView = () => {
   // query chats whenever the page reloads and at an interval of 30 seconds
   useEffect(() => {
     fetchChats(); // Initial fetch
-    
+
     const chatsInterval = setInterval(fetchChats, 30000); // Poll every 30 seconds
 
     // Cleanup on component unmount
@@ -40,7 +40,7 @@ export const ChatsView = () => {
       currentUser.id
     );
     const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
-    chatsQuery.include("user_1","user_2");
+    chatsQuery.include("user_1", "user_2");
 
     const foundChats = await chatsQuery.find();
 
@@ -56,8 +56,8 @@ export const ChatsView = () => {
         otherUser_id = result.get("user_2").id;
         otherUser_info = result.get("user_2");
         otherUser_name = otherUser_info.get("anonymous_username");
-        console.log(otherUser_info)
-        console.log(otherUser_name)
+        console.log(otherUser_info);
+        console.log(otherUser_name);
       } else {
         otherUser_id = result.get("user_1").id;
         otherUser_name = result.get("user_1").get("anonymous_username");
@@ -111,16 +111,15 @@ export const ChatsView = () => {
         first_message: message,
       });
     }
-    console.log(allDataArr)
+    console.log(allDataArr);
 
     // update state with queried information
     setAllData(allDataArr);
   };
 
   return (
-    <Temp>
+    <div className="flex flex-col items-center justify-between min-w-full max-w-full h-full">
       <PageHeadline text="Chats" />
-
       {allData.map((chat) => (
         <ChatBoxOverview
           key={chat.chat_id}
@@ -135,7 +134,7 @@ export const ChatsView = () => {
           ]}
         />
       ))}
-    </Temp>
+    </div>
   );
 };
 
