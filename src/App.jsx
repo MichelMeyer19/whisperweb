@@ -49,7 +49,8 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/chats-overview" element={<ChatsView />} />
         <Route path="/new-chat" element={<NewChat />} />
-        <Route path="/newchatrequested" element={<NewChatRequested />} />
+        <Route path="/newchatrequested/true" element={<NewChatRequested />} />
+        <Route path="/newchatrequested/false" element={<NewChatRequested />} />
         <Route path="/information" element={<Information />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/chat/:chatId" element={<Chat />} />{" "}
