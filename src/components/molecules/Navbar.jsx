@@ -11,13 +11,8 @@ const Navbar = () => {
 
   const isActive = (pathname) => pathname === location.pathname;
 
-  // // Conditionally render the Navbar based on the route
-  // if (location.pathname === "/chat") {
-  //   return null; // Return null if on the chat page
-  // }
-
   return (
-    <nav className="flex justify-around items-center bg-white text-black fixed bottom-0 w-full p-5">
+    <nav className="flex justify-around items-center bg-white text-black fixed bottom-0 w-full p-5 shadow-2xl">
       <NavLink to="/new-chat" end className="no-underline">
         <Icon
           src={

@@ -13,7 +13,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
     try {
       const query_messages = new Parse.Query("Messages")
         .equalTo("chat_id", chat_id)
-        .ascending("createdAt");  
+        .ascending("createdAt");
       query_messages.include("sent_by_id");
 
       const result_messages = await query_messages.find();
@@ -67,7 +67,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
   }, [hasNewMessage]);
 
   return (
-    <div className="w-11/12 bg-dorian rounded-lg  overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center realtive">
+    <div className="w-11/12 bg-dorian rounded-lg  overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center relative">
       <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col realtive">
         <div className="grow">
           {messages.map((message, index) => (

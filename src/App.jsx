@@ -13,7 +13,7 @@ import {
   Information,
   ChatsView,
   NewChat,
-  Chat, // Include the Chat component
+  Chat,
   NewChatRequested,
   Welcome,
   OurValues,
@@ -29,12 +29,18 @@ function App() {
   // Use useEffect to update the showNavbar state based on the route
   useEffect(() => {
     // Define an array of paths where the Navbar should not be shown
-    const noNavbarPaths = ['/','/welcome', '/welcome/our-values', '/sign-in', '/sign-in/sign-up'];
-    
+    const noNavbarPaths = [
+      "/",
+      "/welcome",
+      "/welcome/our-values",
+      "/sign-in",
+      "/sign-in/sign-up",
+    ];
+
     if (location.pathname.startsWith("/chat/")) {
       noNavbarPaths.push(location.pathname);
     }
-    
+
     // Set showNavbar to false if the current path is in the noNavbarPaths array
     setShowNavbar(!noNavbarPaths.includes(location.pathname));
   }, [location]); // Dependency array with location to re-run effect when location changes

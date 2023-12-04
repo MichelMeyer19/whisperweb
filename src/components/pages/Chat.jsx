@@ -13,9 +13,6 @@ export const Chat = () => {
   const { chatId } = useParams();
   const currentUser = Parse.User.current();
 
-  //console.log(chatId);
-  //console.log(currentUser);
-
   useEffect(() => {
     fetchChatTopic();
   }, []);

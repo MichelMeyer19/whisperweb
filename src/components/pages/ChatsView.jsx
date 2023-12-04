@@ -118,22 +118,26 @@ export const ChatsView = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between min-w-full max-w-full h-full">
+    <div className="flex flex-col items-center overflow-auto min-w-full max-w-full h-full">
       <PageHeadline text="Chats" />
-      {allData.map((chat) => (
-        <ChatBoxOverview
-          key={chat.chat_id}
-          chatId={chat.chat_id} // Pass the chatId to ChatBoxOverview
-          chatMessages={[
-            {
-              id: chat.chat_id,
-              topic: chat.topic,
-              userName: chat.other_user_name,
-              message: chat.first_message,
-            },
-          ]}
-        />
-      ))}
+      <div className="flex flex-col items-center min-w-full max-w-full h-3/4">
+        {allData.map((chat) => (
+          <div key={chat.chat_id} className="w-full max-w-md mb-4">
+            {/* Set a fixed height for each ChatBoxOverview */}
+            <ChatBoxOverview
+              chatId={chat.chat_id}
+              chatMessages={[
+                {
+                  id: chat.chat_id,
+                  topic: chat.topic,
+                  userName: chat.other_user_name,
+                  message: chat.first_message,
+                },
+              ]}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

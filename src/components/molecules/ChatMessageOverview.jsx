@@ -7,7 +7,7 @@ import MsgText from "../atoms/MsgText";
 
 const ChatMessageOverview = ({ chatId, topic, userName, message }) => {
   return (
-    <div className="p-2 min-w-min w-11/12 max-w-4xl">
+    <div className="min-w-min w-11/12 max-w-4xl">
       <Link to={`/chat/${chatId}`}>
         {" "}
         {/* Include the chatId in the URL */}
