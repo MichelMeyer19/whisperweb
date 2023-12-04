@@ -44,6 +44,7 @@ function App() {
   // JSX structure for the App component
   return (
     <div className="App">
+      <BackgroundMesh />
       {/* Conditional rendering of Navbar based on showNavbar state */}
       {showNavbar && <Navbar />}
       <Routes>
