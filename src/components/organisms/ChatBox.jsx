@@ -1,3 +1,4 @@
+// file name: components/organisms/"ChatBox".jsx
 import React, { useState, useEffect, useRef } from "react";
 import Parse from "parse/dist/parse.min.js";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
@@ -13,7 +14,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
     try {
       const query_messages = new Parse.Query("Messages")
         .equalTo("chat_id", chat_id)
-        .ascending("createdAt");  
+        .ascending("createdAt");
       query_messages.include("sent_by_id");
 
       const result_messages = await query_messages.find();
@@ -67,9 +68,9 @@ const ChatBox = ({ chat_id, currentUser }) => {
   }, [hasNewMessage]);
 
   return (
-    <div className="w-11/12 bg-dorian rounded-lg  overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center realtive">
-      <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col realtive">
-        <div className="grow">
+    <div className="w-11/12 border border-solid border-black bg-dorian rounded-lg overflow-y-auto shadow-lg mb-4 h-full flex flex-col items-center relative">
+      <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col rel">
+        <div className="flex-grow">
           {messages.map((message, index) => (
             <ChatMessageDetail
               key={index}
@@ -84,8 +85,8 @@ const ChatBox = ({ chat_id, currentUser }) => {
         </div>
       </div>
 
-      <div className="w-full bg-slate flex flex-col items-center justify-between">
-        <div className="w-11/12 m-2 pl-3">
+      <div className="w-full bg-dorian bg-opacity-20 flex flex-col items-center justify-between">
+        <div className="w-11/12 m-4 pl-3">
           <ChatIO
             chat_id={chat_id}
             currentUser={currentUser}

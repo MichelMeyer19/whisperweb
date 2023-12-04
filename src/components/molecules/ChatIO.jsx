@@ -1,6 +1,10 @@
+// file name: components/molecules/ChatIO.jsx
+
 import React, { useEffect, useState } from "react";
 import InputText from "../atoms/InputText";
 import Parse from "parse/dist/parse.min.js";
+import SendSvg from "../atoms/dynamic_svg/SendSvg";
+
 
 const ChatIO = ({ chat_id, currentUser, setMessages }) => {
   const [new_message, setNewMessage] = useState("");

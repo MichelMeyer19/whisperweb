@@ -1,9 +1,9 @@
-// components/templates/PageTemplate.jsx
+// file name: components/templates/"Temp".jsx
 import React from "react";
 
 const Temp = ({ children }) => {
   return (
-    <div className="flex flex-col items-center justify-between min-w-full max-w-full h-full">
+    <div className="flex flex-col items-center justify-between h-screen">
       {children}
     </div>
   );
