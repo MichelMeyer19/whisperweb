@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react"; // Import useEffect and useState hooks from React
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
+import BackgroundMesh from "./components/atoms/BackgroundMesh";
 
 import {
   Information,
@@ -39,6 +40,7 @@ function App() {
     setShowNavbar(!noNavbarPaths.includes(location.pathname));
   }, [location]); // Dependency array with location to re-run effect when location changes
 
+
   // JSX structure for the App component
   return (
     <div className="App">
@@ -62,6 +64,7 @@ function App() {
     </div>
   );
 }
+
 
 // Exporting the App component as the default export wrapped in Router to provide location context
 export default function AppWrapper() {

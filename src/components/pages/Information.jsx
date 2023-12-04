@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
 import InformationButton from "../atoms/InformationButton";
-import LogoutButton from "../atoms/LogoutFunction";
+import LogoutButton from "../atoms/LogoutButton";
 import initialInformation from "../utils/articles_information_page.json"
 
 // ChatGPT has been used to ensure that already open information cards will be closed when a new item is opened

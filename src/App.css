@@ -1,5 +1,5 @@
 .App {
-  background: var(--Gradient---Green-Blue, linear-gradient(180deg, #55E1A0 0%, #52B6F8 100%));
+  /* background: var(--Gradient---Green-Blue, linear-gradient(180deg, #55E1A0 0%, #52B6F8 100%)); */
   height: 100vh;
   width: 100%;
 }

@@ -3,10 +3,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Parse from "parse/dist/parse.min.js";
-import GenericButton from "../atoms/GenericButton";
-
-import AuthFormOrganism from "../organisms/AuthFormOrganism";
+import Parse from 'parse/dist/parse.min.js';
+import AuthForm from "../organisms/AuthForm";
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -62,7 +60,7 @@ export const SignIn = () => {
     <div className="flex flex-col items-center justify-center h-screen bg-dorian">
       {" "}
       <h1 className="text-3xl font-bold mb-10">Sign In</h1>
-      <AuthFormOrganism
+      <AuthForm
         onSubmit={handleSignIn}
         email={email}
         setEmail={setEmail}
