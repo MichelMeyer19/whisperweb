@@ -74,14 +74,15 @@ const ChatBox = ({ chat_id, currentUser }) => {
         <div className="flex-grow">
           {messages.map((message, index) => (
             <ChatMessageDetail
-            key={index}
-            isStart={message.isStart}
-            userName={message.userName}
-            time={message.time}
-            message={message.message}
-            avatarSrc={message.avatarSrc}
+              key={index}
+              isStart={message.isStart}
+              userName={message.userName}
+              time={message.time}
+              message={message.message}
+              avatarSrc={message.avatarSrc}
+              isCurrentUser={message.avatarSrc === "/public/icons/CurrentUserIcon.svg"} // Add this line
             />
-            ))}
+          ))}
           <div ref={messagesEndRef} />
         </div>
       </div>
