@@ -4,7 +4,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Parse from 'parse/dist/parse.min.js';
-import AuthFormOrganism from "../organisms/AuthFormOrganism";
+import AuthForm from "../organisms/AuthForm";
 
 export const SignUp = () => {
 
@@ -61,7 +61,7 @@ export const SignUp = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-dorian">
       <h1 className="text-3xl font-bold mb-10">Create New Account</h1>
-      <AuthFormOrganism
+      <AuthForm
         onSubmit={handleSignUp}
         email={email}
         setEmail={setEmail}
