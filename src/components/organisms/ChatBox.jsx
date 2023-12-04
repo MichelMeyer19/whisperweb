@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Parse from "parse/dist/parse.min.js";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
+import BackgroundMesh from "../atoms/BackgroundMesh";
 
 const ChatBox = ({ chat_id, currentUser }) => {
   const [messages, setMessages] = useState([]);
@@ -26,8 +27,8 @@ const ChatBox = ({ chat_id, currentUser }) => {
         message: message.get("text"),
         avatarSrc:
           message.get("sent_by_id").id !== currentUser.id
-            ? "/icons/obi.webp"
-            : "/icons/anakin.webp",
+            ? "/icons/OtherUser.svg"
+            : "/icons/CurrentUserIcon.svg",
       }));
 
       console.log(processedMessages);
@@ -68,19 +69,19 @@ const ChatBox = ({ chat_id, currentUser }) => {
   }, [hasNewMessage]);
 
   return (
-    <div className="w-11/12 border border-solid border-black bg-dorian rounded-lg overflow-y-auto shadow-lg mb-4 h-full flex flex-col items-center relative">
+    <div className="w-11/12 border-solid border-black bg-dorian rounded-lg overflow-y-auto shadow-lg mb-4 h-full flex flex-col items-center relative">
       <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col rel">
         <div className="flex-grow">
           {messages.map((message, index) => (
             <ChatMessageDetail
-              key={index}
-              isStart={message.isStart}
-              userName={message.userName}
-              time={message.time}
-              message={message.message}
-              avatarSrc={message.avatarSrc}
+            key={index}
+            isStart={message.isStart}
+            userName={message.userName}
+            time={message.time}
+            message={message.message}
+            avatarSrc={message.avatarSrc}
             />
-          ))}
+            ))}
           <div ref={messagesEndRef} />
         </div>
       </div>
