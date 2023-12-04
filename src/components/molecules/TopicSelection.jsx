@@ -2,9 +2,8 @@
 
 import React from "react";
 
+import { TopicButton } from "../atoms/TopicButton.jsx";
 import PageSubHeadline from "../atoms/PageSubHeadline";
-
-import {TopicButton} from "../atoms/TopicButton.jsx";
 import { ManualTopicInput } from "./ManualTopicInput.jsx";
 
 // organism that populates a list of toics to be selected
@@ -30,5 +29,3 @@ export const TopicSelection = ({topics,setTopics}) => {
         </div>
     )
 };
-
-

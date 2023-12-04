@@ -1,97 +1,43 @@
-import React, { useEffect } from "react";
+// components/pages/Chat.jsx
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ChatBox from "../organisms/ChatBox";
 import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
-import BackArrow from "../atoms/BackArrow";
-import ChatBox from "../organisms/ChatBox";
+import Back from "../atoms/BackArrow";
+import Parse from "parse/dist/parse.min.js";
 
 export const Chat = () => {
-  // const [messages, setMessages] = useState([]);
+  const [chat_topic, setChatTopic] = useState({});
 
-  // useEffect(()=>{
-  //   fetch('endpoint/mesages').then((response) => setMessages(response))
-  // },[])
+  const { chatId } = useParams();
+  const currentUser = Parse.User.current();
+
+  //console.log(chatId);
+  //console.log(currentUser);
+
+  useEffect(() => {
+    fetchChatTopic();
+  }, []);
+
+  const fetchChatTopic = async function () {
+    try {
+      const Chats = Parse.Object.extend("Chats");
+      const chat_topic = await new Parse.Query(Chats).get(chatId);
+
+      setChatTopic(chat_topic.get("topic_name"));
+    } catch (error) {
+      console.error("Error fetching chat messages:", error);
+    }
+  };
+
   return (
     <Temp>
-      <BackArrow />
-      <PageHeadline text="#Family Relationships" />
-      <ChatBox />
+      <Back />
+      <PageHeadline text={`#${chat_topic}`} />
+      <ChatBox chat_id={chatId} currentUser={currentUser} />
     </Temp>
   );
 };
 
 export default Chat;
-
-// // components/pages/Chat.jsx
-// import React from "react";
-// import ChatBox from "../organisms/ChatBox";
-// import Temp from "../template/Temp";
-// import PageHeadline from "../atoms/PageHeadline";
-// import Back from "../atoms/Back";
-
-// export const Chat = () => {
-//   const chatMessages = [
-//     {
-//       isStart: true,
-//       userName: "Obi-Wan Kenobi",
-//       time: "12:45",
-//       message: "You were the Chosen One!",
-//       isDelivered: true,
-//       isSeen: false,
-//       avatarSrc: "/icons/obi.webp",
-//     },
-//     {
-//       isStart: false,
-//       userName: "Anakin",
-//       time: "12:46",
-//       message: "I hate you!",
-//       isDelivered: false,
-//       isSeen: true,
-//       avatarSrc: "/icons/anakin.webp",
-//     },
-//     {
-//       isStart: true,
-//       userName: "Obi-Wan Kenobi",
-//       time: "12:47",
-//       message: "...",
-//       isDelivered: true,
-//       isSeen: false,
-//       avatarSrc: "/icons/obi.webp",
-//     },
-//     {
-//       isStart: false,
-//       userName: "Anakin",
-//       time: "12:48",
-//       message: "!",
-//       isDelivered: false,
-//       isSeen: true,
-//       avatarSrc: "/icons/anakin.webp",
-//     },
-//     {
-//       isStart: false,
-//       userName: "Anakin",
-//       time: "12:48",
-//       message: "!",
-//       isDelivered: false,
-//       isSeen: true,
-//       avatarSrc: "/icons/anakin.webp",
-//     },
-//     {
-//       isStart: false,
-//       userName: "Anakin",
-//       time: "12:48",
-//       message: "!",
-//       isDelivered: false,
-//       isSeen: true,
-//       avatarSrc: "/icons/anakin.webp",
-//     },
-//     // Add more chat messages as needed -> perhaps an array of chats with unique id's?
-//   ];
-
-//   return (
-//     <Temp>
-//       <Back />
-//       <PageHeadline text="#ChosenOne" />
-//       <ChatBox chatMessages={chatMessages} />
-//     </Temp>
-//   );
-// };

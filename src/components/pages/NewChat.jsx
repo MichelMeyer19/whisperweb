@@ -8,7 +8,7 @@ import PageHeadline from "../atoms/PageHeadline";
 import Temp from "../template/Temp";
 
 import {TopicSelection} from '../molecules/TopicSelection.jsx';
-import {NewChatButton} from "../atoms/NewChatFunction.jsx";
+import {NewChatButton} from "../atoms/NewChatButton.jsx";
 
 
 export const NewChat = () => {

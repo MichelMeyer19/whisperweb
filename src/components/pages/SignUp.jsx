@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Parse from 'parse/dist/parse.min.js';
 import AuthForm from "../organisms/AuthForm";
+import user_names_list from "../utils/user_names.json"
 
 export const SignUp = () => {
 
@@ -35,21 +36,32 @@ export const SignUp = () => {
 
   // function that handles the signup process of the user in the DB
   const doUserRegistration = async function (email,password) {
-    // set new user details
-    var user = new Parse.User();
-    user.set("username", email);
-    user.set("email", email);
-    user.set("password", password);
-    try {
-      // create a new user within the DB
-      await user.signUp();
-      console.log(`Success! User ${user.getUsername()} was successfully created!`);
-      // navigate user to main-chat-page after successfull signup!
-      navigate('/new-chat')
-    } catch (error) {
-      // signUp can fail if any parameter is blank or failed an uniqueness check on the server
-      alert(`Error! ${error} ${error.code}`);
-    }
+    
+    // find unique username for user
+    const list_of_usernames = user_names_list['strings'];
+
+    const randomIndex = Math.floor(Math.random() * list_of_usernames.length);
+    const selectedString = list_of_usernames[randomIndex];
+    const anonymous_username = "Anonymous "+selectedString;
+    
+    console.log(anonymous_username);
+    
+     // set new user details
+     var user = new Parse.User();
+     user.set("username", email);
+     user.set("email", email);
+     user.set("password", password);
+     user.set("anonymous_username", anonymous_username);
+     try {
+       // create a new user within the DB
+       await user.signUp();
+       console.log(`Success! User ${user.getUsername()} was successfully created!`);
+       // navigate user to main-chat-page after successfull signup!
+       navigate('/new-chat')
+     } catch (error) {
+       // signUp can fail if any parameter is blank or failed an uniqueness check on the server
+       alert(`Error! ${error} ${error.code}`);
+     }
   };
 
   // function that handles the button to return to the log in process
