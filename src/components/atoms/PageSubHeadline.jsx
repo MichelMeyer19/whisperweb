@@ -2,16 +2,16 @@
 import React from "react";
 import truncateText from "../utils/truncateText";
 
-const PageHeadline = ({ text }) => {
+const PageSubHeadline = ({ text }) => {
   const truncatedText = truncateText(text, 40); // Set your desired character limit
 
   return (
-    <div className="flex flex-col items-center m-45 max-w-5xl pt-10 mb-8">
-      <h1 className="font-bold text-3xl text-onyx leading-tight">
+    <div className="flex flex-col items-left m-1 ml-7 max-w-5xl">
+      <h1 className="font-bold text-1xl text-onyx leading-tight">
         {truncatedText}
       </h1>
     </div>
   );
 };
 
-export default PageHeadline;
+export default PageSubHeadline;

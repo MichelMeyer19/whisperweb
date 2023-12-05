@@ -1,5 +1,5 @@
 .App {
-  background: var(--Gradient---Green-Blue, linear-gradient(180deg, #55E1A0 0%, #52B6F8 100%));
+  /* background: var(--Gradient---Green-Blue, linear-gradient(180deg, #55E1A0 0%, #52B6F8 100%)); */
   height: 100vh;
   width: 100%;
 }
@@ -7,19 +7,12 @@
 * {
 	margin: 0;
 	box-sizing: border-box;
-	font-family: "Fira sans", sans-serif;
+	font-family: "LitteraText", sans-serif;
 }
 
-/* general button */
-.button {
-    background-color: #ffffff;
-    border: 2px solid var(--dark);
-    color: rgb(0, 0, 0);
-    padding: 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 4px;
-    cursor: pointer;
+main {
+   /* This specification helps position information buttons */
+  padding-bottom: 185px;
+  /* Enable vertical scrolling if content overflows, to ensure Log Out is always accessible */
+  overflow-y: auto;
 }

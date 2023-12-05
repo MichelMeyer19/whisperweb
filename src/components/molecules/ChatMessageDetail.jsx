@@ -9,13 +9,13 @@ const ChatMessageDetail = ({ isStart, userName, time, message, avatarSrc }) => {
 
   return (
     <div className={`chat ${chatClass}`}>
-      <Avatar src={avatarSrc} />
       <div className="chat-header">
-        {userName}
+        {userName+" "}
         <time className="text-xs opacity-50">{time}</time>
       </div>
       <div className={`chat-bubble ${bubbleClass}`}>{message}</div>
       <div className="chat-footer opacity-50"></div>
+      <Avatar src={avatarSrc} />
     </div>
   );
 };

@@ -11,17 +11,17 @@ const Navbar = () => {
 
   const isActive = (pathname) => pathname === location.pathname;
 
-  // Conditionally render the Navbar based on the route
-  if (location.pathname === "/chat") {
-    return null; // Return null if on the chat page
-  }
+  // // Conditionally render the Navbar based on the route
+  // if (location.pathname === "/chat") {
+  //   return null; // Return null if on the chat page
+  // }
 
   return (
     <nav className="flex justify-around items-center bg-white text-black fixed bottom-0 w-full p-5">
-      <NavLink to="/newchat" end className="no-underline">
+      <NavLink to="/new-chat" end className="no-underline">
         <Icon
           src={
-            isActive("/newchat")
+            isActive("/new-chat")
               ? "/icons/new-chat-chosen.png"
               : "/icons/new-chat.png"
           }
@@ -29,14 +29,14 @@ const Navbar = () => {
         />
       </NavLink>
 
-      <NavLink to="/chatsview" end className="no-underline">
+      <NavLink to="/chats-overview" end className="no-underline">
         <Icon
           src={
-            isActive("/chatsview")
+            isActive("/chats-overview")
               ? "/icons/chats-chosen.png"
               : "/icons/chats.png"
           }
-          alt="ChatsView"
+          alt="ChatsOverview"
         />
       </NavLink>
 

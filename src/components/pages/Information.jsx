@@ -1,43 +1,60 @@
-import React from "react";
-import {useState} from 'react';
+import { useState } from 'react';
+import Temp from "../template/Temp";
+import PageHeadline from "../atoms/PageHeadline";
+import InformationButton from "../atoms/InformationButton";
+import LogoutButton from "../atoms/LogoutButton";
+import initialInformation from "../utils/articles_information_page.json"
 
-let initialInformations = [
-  {id: "0", info_header: "Good Ways to disagree", isClicked: false},
-  {id: "1", info_header: "Asking the right questions", isClicked: false},
-  {id: "2", info_header: "Not being stressed by this app", isClicked: false},
-  {id: "3", info_header: "Creating safe spaces", isClicked: false}
-];
-
+// ChatGPT has been used to ensure that already open information cards will be closed when a new item is opened
 export const Information = () => {
 
-  const [infos, setInfos] = useState(initialInformations);
+  // Assign a state variable where each information card's id is associated to a state (currently selected or not)
+  const [infos, setInfos] = useState(initialInformation);
 
   function handleInfoClick(e) {
-    console.log('clicked button: '+e.currentTarget.id)
-    const new_info_buttons = infos.map(info => {
-      if (infos.id === e.currentTarget.id) {
-          return {...info, isClicked: true};
+    
+    // Get the id of the clicked information item
+    const id = e.currentTarget.id;
+
+    // Create new array with updated Infos by leveraging the JS map function
+    const newInfos = infos.map(info => {
+      if (info.id === id) {
+
+        // If the item is already open, close it
+        return { ...info, isClicked: !info.isClicked };
       } else {
-          return info;
-      };
+
+        // If not, open it and close all other buttons by setting isClicked to false
+        return { ...info, isClicked: false };
+      }
     });
-    setInfos(new_info_buttons)
-  };
-  
+    
+    // Update the state with the new information items
+    setInfos(newInfos);
+  }
+
   return (
-  <>
-    <h1>
-      Information
-    </h1>
-    <main>
-      {infos.map(each => 
-        <div>
-          <button id={each.id} onClick={handleInfoClick} class={"button topicButton"}>
-            {each.info_header}
-          </button>
+    <div className=''>
+      {/* Same formatting like other headers */} 
+      <PageHeadline text="Information" />
+      <main className="flex flex-col items-center">
+        {infos.map((each) => (
+          <div key={each.id} className="w-full flex justify-center">
+            {/* Leverage InformationButton.jsx by forwarding the variables defined in the function expression above*/} 
+            <InformationButton
+              id={each.id}
+              info_header={each.info_header}
+              isClicked={each.isClicked}
+              content={each.content}
+              onClick={handleInfoClick}
+            />
+          </div>
+        ))}
+        <div className="w-full flex justify-center mt-4">
+          {/* Leverage LogoutButton.jsx*/} 
+          <LogoutButton />
         </div>
-      )}
-    </main>
-  </>
+      </main>
+    </div>
   );
 };
