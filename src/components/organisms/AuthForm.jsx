@@ -1,9 +1,9 @@
 // AuthFormOrganism.jsx organism component  
 
-import FieldMolecule from "../molecules/FieldMolecule";
+import Field from "../molecules/Field";
 import GenericButton from "../atoms/GenericButton";
 
-const AuthFormOrganism = ({
+const AuthForm = ({
   onSubmit, // Function to execute on form submission
   email,
   setEmail,
@@ -19,7 +19,7 @@ const AuthFormOrganism = ({
   <div>
     <form onSubmit={onSubmit}>
       {/* Email Field */}
-      <FieldMolecule
+      <Field
         id="email"
         type="email"
         value={email}
@@ -28,7 +28,7 @@ const AuthFormOrganism = ({
         label="Email"
       />
       {/* Password Field */}
-      <FieldMolecule
+      <Field
         id="password"
         type="password"
         value={password}
@@ -38,7 +38,7 @@ const AuthFormOrganism = ({
       />
       {/* Conditionally rendered Repeat Password Field for sign-up page */}
       {isSignUpPage && (
-        <FieldMolecule
+        <Field
           id="repeatPassword"
           type="password"
           value={repeatPassword}
@@ -51,7 +51,7 @@ const AuthFormOrganism = ({
       <div className="mt-4 flex justify-center">
         <GenericButton
           text={buttonText}
-          additionalStyles="text-black bg-green hover:bg-green-dark"
+          additionalStyles="text-black bg-mesh bg-cover bg-no-repeat"
           type="submit"
         />
       </div>
@@ -68,4 +68,4 @@ const AuthFormOrganism = ({
   </div>
 );
 
-export default AuthFormOrganism;
+export default AuthForm;

@@ -5,13 +5,13 @@ const BackArrow = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1); // This will take the user back to the previous page
+    navigate(-1);
   };
 
   return (
-    <div className="w-11/12 mt-4">
+    <div className="w-11/12 mt-4 ml-5">
       <div className="w-fit cursor-pointer" onClick={goBack}>
-        <img src="/icons/goBack.svg" alt="Go Back" className="w-4 h-auto" />
+        <img src="/icons/goBack.svg" alt="Go Back" className="w-2 h-auto" /> {/* Adjusted width to w-2 */}
       </div>
     </div>
   );

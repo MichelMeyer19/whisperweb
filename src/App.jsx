@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react"; // Import useEffect and useState hooks from React
 import "./App.css"; // Importing styles for the App component
 import Navbar from "./components/molecules/Navbar"; // Importing the Navbar component
+import BackgroundMesh from "./components/atoms/BackgroundMesh";
 
 import {
   Information,
@@ -45,9 +46,11 @@ function App() {
     setShowNavbar(!noNavbarPaths.includes(location.pathname));
   }, [location]); // Dependency array with location to re-run effect when location changes
 
+
   // JSX structure for the App component
   return (
     <div className="App">
+      <BackgroundMesh />
       {/* Conditional rendering of Navbar based on showNavbar state */}
       {showNavbar && <Navbar />}
       <Routes>
@@ -55,7 +58,8 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/chats-overview" element={<ChatsView />} />
         <Route path="/new-chat" element={<NewChat />} />
-        <Route path="/newchatrequested" element={<NewChatRequested />} />
+        <Route path="/newchatrequested/true" element={<NewChatRequested />} />
+        <Route path="/newchatrequested/false" element={<NewChatRequested />} />
         <Route path="/information" element={<Information />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/chat/:chatId" element={<Chat />} />{" "}
@@ -67,6 +71,7 @@ function App() {
     </div>
   );
 }
+
 
 // Exporting the App component as the default export wrapped in Router to provide location context
 export default function AppWrapper() {

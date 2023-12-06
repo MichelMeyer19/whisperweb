@@ -2,7 +2,7 @@
 
 import InputField from "../atoms/InputField";
 
-const FieldMolecule = ({
+const Field = ({
   id, // Identifier for the input field and label
   type, // Type of input (e.g., text, password, email)
   value, // Value of the input field
@@ -28,4 +28,4 @@ const FieldMolecule = ({
   </div>
 );
 
-export default FieldMolecule;
+export default Field;

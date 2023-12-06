@@ -49,7 +49,7 @@ export const NewChatButton = ({text,topics,currentUser}) => {
       // if no matching request exists, create new chat request
       add_chat_requests(user,topic_chat,topic)
 
-      const newPath = '/newchatrequested';
+      const newPath = '/newchatrequested/false';
       navigateTo(newPath);
     } else {
       // create a new chat
@@ -58,7 +58,7 @@ export const NewChatButton = ({text,topics,currentUser}) => {
       // set existing chat request to 'done'
       set_chat_request_to_done(existing_requests)
 
-      const newPath = '/newchatrequested';
+      const newPath = '/newchatrequested/true';
       navigateTo(newPath);
     }
   };

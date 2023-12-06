@@ -6,8 +6,9 @@ import Parse from "parse/dist/parse.min.js";
 
 import PageHeadline from "../atoms/PageHeadline";
 
-import { TopicSelection } from "../molecules/TopicSelection.jsx";
-import { NewChatButton } from "../atoms/NewChatFunction.jsx";
+import {TopicSelection} from '../molecules/TopicSelection.jsx';
+import {NewChatButton} from "../atoms/NewChatButton.jsx";
+
 
 export const NewChat = () => {
   // define state that contains most relevant topics >> and stores if the topic is clicked or not!

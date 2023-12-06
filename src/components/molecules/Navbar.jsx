@@ -17,7 +17,7 @@ const Navbar = () => {
         <Icon
           src={
             isActive("/new-chat")
-              ? "/icons/new-chat-chosen.png"
+              ? "/icons/new-chat-chosen-black.png"
               : "/icons/new-chat.png"
           }
           alt="NewChat"
@@ -28,7 +28,7 @@ const Navbar = () => {
         <Icon
           src={
             isActive("/chats-overview")
-              ? "/icons/chats-chosen.png"
+              ? "/icons/chats-chosen-black.png"
               : "/icons/chats.png"
           }
           alt="ChatsOverview"
@@ -39,7 +39,7 @@ const Navbar = () => {
         <Icon
           src={
             isActive("/information")
-              ? "/icons/information-chosen.png"
+              ? "/icons/information-chosen-black.png"
               : "/icons/information.png"
           }
           alt="Information"
