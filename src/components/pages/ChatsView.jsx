@@ -90,6 +90,7 @@ export const ChatsView = () => {
     const chatrequest_query = new Parse.Query("ChatRequest");
     chatrequest_query.equalTo("user", currentUser.id);
     chatrequest_query.equalTo("matched_request", false);
+    chatrequest_query.descending("createdAt"); // Sort by createdAt in descending order
 
     const found_chat_request = await chatrequest_query.find();
 
