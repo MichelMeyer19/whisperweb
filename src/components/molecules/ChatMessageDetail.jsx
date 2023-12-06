@@ -12,7 +12,7 @@ const ChatMessageDetail = ({
   addPadding,
 }) => {
   const chatClass = isStart ? "chat-start" : "chat-end";
-  const bubbleClass = isStart ? "bg-white text-black" : "bg-green text-black";
+  const bubbleClass = isStart ? "bg-white text-black" : "bg-white text-black";
   const paddingClass = addPadding ? "mt-5" : "";
 
   return (
@@ -20,7 +20,8 @@ const ChatMessageDetail = ({
       <div className={`chat ${chatClass}`}>
         <Avatar src={avatarSrc} />
         <div className="chat-header">
-          {userName + " "}
+          {/* Uncomment if the username should be displayed */}
+          {/* {userName + " "} */}
           <time className="text-xs opacity-50">{time}</time>
         </div>
         <div className={`chat-bubble ${bubbleClass}`}>{message}</div>

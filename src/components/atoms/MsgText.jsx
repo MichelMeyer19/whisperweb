@@ -4,7 +4,7 @@ import React from "react";
 
 const MsgText = ({ text }) => {
   return (
-    <p className="font-sans text-base text-lightSlate max-w-full">{text}</p>
+    <p className="font-sans text-sm text-lightSlate max-w-full">{text}</p>
   );
 };
 

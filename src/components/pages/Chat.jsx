@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ChatBox from "../organisms/ChatBox";
 import PageHeadline from "../atoms/PageHeadline";
 import Back from "../atoms/BackArrow";
+import PageSubHeadline from "../atoms/PageSubHeadline";
 //import Temp from "../template/Temp";
 //import PageSubHeadline from "../atoms/PageSubHeadline";
 //import BackArrow from "../atoms/BackArrow";
@@ -34,7 +35,7 @@ export const Chat = () => {
   return (
     <div className="flex flex-col items-center justify-between min-w-full max-w-full h-full">
       <Back />
-      <PageHeadline text={`#${chat_topic}`} />
+      <PageSubHeadline text={`${chat_topic}`} />
 {/*    <Temp>
       <BackArrow />
   <PageSubHeadline text={`#${chat_topic}`} /> */}

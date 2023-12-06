@@ -69,7 +69,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
   }, [hasNewMessage]);
 
   return (
-    <div className="w-11/12 bg-dorian rounded-lg overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center relative">
+    <div className="w-11/12 bg-dorian rounded-lg overflow-y-auto shadow-lg mb-5 h-full flex flex-col items-center relative">
       <div className="w-11/12 bg-dorian overflow-y-auto h-full flex flex-col realtive">
         <div className="grow">
           {messages.map((message, index) => (
@@ -91,7 +91,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
       </div>
 
       <div className="w-full bg-dorian bg-opacity-20 flex flex-col items-center justify-between">
-        <div className="w-11/12 m-4 pl-3">
+        <div className="w-11/12 m-5 pl-3">
           <ChatIO
             chat_id={chat_id}
             currentUser={currentUser}
