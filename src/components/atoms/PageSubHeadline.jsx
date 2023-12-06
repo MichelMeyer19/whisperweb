@@ -8,7 +8,7 @@ const PageSubHeadline = ({ text }) => {
 
   return (
     <div className="flex flex-col items-left m-1 ml-7 max-w-5xl">
-      <h1 className="font-bold text-1xl text-onyx leading-tight">
+      <h1 className="font-bold text-2xl text-onyx leading-tight">
         {truncatedText}
       </h1>
     </div>

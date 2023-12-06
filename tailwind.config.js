@@ -25,7 +25,7 @@ module.exports = {
       },
       backgroundImage: {
         // Add this with your image path
-        'mesh': "url('/public/mesh/mesh-4.png')" // Replace with the actual path to your image
+        'mesh': "url('/mesh/mesh-4.png')" // Replace with the actual path to your image
         
       }
     },
