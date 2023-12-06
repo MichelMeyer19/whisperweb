@@ -41,6 +41,7 @@ export const ChatsView = () => {
     );
     const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
     chatsQuery.include("user_1", "user_2");
+    chatsQuery.descending("createdAt"); // Sort by createdAt in descending order
 
     const foundChats = await chatsQuery.find();
 
