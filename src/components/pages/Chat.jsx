@@ -1,10 +1,11 @@
-// components/pages/Chat.jsx
+// file name: components/pages/"Chat".jsx
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChatBox from "../organisms/ChatBox";
 import Temp from "../template/Temp";
-import PageHeadline from "../atoms/PageHeadline";
-import Back from "../atoms/BackArrow";
+import PageSubHeadline from "../atoms/PageSubHeadline";
+import BackArrow from "../atoms/BackArrow";
 import Parse from "parse/dist/parse.min.js";
 
 export const Chat = () => {
@@ -33,8 +34,8 @@ export const Chat = () => {
 
   return (
     <Temp>
-      <Back />
-      <PageHeadline text={`#${chat_topic}`} />
+      <BackArrow />
+      <PageSubHeadline text={`#${chat_topic}`} />
       <ChatBox chat_id={chatId} currentUser={currentUser} />
     </Temp>
   );
