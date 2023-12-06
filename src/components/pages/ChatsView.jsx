@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
 import ChatBoxOverview from "../organisms/ChatBoxOverview";
 import Parse from "parse/dist/parse.min.js";
@@ -155,7 +154,7 @@ export const ChatsView = () => {
   return (
     <div className="flex flex-col items-center min-w-full max-w-full h-full">
       <PageHeadline text="Chats" />
-      <div className="flex flex-col items-center  overflow-auto min-w-full max-w-full h-3/4">
+      <div className="flex flex-col items-center  overflow-auto min-w-full max-w-full h-[76.5%]">
         {allData.map((chat) => (
           <div key={chat.chat_id} className="w-full max-w-md mb-4">
             {/* Set a fixed height for each ChatBoxOverview */}
