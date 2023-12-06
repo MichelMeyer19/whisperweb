@@ -80,43 +80,41 @@ export const ChatsView = () => {
     setChatsData(fetchedChats);
   };
 
-    // define function to query all chats for current user
-    const fetchopenchatRequests = async function () {
-      
-      // Get the current user
-      const currentUser = Parse.User.current();
-      console.log(currentUser.id);
+  // define function to query all chats for current user
+  const fetchopenchatRequests = async function () {
+    // Get the current user
+    const currentUser = Parse.User.current();
+    console.log(currentUser.id);
 
-      // create query to find existing chat requests
-      const chatrequest_query = new Parse.Query('ChatRequest');
-      chatrequest_query.equalTo('user', currentUser.id);
-      chatrequest_query.equalTo('matched_request', false);
-    
-      const found_chat_request = await chatrequest_query.find();
-  
-      // loop through query results and extract relevant data
-      let fetchedChatRequests = [];
-      for (let result of found_chat_request) {
+    // create query to find existing chat requests
+    const chatrequest_query = new Parse.Query("ChatRequest");
+    chatrequest_query.equalTo("user", currentUser.id);
+    chatrequest_query.equalTo("matched_request", false);
 
-        let topic = false;
-        // check if chat is topic-specific or off-topic
-        if (result.get("topic_chat") === true) {
-          topic = result.get("topic_name");
-        } else {
-          topic = "Off-Topic";
-        }
-        fetchedChatRequests.push({
-          chat_id: result.id,
-          current_user: currentUser.id,
-          other_user_id: null,
-          other_user_name: "awaiting match",
-          topic: topic,
-        });
+    const found_chat_request = await chatrequest_query.find();
+
+    // loop through query results and extract relevant data
+    let fetchedChatRequests = [];
+    for (let result of found_chat_request) {
+      let topic = false;
+      // check if chat is topic-specific or off-topic
+      if (result.get("topic_chat") === true) {
+        topic = result.get("topic_name");
+      } else {
+        topic = "Off-Topic";
       }
-      console.log(fetchedChatRequests);
-      // update state with chats
-      setOpenchatRequests(fetchedChatRequests);
-    };
+      fetchedChatRequests.push({
+        chat_id: result.id,
+        current_user: currentUser.id,
+        other_user_id: null,
+        other_user_name: "awaiting match",
+        topic: topic,
+      });
+    }
+    console.log(fetchedChatRequests);
+    // update state with chats
+    setOpenchatRequests(fetchedChatRequests);
+  };
 
   // define function to query for the first message of each chat
   const getFirstMessagePerChat = async function () {
@@ -155,9 +153,9 @@ export const ChatsView = () => {
   };
 
   return (
-    <div className="flex flex-col items-center overflow-auto min-w-full max-w-full h-full">
+    <div className="flex flex-col items-center min-w-full max-w-full h-full">
       <PageHeadline text="Chats" />
-      <div className="flex flex-col items-center min-w-full max-w-full h-3/4">
+      <div className="flex flex-col items-center  overflow-auto min-w-full max-w-full h-3/4">
         {allData.map((chat) => (
           <div key={chat.chat_id} className="w-full max-w-md mb-4">
             {/* Set a fixed height for each ChatBoxOverview */}
