@@ -20,7 +20,8 @@ const ChatMessageDetail = ({
       <div className={`chat ${chatClass}`}>
         <Avatar src={avatarSrc} />
         <div className="chat-header">
-          {userName + " "}
+          {/* Uncomment if the username should be displayed */}
+          {/* {userName + " "} */}
           <time className="text-xs opacity-50">{time}</time>
         </div>
         <div className={`chat-bubble ${bubbleClass}`}>{message}</div>
