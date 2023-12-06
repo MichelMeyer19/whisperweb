@@ -1,23 +1,20 @@
 // render the NewChat-page: the goal of this page is to allow the user to request new chats (either topic-specific of off-topic)
 
 import React from "react";
-import {useState, useEffect} from 'react';
-import Parse from 'parse/dist/parse.min.js';
+import { useState, useEffect } from "react";
+import Parse from "parse/dist/parse.min.js";
 
 import PageHeadline from "../atoms/PageHeadline";
-import Temp from "../template/Temp";
 
 import {TopicSelection} from '../molecules/TopicSelection.jsx';
 import {NewChatButton} from "../atoms/NewChatButton.jsx";
 
 
 export const NewChat = () => {
-
   // define state that contains most relevant topics >> and stores if the topic is clicked or not!
   const [topics, setTopics] = useState([]);
   // define state to show current user and therefore allow access to DB
-  const [currentUser, setCurrentUser] = useState(null);  
-
+  const [currentUser, setCurrentUser] = useState(null);
 
   // initiate a DB call on each first render of page
   useEffect(() => {
@@ -37,21 +34,24 @@ export const NewChat = () => {
 
   // function to retreive topics and create list of dictionaries (incl. topic_id and topic_name)
   async function fetchTopics() {
-
     // query DB to retrieve topics
     let parseQuery = new Parse.Query("Topics");
 
     try {
       let queryResults = await parseQuery.find();
-      let fetchedTopicList = []
+      let fetchedTopicList = [];
       // Store results as list of dictionaries
-      for (let result of queryResults) {      
-        fetchedTopicList.push({'id':result.id, 'topic_name':result.get(['topic_name']), 'isClicked':false})
+      for (let result of queryResults) {
+        fetchedTopicList.push({
+          id: result.id,
+          topic_name: result.get(["topic_name"]),
+          isClicked: false,
+        });
       }
       // set topics to fetched list
-      setTopics(fetchedTopicList)      
+      setTopics(fetchedTopicList);
     } catch (error) {
-      console.log('call failed!!!')
+      console.log("call failed!!!");
     }
   }
 
@@ -60,22 +60,19 @@ export const NewChat = () => {
       <PageHeadline text="New Chat" />
 
       <div className="mt-10">
-        <TopicSelection 
-          topics={topics} 
-          setTopics={setTopics}
-        />
+        <TopicSelection topics={topics} setTopics={setTopics} />
       </div>
 
       <div className="mt-10">
         <NewChatButton
-          text = "Request Themed Chat"
-          topics = {topics}
-          currentUser = {currentUser}
+          text="Request Themed Chat"
+          topics={topics}
+          currentUser={currentUser}
         />
         <NewChatButton
-          text = "Request General Chat"
-          topics = {''}
-          currentUser = {currentUser}
+          text="Request General Chat"
+          topics={""}
+          currentUser={currentUser}
         />
       </div>
     </>

@@ -2,14 +2,15 @@
 import React from "react";
 import ChatMessageOverview from "../molecules/ChatMessageOverview";
 
-const ChatBoxOverview = ({ chatId, chatMessages }) => {
+const ChatBoxOverview = ({ chatId, chatMessages, actual_chat }) => {
   return (
-    <div className="flex flex-col items-center w-11/12 bg-transparent m-2 p-4 overflow-y-auto h-full">
+    <div className="flex flex-col items-center w-full max-w-md bg-transparent p-4 h-30 overflow-y-auto">
       {chatMessages.map((message) => (
         <ChatMessageOverview
           key={message.id}
-          chatId={chatId} // Pass the chatId to ChatMessageOverview
+          chatId={chatId}
           {...message}
+          actual_chat={actual_chat}
         />
       ))}
     </div>

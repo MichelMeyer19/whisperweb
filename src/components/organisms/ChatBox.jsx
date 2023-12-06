@@ -69,6 +69,22 @@ const ChatBox = ({ chat_id, currentUser }) => {
   }, [hasNewMessage]);
 
   return (
+    <div className="w-11/12 bg-dorian rounded-lg overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center relative">
+      <div className="w-11/12 bg-dorian overflow-y-auto h-full flex flex-col realtive">
+        <div className="grow">
+          {messages.map((message, index) => (
+            <ChatMessageDetail
+              key={index}
+              isStart={message.isStart}
+              userName={message.userName}
+              time={message.time}
+              message={message.message}
+              avatarSrc={message.avatarSrc}
+              addPadding={
+                index === messages ||
+                (index > 0 && messages[index - 1]?.isStart !== message.isStart)
+              }
+{/*
     <div className="w-11/12 border-solid border-black bg-dorian rounded-lg overflow-y-auto shadow-lg mb-4 h-full flex flex-col items-center relative">
       <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col rel">
         <div className="flex-grow">
@@ -80,6 +96,8 @@ const ChatBox = ({ chat_id, currentUser }) => {
             time={message.time}
             message={message.message}
             avatarSrc={message.avatarSrc}
+          */}
+
             />
             ))}
           <div ref={messagesEndRef} />
