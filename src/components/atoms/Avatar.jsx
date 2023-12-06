@@ -2,6 +2,7 @@
 
 import React from "react";
 
+// create Avatar component
 const Avatar = ({ src }) => {
   return (
     <div className="chat-image avatar">

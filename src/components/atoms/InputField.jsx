@@ -1,4 +1,4 @@
-// InputField.jsx atom component
+// atoms/InputField.jsx
 
 const InputField = ({ type, id, value, onChange, placeholder, label }) => {
   // Determine the correct autocomplete attribute based on input type

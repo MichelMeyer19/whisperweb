@@ -1,4 +1,5 @@
 // components/atoms/PageHeadline.jsx
+
 import React from "react";
 import truncateText from "../utils/truncateText";
 

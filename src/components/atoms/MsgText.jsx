@@ -1,4 +1,5 @@
 // components/atoms/MsgText.jsx
+
 import React from "react";
 
 const MsgText = ({ text }) => {
