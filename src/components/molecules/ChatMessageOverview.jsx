@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TopicText from "../atoms/TopicText";
 import UsrName from "../atoms/UsrName";
 import MsgText from "../atoms/MsgText";
+import LoadingSpinner from "../atoms/LoadingSpinner"; 
 
 const ChatMessageOverview = ({
   chatId,
@@ -14,7 +15,7 @@ const ChatMessageOverview = ({
 }) => {
   if (actual_chat === false) {
     return (
-      <div className="min-w-min w-11/12 max-w-4xl">
+      <div className="min-w-min w-11/12 max-w-4xl relative">
         <div
           className={`flex flex-col items-start bg-white p-5 border border-solid border-grey rounded shadow-md h-25 max-h-32${
             !message ? "justify-center" : ""
@@ -27,6 +28,9 @@ const ChatMessageOverview = ({
               <MsgText text={message} />
             </div>
           )}
+          <div className="absolute bottom-0 right-0 p-5"> {/* This will position the spinner */}
+            <LoadingSpinner />
+          </div>
         </div>
       </div>
     );

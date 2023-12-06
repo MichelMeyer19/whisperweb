@@ -182,7 +182,7 @@ export const ChatsView = () => {
                 {
                   id: chat.chat_id,
                   topic: chat.topic,
-                  userName: "pending chat request",
+                  userName: "Pending chat request",
                   message: "",
                 },
               ]}
