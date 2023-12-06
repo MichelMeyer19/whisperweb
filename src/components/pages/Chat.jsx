@@ -35,7 +35,7 @@ export const Chat = () => {
   return (
     <div className="flex flex-col items-center justify-between min-w-full max-w-full h-full">
       <Back />
-      <PageSubHeadline text={`#${chat_topic}`} />
+      <PageSubHeadline text={`${chat_topic}`} />
 {/*    <Temp>
       <BackArrow />
   <PageSubHeadline text={`#${chat_topic}`} /> */}
