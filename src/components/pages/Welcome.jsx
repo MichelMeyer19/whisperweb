@@ -47,7 +47,7 @@ export const Welcome = () => {
           />
           <GenericButton
             text="Continue"
-            additionalStyles="text-black bg-green hover:bg-green-dark text-sm"
+            additionalStyles="text-black bg-mesh bg-cover bg-no-repeat text-sm"
             onClick={continueWithProcess}
           />
         </div>
