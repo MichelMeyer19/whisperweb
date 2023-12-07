@@ -13,7 +13,7 @@ export const ChatsView = () => {
     fetchChats(); // Initial fetch
     fetchopenchatRequests(); // Initial fetch
 
-    const chatsInterval = setInterval(fetchChats, 30000); // Poll every 30 seconds
+    const chatsInterval = setInterval(fetchChats, 60000); // Poll every 60 seconds
 
     // Cleanup on component unmount
     return () => clearInterval(chatsInterval);
