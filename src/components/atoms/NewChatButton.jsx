@@ -1,3 +1,4 @@
+// atoms/NewChatButton.jsx
 // button to request a new chat
 // used in NewChat.jsx
 

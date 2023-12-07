@@ -2,10 +2,11 @@
 
 import React from "react";
 
+// create Avatar component
 const Avatar = ({ src }) => {
   return (
-    <div className="avatar">
-      <div className="w-10 rounded-full">
+    <div className="chat-image avatar">
+      <div className="w-8 rounded-full">
         <img src={src} alt="User Avatar" />
       </div>
     </div>

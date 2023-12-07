@@ -1,3 +1,5 @@
+// atoms/BackgroundMesh.jsx
+
 import React, { useEffect, useRef } from 'react';
 
 const BackgroundMesh = () => {
@@ -55,17 +57,10 @@ const BackgroundMesh = () => {
       ref={canvasRef} 
       width="32" 
       height="32" 
-      style={{ 
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: -1,
-        opacity: 0.4
-      }} 
+      style={{position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: -1, opacity: 0.4}} 
     />
   );
 };
 
 export default BackgroundMesh;
+

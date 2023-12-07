@@ -51,7 +51,7 @@ const AuthForm = ({
       <div className="mt-4 flex justify-center">
         <GenericButton
           text={buttonText}
-          additionalStyles="text-black bg-green hover:bg-green-dark"
+          additionalStyles="text-black bg-mesh bg-cover bg-no-repeat"
           type="submit"
         />
       </div>

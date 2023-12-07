@@ -1,3 +1,5 @@
+// atoms/InformationButton.jsx
+
 import React from "react";
 
 const InformationButton = ({
@@ -7,6 +9,7 @@ const InformationButton = ({
   onClick,
   content,
 }) => {
+  
   // Base style
   const baseStyle = `
     bg-white

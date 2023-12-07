@@ -21,7 +21,13 @@ module.exports = {
         dorian: 'rgb(236, 241, 244)',
         cloud:'rgb(250, 252, 254)',
         gradient: 'var(--Gradient---Green-Blue, linear-gradient(180deg, #55E1A0 0%, #52B6F8 100%))',
+        // meshColor was here, but we are using backgroundImage instead
       },
+      backgroundImage: {
+        // Add this with your image path
+        'mesh': "url('/public/mesh/mesh-4.png')" // Replace with the actual path to your image
+        
+      }
     },
   },
   plugins: [require("daisyui")],

@@ -1,7 +1,9 @@
+// file name: components/organisms/"ChatBox".jsx
 import React, { useState, useEffect, useRef } from "react";
 import Parse from "parse/dist/parse.min.js";
 import ChatMessageDetail from "../molecules/ChatMessageDetail";
 import ChatIO from "../molecules/ChatIO";
+import BackgroundMesh from "../atoms/BackgroundMesh";
 
 const ChatBox = ({ chat_id, currentUser }) => {
   const [messages, setMessages] = useState([]);
@@ -13,7 +15,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
     try {
       const query_messages = new Parse.Query("Messages")
         .equalTo("chat_id", chat_id)
-        .ascending("createdAt");  
+        .ascending("createdAt");
       query_messages.include("sent_by_id");
 
       const result_messages = await query_messages.find();
@@ -25,8 +27,8 @@ const ChatBox = ({ chat_id, currentUser }) => {
         message: message.get("text"),
         avatarSrc:
           message.get("sent_by_id").id !== currentUser.id
-            ? "/icons/obi.webp"
-            : "/icons/anakin.webp",
+            ? "/icons/OtherUser.svg"
+            : "/icons/CurrentUserIcon.svg",
       }));
 
       console.log(processedMessages);
@@ -67,8 +69,8 @@ const ChatBox = ({ chat_id, currentUser }) => {
   }, [hasNewMessage]);
 
   return (
-    <div className="w-11/12 bg-dorian rounded-lg  overflow-y-auto shadow-lg mb-16 h-full flex flex-col items-center realtive">
-      <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col realtive">
+    <div className="w-11/12 bg-dorian rounded-lg overflow-y-auto shadow-lg mb-5 h-full flex flex-col items-center relative">
+      <div className="w-11/12 bg-dorian overflow-y-auto h-full flex flex-col realtive">
         <div className="grow">
           {messages.map((message, index) => (
             <ChatMessageDetail
@@ -78,14 +80,18 @@ const ChatBox = ({ chat_id, currentUser }) => {
               time={message.time}
               message={message.message}
               avatarSrc={message.avatarSrc}
+              addPadding={
+                index === messages ||
+                (index > 0 && messages[index - 1]?.isStart !== message.isStart)
+              }
             />
-          ))}
+            ))}
           <div ref={messagesEndRef} />
         </div>
       </div>
 
-      <div className="w-full bg-slate flex flex-col items-center justify-between">
-        <div className="w-11/12 m-2 pl-3">
+      <div className="w-full bg-dorian bg-opacity-20 flex flex-col items-center justify-between">
+        <div className="w-11/12 m-5 pl-3">
           <ChatIO
             chat_id={chat_id}
             currentUser={currentUser}
@@ -99,3 +105,19 @@ const ChatBox = ({ chat_id, currentUser }) => {
 };
 
 export default ChatBox;
+
+
+
+      {/*
+    <div className="w-11/12 border-solid border-black bg-dorian rounded-lg overflow-y-auto shadow-lg mb-4 h-full flex flex-col items-center relative">
+      <div className="w-11/12 bg-dorian overflow-y-auto  h-full flex flex-col rel">
+        <div className="flex-grow">
+          {messages.map((message, index) => (
+            <ChatMessageDetail
+            key={index}
+            isStart={message.isStart}
+            userName={message.userName}
+            time={message.time}
+            message={message.message}
+            avatarSrc={message.avatarSrc}
+          */}

@@ -1,10 +1,11 @@
-// components/pages/Chat.jsx
+// file name: components/pages/"Chat".jsx
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChatBox from "../organisms/ChatBox";
-import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
 import Back from "../atoms/BackArrow";
+import PageSubHeadline from "../atoms/PageSubHeadline";
 import Parse from "parse/dist/parse.min.js";
 
 export const Chat = () => {
@@ -12,9 +13,6 @@ export const Chat = () => {
 
   const { chatId } = useParams();
   const currentUser = Parse.User.current();
-
-  //console.log(chatId);
-  //console.log(currentUser);
 
   useEffect(() => {
     fetchChatTopic();
@@ -32,11 +30,11 @@ export const Chat = () => {
   };
 
   return (
-    <Temp>
+    <div className="flex flex-col items-center justify-between min-w-full max-w-full h-full">
       <Back />
-      <PageHeadline text={`#${chat_topic}`} />
+      <PageSubHeadline text={`${chat_topic}`} />
       <ChatBox chat_id={chatId} currentUser={currentUser} />
-    </Temp>
+    </div>
   );
 };
 

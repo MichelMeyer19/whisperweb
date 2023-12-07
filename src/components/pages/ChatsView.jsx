@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Temp from "../template/Temp";
 import PageHeadline from "../atoms/PageHeadline";
 import ChatBoxOverview from "../organisms/ChatBoxOverview";
 import Parse from "parse/dist/parse.min.js";
@@ -7,11 +6,13 @@ import Parse from "parse/dist/parse.min.js";
 export const ChatsView = () => {
   const [chatsData, setChatsData] = useState([]);
   const [allData, setAllData] = useState([]);
+  const [openchatRequests, setOpenchatRequests] = useState([]);
 
   // query chats whenever the page reloads and at an interval of 30 seconds
   useEffect(() => {
     fetchChats(); // Initial fetch
-    
+    fetchopenchatRequests(); // Initial fetch
+
     const chatsInterval = setInterval(fetchChats, 30000); // Poll every 30 seconds
 
     // Cleanup on component unmount
@@ -28,7 +29,6 @@ export const ChatsView = () => {
   const fetchChats = async function () {
     // Get the current user
     const currentUser = Parse.User.current();
-    console.log(currentUser.id);
 
     // Create a query to find chats where the current user is either user_1 or user_2
     const queryUser1 = new Parse.Query("Chats").equalTo(
@@ -40,7 +40,8 @@ export const ChatsView = () => {
       currentUser.id
     );
     const chatsQuery = Parse.Query.or(queryUser1, queryUser2);
-    chatsQuery.include("user_1","user_2");
+    chatsQuery.include("user_1", "user_2");
+    chatsQuery.descending("createdAt"); // Sort by createdAt in descending order
 
     const foundChats = await chatsQuery.find();
 
@@ -56,8 +57,6 @@ export const ChatsView = () => {
         otherUser_id = result.get("user_2").id;
         otherUser_info = result.get("user_2");
         otherUser_name = otherUser_info.get("anonymous_username");
-        console.log(otherUser_info)
-        console.log(otherUser_name)
       } else {
         otherUser_id = result.get("user_1").id;
         otherUser_name = result.get("user_1").get("anonymous_username");
@@ -79,6 +78,43 @@ export const ChatsView = () => {
 
     // update state with chats
     setChatsData(fetchedChats);
+  };
+
+  // define function to query all chats for current user
+  const fetchopenchatRequests = async function () {
+    // Get the current user
+    const currentUser = Parse.User.current();
+    console.log(currentUser.id);
+
+    // create query to find existing chat requests
+    const chatrequest_query = new Parse.Query("ChatRequest");
+    chatrequest_query.equalTo("user", currentUser.id);
+    chatrequest_query.equalTo("matched_request", false);
+    chatrequest_query.descending("createdAt"); // Sort by createdAt in descending order
+
+    const found_chat_request = await chatrequest_query.find();
+
+    // loop through query results and extract relevant data
+    let fetchedChatRequests = [];
+    for (let result of found_chat_request) {
+      let topic = false;
+      // check if chat is topic-specific or off-topic
+      if (result.get("topic_chat") === true) {
+        topic = result.get("topic_name");
+      } else {
+        topic = "Off-Topic";
+      }
+      fetchedChatRequests.push({
+        chat_id: result.id,
+        current_user: currentUser.id,
+        other_user_id: null,
+        other_user_name: "awaiting match",
+        topic: topic,
+      });
+    }
+    console.log(fetchedChatRequests);
+    // update state with chats
+    setOpenchatRequests(fetchedChatRequests);
   };
 
   // define function to query for the first message of each chat
@@ -111,31 +147,51 @@ export const ChatsView = () => {
         first_message: message,
       });
     }
-    console.log(allDataArr)
+    console.log(allDataArr);
 
     // update state with queried information
     setAllData(allDataArr);
   };
 
   return (
-    <Temp>
+    <div className="flex flex-col items-center min-w-full max-w-full h-full">
       <PageHeadline text="Chats" />
-
-      {allData.map((chat) => (
-        <ChatBoxOverview
-          key={chat.chat_id}
-          chatId={chat.chat_id} // Pass the chatId to ChatBoxOverview
-          chatMessages={[
-            {
-              id: chat.chat_id,
-              topic: chat.topic,
-              userName: chat.other_user_name,
-              message: chat.first_message,
-            },
-          ]}
-        />
-      ))}
-    </Temp>
+      <div className="flex flex-col items-center overflow-auto min-w-full max-w-full h-[76.5%]">
+        {allData.map((chat) => (
+          <div key={chat.chat_id} className="w-full max-w-md mb-1">
+            {/* Set a fixed height for each ChatBoxOverview */}
+            <ChatBoxOverview
+              chatId={chat.chat_id}
+              chatMessages={[
+                {
+                  id: chat.chat_id,
+                  topic: chat.topic,
+                  userName: chat.other_user_name,
+                  message: chat.first_message,
+                },
+              ]}
+            />
+          </div>
+        ))}
+        {openchatRequests.map((chat) => (
+          <div key={chat.chat_id} className="w-full max-w-md mb-1">
+            {/* Set a fixed height for each ChatBoxOverview */}
+            <ChatBoxOverview
+              chatId={chat.chat_id}
+              chatMessages={[
+                {
+                  id: chat.chat_id,
+                  topic: chat.topic,
+                  userName: "Pending chat request",
+                  message: "",
+                },
+              ]}
+              actual_chat={false}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
