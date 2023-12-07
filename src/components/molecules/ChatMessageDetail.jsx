@@ -26,12 +26,6 @@ const ChatMessageDetail = ({
         </div>
         <div className={`chat-bubble ${bubbleClass}`}>{message}</div>
         <div className="chat-footer opacity-50"></div>
-
-{/*    <div className={`chat ${chatClass}`}>
-      <div className="chat-header">
-        {/* <span className="text-xs">{userName}</span>{" "} 
-        <time className="text-xs opacity-50">{time}</time>   */}
-
       </div>
     </div>
   );
