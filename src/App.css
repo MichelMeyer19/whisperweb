@@ -16,3 +16,15 @@ main {
   /* Enable vertical scrolling if content overflows, to ensure Log Out is always accessible */
   overflow-y: auto;
 }
+
+.logo-image {
+  max-width: 90px;
+  height: auto;
+}
+
+
+.slogan-text {
+  color: black;
+  margin-top: 2px; /* Adjust spacing as needed */
+  font-size: 16px; /* Adjust font size as needed */
+}

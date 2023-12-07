@@ -35,25 +35,31 @@ export const NewChat = () => {
     return currentUser;
   };
 
-  // function to retreive topics and create list of dictionaries (incl. topic_id and topic_name)
   async function fetchTopics() {
-
-    // query DB to retrieve topics
+    // Create a query for the Topics table
     let parseQuery = new Parse.Query("Topics");
-
+  
+    // Add a condition to only fetch topics where 'display_topic' is True
+    parseQuery.equalTo("display_topic", true);
+  
     try {
       let queryResults = await parseQuery.find();
-      let fetchedTopicList = []
+      let fetchedTopicList = [];
       // Store results as list of dictionaries
       for (let result of queryResults) {      
-        fetchedTopicList.push({'id':result.id, 'topic_name':result.get(['topic_name']), 'isClicked':false})
+        fetchedTopicList.push({
+          'id': result.id, 
+          'topic_name': result.get('topic_name'), 
+          'isClicked': false
+        });
       }
-      // set topics to fetched list
-      setTopics(fetchedTopicList)      
+      // Set topics to fetched list
+      setTopics(fetchedTopicList);      
     } catch (error) {
-      console.log('call failed!!!')
+      console.log('call failed!!!');
     }
   }
+
 
   return (
     <>
