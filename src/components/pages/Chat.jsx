@@ -6,9 +6,6 @@ import ChatBox from "../organisms/ChatBox";
 import PageHeadline from "../atoms/PageHeadline";
 import Back from "../atoms/BackArrow";
 import PageSubHeadline from "../atoms/PageSubHeadline";
-//import Temp from "../template/Temp";
-//import PageSubHeadline from "../atoms/PageSubHeadline";
-//import BackArrow from "../atoms/BackArrow";
 import Parse from "parse/dist/parse.min.js";
 
 export const Chat = () => {
