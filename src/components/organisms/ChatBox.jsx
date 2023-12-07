@@ -56,7 +56,7 @@ const ChatBox = ({ chat_id, currentUser }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchMessages();
-    }, 2000);
+    }, 40000); //2000
 
     return () => clearInterval(interval);
   }, []);
