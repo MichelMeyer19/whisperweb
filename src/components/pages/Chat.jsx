@@ -6,9 +6,6 @@ import ChatBox from "../organisms/ChatBox";
 import PageHeadline from "../atoms/PageHeadline";
 import Back from "../atoms/BackArrow";
 import PageSubHeadline from "../atoms/PageSubHeadline";
-//import Temp from "../template/Temp";
-//import PageSubHeadline from "../atoms/PageSubHeadline";
-//import BackArrow from "../atoms/BackArrow";
 import Parse from "parse/dist/parse.min.js";
 
 export const Chat = () => {
@@ -36,9 +33,6 @@ export const Chat = () => {
     <div className="flex flex-col items-center justify-between min-w-full max-w-full h-full">
       <Back />
       <PageSubHeadline text={`${chat_topic}`} />
-{/*    <Temp>
-      <BackArrow />
-  <PageSubHeadline text={`#${chat_topic}`} /> */}
       <ChatBox chat_id={chatId} currentUser={currentUser} />
     </div>
   );
