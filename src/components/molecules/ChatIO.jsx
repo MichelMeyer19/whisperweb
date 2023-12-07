@@ -47,7 +47,7 @@ const ChatIO = ({ chat_id, currentUser, setMessages }) => {
         userName: currentUser.id,
         time: getCurrentTime(),
         message: new_message,
-        avatarSrc: "/icons/anakin.webp",
+        avatarSrc: "/icons/CurrentUserIcon.svg",
       };
 
       setMessages((prevState) => [...prevState, messageData]);
