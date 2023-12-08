@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-const InputText = ({ value, onChange }) => {
+const InputText = ({ value, onChange, handleEnter }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -10,6 +10,7 @@ const InputText = ({ value, onChange }) => {
       type="text"
       value={value}
       onChange={onChange}
+      onKeyDown={handleEnter}
       placeholder="Type something..."
       className={`w-full border border-solid border-grey bg-white rounded-full p-4 overflow-y-auto pr-1 ${
       // className={`w-full bg-white rounded-full p-4 overflow-y-auto ${
