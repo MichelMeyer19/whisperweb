@@ -1,3 +1,13 @@
+# Open the project in the correct format on Google Chrome step-by-step
+1. Clone or download this GitHub repository to your computer
+2. Run the command: npm run dev in your Terminal window
+3. Copy the localhost link (usually http://localhost:5173/) from your terminal and paste it in your Google Chrome browser
+4. Right click the page and click "Inspect Element"
+5. In the top of the page choose the dimensions: IPhone 12 Pro, 390 x 844 with 75%
+
+This should be how you are viewing the prototype, if not try to refresh the page and change back and forth from different dimension settings
+<img width="468" alt="Skærmbillede 2023-12-14 kl  13 51 30" src="https://github.com/MichelMeyer19/whisperweb/assets/133225747/fb3e1724-8d7c-4fd9-b6bf-8e5794c36399">
+
 # Agile workflow
 
 You can request access to our Kanban board in [Trello](https://trello.com/b/grC3PmLW/whisperweb).
