@@ -7,7 +7,8 @@
 
 This should be how you are viewing the prototype, if not try to refresh the page and change back and forth from different dimension settings
 
-<img width="468" alt="Skærmbillede 2023-12-14 kl  13 51 30" src="https://github.com/MichelMeyer19/whisperweb/assets/133225747/fb3e1724-8d7c-4fd9-b6bf-8e5794c36399">
+<img width="462" alt="Skærmbillede 2023-12-14 kl  13 56 44" src="https://github.com/MichelMeyer19/whisperweb/assets/133225747/90f28532-ea28-44dc-b25e-1cb12147ecf0">
+
 
 # Agile workflow
 
