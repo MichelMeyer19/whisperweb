@@ -6,6 +6,7 @@
 5. In the top of the page choose the dimensions: IPhone 12 Pro, 390 x 844 with 75%
 
 This should be how you are viewing the prototype, if not try to refresh the page and change back and forth from different dimension settings
+
 <img width="468" alt="Skærmbillede 2023-12-14 kl  13 51 30" src="https://github.com/MichelMeyer19/whisperweb/assets/133225747/fb3e1724-8d7c-4fd9-b6bf-8e5794c36399">
 
 # Agile workflow
