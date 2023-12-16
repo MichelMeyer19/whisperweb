@@ -2,7 +2,7 @@
 import React from "react";
 import truncateText from "../utils/truncateText";
 
-const UsrName = ({ text, additionalStyle }) => {
+const UserName = ({ text, additionalStyle }) => {
   // Ensure that the text is a string before truncating
   const username = typeof text === "string" ? text : "";
 
@@ -12,4 +12,4 @@ const UsrName = ({ text, additionalStyle }) => {
   return <p className={`font-sans text-sm ${additionalStyle}`}>{truncatedText}</p>;
 };
 
-export default UsrName;
+export default UserName;

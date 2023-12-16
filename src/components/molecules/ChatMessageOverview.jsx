@@ -2,8 +2,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TopicText from "../atoms/TopicText";
-import UsrName from "../atoms/UsrName";
-import MsgText from "../atoms/MsgText";
+import UserName from "../atoms/UserName";
+import MessageText from "../atoms/MessageText";
 import LoadingSpinner from "../atoms/LoadingSpinner"; 
 
 const ChatMessageOverview = ({
@@ -22,10 +22,10 @@ const ChatMessageOverview = ({
           }`}
         >
           <TopicText text={topic} actual_chat={actual_chat} />
-          <UsrName text={userName} additionalStyle="text-lightSlate" />
+          <UserName text={userName} additionalStyle="text-lightSlate" />
           {message && (
             <div className="line-clamp-1 text">
-              <MsgText text={message} />
+              <MessageText text={message} />
             </div>
           )}
           <div className="absolute bottom-0 right-0 p-5"> {/* This will position the spinner */}
@@ -45,10 +45,10 @@ const ChatMessageOverview = ({
           }`}
         >
           <TopicText text={topic} actual_chat={actual_chat} />
-          <UsrName text={userName} />
+          <UserName text={userName} />
           {message && (
             <div className="line-clamp-1">
-              <MsgText text={message} />
+              <MessageText text={message} />
             </div>
           )}
         </div>

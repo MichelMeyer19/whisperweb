@@ -1,4 +1,4 @@
-// SignUp.js 
+// SignUp.jsx 
 // allows users to sign up (if successfull they will be redirected to main-chat-page)
 
 import { useState } from "react";
