@@ -11,6 +11,7 @@ const ChatMessageDetail = ({
   avatarSrc,
   addPadding,
 }) => {
+  // conditionally rendering placement of messages
   const chatClass = isStart ? "chat-start" : "chat-end";
   const bubbleClass = isStart ? "bg-white text-black" : "bg-white text-black";
   const paddingClass = addPadding ? "mt-5" : "";

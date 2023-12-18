@@ -19,12 +19,12 @@ const ChatBox = ({ chat_id, currentUser }) => {
 
     return () => clearInterval(interval);
   }, []);
-    
+
   // fetch new messages on initial page load
   useEffect(() => {
     fetchMessages();
   }, []);
-  
+
   // scroll to bottom when new messages are added
   useEffect(() => {
     if (hasNewMessage) {
@@ -62,7 +62,6 @@ const ChatBox = ({ chat_id, currentUser }) => {
         setHasNewMessage(true);
       }
       prevMessagesLength.current = processedMessages.length;
-
     } catch (error) {
       console.error("Error fetching chat messages:", error);
     }
@@ -87,12 +86,13 @@ const ChatBox = ({ chat_id, currentUser }) => {
               time={message.time}
               message={message.message}
               avatarSrc={message.avatarSrc}
+              // conditionally adding padding between users sent messages making it easier to distinguish
               addPadding={
                 index === messages ||
                 (index > 0 && messages[index - 1]?.isStart !== message.isStart)
               }
             />
-            ))}
+          ))}
           <div ref={messagesEndRef} />
         </div>
       </div>

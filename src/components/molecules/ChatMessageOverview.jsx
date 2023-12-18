@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import TopicText from "../atoms/TopicText";
 import UserName from "../atoms/UserName";
 import MessageText from "../atoms/MessageText";
-import LoadingSpinner from "../atoms/LoadingSpinner"; 
+import LoadingSpinner from "../atoms/LoadingSpinner";
 
 const ChatMessageOverview = ({
   chatId,
@@ -13,6 +13,7 @@ const ChatMessageOverview = ({
   message,
   actual_chat,
 }) => {
+  // If chat is waiting match render like this
   if (actual_chat === false) {
     return (
       <div className="min-w-min w-11/12 max-w-4xl relative">
@@ -28,7 +29,9 @@ const ChatMessageOverview = ({
               <MessageText text={message} />
             </div>
           )}
-          <div className="absolute bottom-0 right-0 p-5"> {/* This will position the spinner */}
+          <div className="absolute bottom-0 right-0 p-5">
+            {" "}
+            {/* This will position the spinner */}
             <LoadingSpinner />
           </div>
         </div>
@@ -36,6 +39,7 @@ const ChatMessageOverview = ({
     );
   }
 
+  // Else render current chats like this
   return (
     <div className="min-w-min w-11/12 max-w-4xl">
       <Link to={`/chat/${chatId}`}>
