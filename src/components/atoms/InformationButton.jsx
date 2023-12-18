@@ -5,6 +5,7 @@ import React from "react";
 const InformationButton = ({
   id,
   info_header,
+  subHeader, // Added prop for dynamic sub-header
   isClicked,
   onClick,
   content,
@@ -42,8 +43,8 @@ const InformationButton = ({
         id={id}
       >
         {info_header}
-        {/* Sub-header text */}
-        <span className={subHeaderStyle}>Written by WhisperWeb</span>
+        {/* Dynamic Sub-header text */}
+        <span className={subHeaderStyle}>{subHeader}</span>
       </button>
       {isClicked && (
         <div className="info-content bg-white py-2 px-4 w-80 mt-1 rounded-lg shadow-md text-black text-sm">

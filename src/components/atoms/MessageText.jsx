@@ -2,10 +2,10 @@
 
 import React from "react";
 
-const MsgText = ({ text }) => {
+const MessageText = ({ text }) => {
   return (
     <p className="font-sans text-sm text-lightSlate max-w-full">{text}</p>
   );
 };
 
-export default MsgText;
+export default MessageText;
