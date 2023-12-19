@@ -48,13 +48,6 @@ export const NewChatRequested = () => {
             </p>
           </div>
         </div>
-
-        {/* <div className="flex justify-center">
-          <img 
-            src={"/icons/arrow_down.png"} 
-            alt={"Arrow_Down"} 
-          />
-        </div> */}
       </div>
     </div>
   );

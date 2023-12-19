@@ -5,8 +5,8 @@ import pandas as pd
 # we do so by retrieving the topics table (read) and updating values in the respective col (update)
 
 headers = {
-    'X-Parse-Application-Id': 'I4ZAiP31nKwNRdrFJtAs766FVZUPtLXWZvTstqI9',
-    'X-Parse-REST-API-Key': 'fTG9Wppa07n6YXxmSU09du2VIznPUA9ORLNqVoXT',
+    'X-Parse-Application-Id': 'gFjNyetbeOCiLa4yvpwcmSwRaakc1U7EMuC2NAV8',
+    'X-Parse-REST-API-Key': 'V78X4xJKvSN97hkxUfJeNpXa0K7PTnOEY8MzDrDo',
     'Content-Type': 'application/json'
 }
 
