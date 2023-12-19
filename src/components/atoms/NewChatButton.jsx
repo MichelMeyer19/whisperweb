@@ -1,3 +1,4 @@
+// atoms/NewChatButton.jsx
 // button to request a new chat
 // used in NewChat.jsx
 
@@ -60,6 +61,22 @@ export const NewChatButton = ({text,topics,currentUser}) => {
 
       const newPath = '/newchatrequested/true';
       navigateTo(newPath);
+    }
+
+    // Increment 'number_requests' for the selected topic if topic chat is requested
+    if (topic_chat && topic) {
+      try {
+        // Query the Topics table for the selected topic
+        const topicQuery = new Parse.Query('Topics');
+        topicQuery.equalTo('topic_name', topic);
+        const topicObj = await topicQuery.first();
+        
+        // Increment 'number_requests' field
+        topicObj.increment('number_requests');
+        await topicObj.save();
+      } catch (error) {
+        console.error('Failed to increment number_requests:', error);
+      }
     }
   };
 

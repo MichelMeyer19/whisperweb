@@ -1,4 +1,4 @@
-// InputField.jsx atom component
+// atoms/InputField.jsx
 
 const InputField = ({ type, id, value, onChange, placeholder, label }) => {
   // Determine the correct autocomplete attribute based on input type
@@ -19,7 +19,7 @@ const InputField = ({ type, id, value, onChange, placeholder, label }) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full p-2 border rounded-md mb-4"
+        className="w-full p-2 border rounded-md mb-4 focus:outline-none"
         required
         autoComplete={autoCompleteValue}
       />

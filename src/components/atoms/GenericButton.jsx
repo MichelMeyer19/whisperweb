@@ -1,10 +1,6 @@
-const GenericButton = ({
-  text,
-  additionalStyles,
-  onClick,
-  type = "button",
-}) => {
+// atoms/GenericButton.jsx
 
+const GenericButton = ({ text, additionalStyles, onClick, type = "button"}) => {
 
   // Define a base style for the button including text styling
   const baseStyle = `

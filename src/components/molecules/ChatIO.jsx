@@ -1,11 +1,16 @@
+// file name: components/molecules/ChatIO.jsx
+// component contains text input and send button with functionality to send messages within chatbox
+
 import React, { useEffect, useState } from "react";
 import InputText from "../atoms/InputText";
 import Parse from "parse/dist/parse.min.js";
+
 
 const ChatIO = ({ chat_id, currentUser, setMessages }) => {
   const [new_message, setNewMessage] = useState("");
   const [current_chat, setCurrentChat] = useState("");
 
+  // fetch the chat from the database on initial load
   useEffect(() => {
     fetchChat();
   }, []);
@@ -21,10 +26,12 @@ const ChatIO = ({ chat_id, currentUser, setMessages }) => {
     setCurrentChat(result);
   };
 
+  // update the new_message state when the user types in the input field
   const handleInputChange = (event) => {
     setNewMessage(event.target.value);
   };
 
+  // send the message to the database
   const handleSendClick = async () => {
     if (new_message.trim() === "") {
       return;
@@ -44,7 +51,7 @@ const ChatIO = ({ chat_id, currentUser, setMessages }) => {
         userName: currentUser.id,
         time: getCurrentTime(),
         message: new_message,
-        avatarSrc: "/icons/anakin.webp",
+        avatarSrc: "/icons/CurrentUserIcon.svg",
       };
 
       setMessages((prevState) => [...prevState, messageData]);
@@ -54,6 +61,7 @@ const ChatIO = ({ chat_id, currentUser, setMessages }) => {
     }
   };
 
+  // get the current time in the format HH:MM:SS AM/PM
   const getCurrentTime = () => {
     const currentTime = new Date();
     return `${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()} ${
@@ -61,10 +69,19 @@ const ChatIO = ({ chat_id, currentUser, setMessages }) => {
     }`;
   };
 
+  // send the message when the user presses enter
+  const handleEnter = (event) => {
+    if (event.keyCode === 13) {
+      // Simulate a click on the button
+      event.preventDefault();
+      handleSendClick();
+    }
+  };
+
   return (
     <div className="flex flex-row align-middle justify-between">
       <div className="w-full">
-        <InputText value={new_message} onChange={handleInputChange} />
+        <InputText value={new_message} onChange={handleInputChange} handleEnter={handleEnter} />
       </div>
       <div className="flex m-2">
         <button onClick={handleSendClick}>

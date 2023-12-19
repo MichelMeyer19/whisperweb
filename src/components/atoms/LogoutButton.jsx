@@ -1,3 +1,5 @@
+// atoms/LogoutButton.jsx
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Parse from "parse/dist/parse.min.js";
